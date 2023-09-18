@@ -1,10 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
+import UpperBar from './components/common/UpperBar/UpperBar';
+import SideBar from './components/common/SideBar/SideBar';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <UpperBar></UpperBar>
+      <SideBar></SideBar>
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -17,7 +21,7 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
     </div>
   );
 }

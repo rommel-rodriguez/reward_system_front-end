@@ -1,28 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
-import UpperBar from './components/common/UpperBar/UpperBar';
-import SideBar from './components/common/SideBar/SideBar';
+import Base from './components/common/Base/Base';
+import Signup from './components/pages/Authentication/Signup';
+import { useState } from 'react';
 
 function App() {
+  let content = <Signup/>;
+
   return (
-    <div className="App">
-      <UpperBar></UpperBar>
-      <SideBar></SideBar>
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-    </div>
+    <Base>
+      {content}
+    </Base>
   );
 }
 

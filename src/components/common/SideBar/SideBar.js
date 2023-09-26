@@ -10,22 +10,41 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import { useEffect } from 'react';
 
-export default function SideBar() {
+export default function SideBar({isOpen}) {
   const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
+    // top: false,
+    left: isOpen,
+    // bottom: false,
+    // right: false,
   });
 
+  // setState({ ...state, left: isOpen});
+  // NOTE: Maybe use useEffect here?
+
+  useEffect( () => {
+    console.log(`Should Trigger only once ${isOpen}`)
+  }, [isOpen]);
+
+  console.log(`Rendering SideBar\n\tLeft State: ${state.left}\n\tisOpen:${isOpen}`);
+
+
   const toggleDrawer = (anchor, open) => (event) => {
+    // console.log(`ToggleDrawer called\n\topen: ${open}\n\state: ${state}`)
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
     setState({ ...state, [anchor]: open });
+    console.log(`ToggleDrawer called\n\topen: ${open}\n\tstate: ${state}`)
   };
+
+  useEffect( () => {
+    console.log(`Should Trigger only once ${isOpen}`)
+    setState({ ...state, "left": isOpen});
+  }, [isOpen]);
+  // toggleDrawer('left', isOpen);
 
   const list = (anchor) => (
     <Box
@@ -33,6 +52,7 @@ export default function SideBar() {
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
+      className="findMe"
     >
       <List>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
@@ -64,18 +84,17 @@ export default function SideBar() {
 
   return (
     <div>
-      {['left', 'right', 'top', 'bottom'].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+        <React.Fragment key={'left'}>
+          <Button onClick={toggleDrawer('left', true)}>{'left'}</Button>
           <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
+            anchor={'left'}
+            open={state['left']}
+            // open={isOpen}
+            onClose={toggleDrawer('left', false)}
           >
-            {list(anchor)}
+            {list('left')}
           </Drawer>
         </React.Fragment>
-      ))}
     </div>
   );
 }

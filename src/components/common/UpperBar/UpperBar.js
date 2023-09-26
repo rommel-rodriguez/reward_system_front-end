@@ -12,7 +12,7 @@ import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 
-export default function UpperBar() {
+export default function UpperBar({handleMenuIconClick}) {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -42,6 +42,7 @@ export default function UpperBar() {
           label={auth ? 'Logout' : 'Login'}
         />
       </FormGroup>
+      {/* <AppBar position="fixed" sx={{background:"#3363FF"}} > */}
       <AppBar position="static" sx={{background:"#3363FF"}} >
         <Toolbar>
           <IconButton
@@ -50,6 +51,7 @@ export default function UpperBar() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            onClick={handleMenuIconClick} 
           >
             <MenuIcon />
           </IconButton>

@@ -10,42 +10,57 @@ import FormLabel from '@mui/material/FormLabel';
 import InputLabel from '@mui/material/InputLabel';
 
 function Signup() {
-    const [documentType, setDocumentType] = React.useState('');
+    const [username, setUsername] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    const [employeeId, setEmployeeId] = React.useState(0);
 
-    const handleChange = (event) => {
-        setDocumentType(event.target.value);
+    const handleChangeUser = (event) => {
+        setUsername(event.target.value);
+    };
+
+    const handleChangePassword = (event) => {
+        setPassword(event.target.value);
+    };
+
+    const handleChangeEmployeeId = (event) => {
+        setEmployeeId(event.target.value);
     };
     return (
-        <Box>
-            <form>
+        <Box sx={{ columnCount: 1, columnWidth: '20px', flexWrap: 'wrap' }}>
+            <form style={{ columns: '100 2', display: 'flex'}}>
+            {/* <form style={{ columns: '50% 1', display: 'flex',flexWrap: 'wrap' }}> */}
                 <FormControl>
-                    <InputLabel id="name-label">Nombre</InputLabel>
-                    <TextField labelId="name-label"></TextField>
-                </FormControl>
-                <FormControl>
-                    <FormLabel>Apellidos</FormLabel>
-                    <TextField></TextField>
-                </FormControl>
-                <FormControl variant="outlined" sx={{ m: 1, minWidth: 250 }}>
-                    {/* <FormLabel select id="document-type-label" >Tipo de Documento</FormLabel> */}
-                    <InputLabel id="document-type-label" >Tipo de Documento</InputLabel>
-                    <Select
-                        labelId="document-type-label"
-                        id="demo-simple-select"
-                        value={documentType}
-                        label="Age"
-                        onChange={handleChange}
-                    >
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                    </Select>
+                    {/* <InputLabel id="user-label">Nombre de Usuario</InputLabel> */}
+                    <TextField
+                     labelId="user-label"
+                     required
+                     label="Nombre de Usuario"
+                     name="username"
+                    />
                 </FormControl>
                 <FormControl>
-                    <FormLabel>Nombre</FormLabel>
-                    <TextField></TextField>
+                    {/* <FormLabel>Password</FormLabel> */}
+                    <TextField
+                     required
+                     type="password"
+                     label="Password"
+                     name="password"
+                    />
                 </FormControl>
-                <Button>Submit</Button>
+
+                <FormControl>
+                    <TextField
+                     label="Codigo de Empleado (Opcional)"
+                     type="number"
+                     name="employeeId"
+                    />
+                </FormControl>
+
+                <Button
+                 variant="outlined"
+                 size="large">
+                    Submit
+                </Button>
             </form>
 
         </Box>

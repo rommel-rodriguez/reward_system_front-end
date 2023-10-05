@@ -10,7 +10,7 @@ import FormLabel from '@mui/material/FormLabel';
 import InputLabel from '@mui/material/InputLabel';
 import Grid from '@mui/material/Unstable_Grid2'; 
 
-import appUserService from "../../../services/appUserService";
+import authservice from "../../../services/authService";
 
 function Signup() {
     const [username, setUsername] = React.useState('');
@@ -19,7 +19,7 @@ function Signup() {
 
     const handleChangeUser = (event) => {
         setUsername(event.target.value);
-        console.log(`User name: ${event.target.value}`);
+        // console.log(`User name: ${event.target.value}`);
     };
 
     const handleChangePassword = (event) => {
@@ -36,7 +36,7 @@ function Signup() {
 
     const handleSubmitButton = (event) => {
         console.log(`Form Submitted! Credentials:\n${username}::${password}::${employeeId}`);
-        appUserService.register(
+        authservice.signup(
             username,
             password,
             employeeId !== 0 ? employeeId : null);

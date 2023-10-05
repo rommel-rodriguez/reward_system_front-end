@@ -31,7 +31,8 @@ function App() {
   }
   // TODO: Must test whether the User is logged in here
 
-  let content = <SignIn/>;
+  // let content = <SignIn/>;
+  let content = <Signup/>;
   // let content = <SignIn/>;
 
   return (

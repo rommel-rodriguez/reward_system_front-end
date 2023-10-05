@@ -15,11 +15,10 @@ import authService from "../../../services/authService";
 function SignIn() {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
-    const [employeeId, setEmployeeId] = React.useState(0);
 
     const handleChangeUser = (event) => {
         setUsername(event.target.value);
-        console.log(`User name: ${event.target.value}`);
+        // console.log(`User name: ${event.target.value}`);
     };
 
     const handleChangePassword = (event) => {
@@ -34,7 +33,7 @@ function SignIn() {
     const handleSubmitButton = (event) => {
         // TODO: Need to create a Provider component to track the is-logged
         // state across all the application
-        console.log(`Form Submitted! Credentials:\n${username}::${password}::${employeeId}`);
+        console.log(`Form Submitted! Credentials:\n${username}::${password}`);
         authService.login(username, password);
     };
 

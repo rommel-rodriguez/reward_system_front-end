@@ -38,6 +38,25 @@ const authService = {
       return false;
     }
   },
+
+  signup: async (username, password, employeeId = null) => {
+    try {
+      const payload = {
+        username,
+        password,
+      };
+      if (employeeId) {
+        payload.employeeId = employeeId;  // Only include employeeId if provided
+      }
+      const response = await api.post('/api/v1/signup', payload);
+      return response;
+    } catch (error) {
+      console.error('Registration failed:', error);
+      throw error;  // Re-throw the error to be handled by the calling function
+    }
+  },
+
+
 }
 
 export default authService;

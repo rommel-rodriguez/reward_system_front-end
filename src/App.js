@@ -6,8 +6,8 @@ import SignIn from './components/pages/Authentication/SignIn';
 import { useState } from 'react';
 
 function App() {
-  // let content = <Signup/>;
-  let content = <SignIn/>;
+  let content = <Signup/>;
+  // let content = <SignIn/>;
 
   return (
     <Base>

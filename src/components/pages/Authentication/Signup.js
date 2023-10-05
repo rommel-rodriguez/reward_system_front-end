@@ -8,6 +8,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import InputLabel from '@mui/material/InputLabel';
+import Grid from '@mui/material/Unstable_Grid2'; 
 
 function Signup() {
     const [username, setUsername] = React.useState('');
@@ -26,7 +27,8 @@ function Signup() {
         setEmployeeId(event.target.value);
     };
     return (
-        <Box sx={{ columnCount: 1, columnWidth: '20px', flexWrap: 'wrap' }}>
+        <Grid container>
+        {/* <Box sx={{ columnCount: 1, columnWidth: '20px', flexWrap: 'wrap' }}> */}
             <form style={{ columns: '100 2', display: 'flex'}}>
             {/* <form style={{ columns: '50% 1', display: 'flex',flexWrap: 'wrap' }}> */}
                 <FormControl>
@@ -62,8 +64,8 @@ function Signup() {
                     Submit
                 </Button>
             </form>
-
-        </Box>
+         {/* </Box> */}
+        </Grid>
     );
 }
 

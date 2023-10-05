@@ -12,7 +12,6 @@ import InputLabel from '@mui/material/InputLabel';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { withStyles } from '@mui/material';
 
 const styles = theme => ({
   main: {
@@ -91,4 +90,5 @@ SignIn.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SignIn);
+// export default withStyles(styles)(SignIn);
+export default SignIn;

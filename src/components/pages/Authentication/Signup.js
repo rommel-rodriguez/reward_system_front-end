@@ -17,6 +17,7 @@ function Signup() {
 
     const handleChangeUser = (event) => {
         setUsername(event.target.value);
+        console.log(`User name: ${event.target.value}`);
     };
 
     const handleChangePassword = (event) => {
@@ -26,46 +27,71 @@ function Signup() {
     const handleChangeEmployeeId = (event) => {
         setEmployeeId(event.target.value);
     };
+
+    const handleSubmit = (event) => {
+        console.log(`Form Submitted!!!!`);
+    };
+
     return (
-        <Grid container>
-        {/* <Box sx={{ columnCount: 1, columnWidth: '20px', flexWrap: 'wrap' }}> */}
-            <form style={{ columns: '100 2', display: 'flex'}}>
-            {/* <form style={{ columns: '50% 1', display: 'flex',flexWrap: 'wrap' }}> */}
-                <FormControl>
-                    {/* <InputLabel id="user-label">Nombre de Usuario</InputLabel> */}
-                    <TextField
-                     labelId="user-label"
-                     required
-                     label="Nombre de Usuario"
-                     name="username"
-                    />
-                </FormControl>
-                <FormControl>
-                    {/* <FormLabel>Password</FormLabel> */}
-                    <TextField
-                     required
-                     type="password"
-                     label="Password"
-                     name="password"
-                    />
-                </FormControl>
+        <Box flexGrow={1}>
+            <Grid container spacing={2}>
+                <Grid container
+                 spacing={2}
+                 md={9} 
+                 mdOffset={3} 
+                 justity="center"
+                //  alignItems="center"
+                 >
+                    {/* <form style={{ columns: '100 2', display: 'flex'}}> */}
+                    <form onSubmit={handleSubmit}>
+                        <Grid item md={12} justity="center" alignItems="center">
+                            <FormControl>
+                                <TextField
+                                required
+                                label="Nombre de Usuario"
+                                name="username"
+                                onChange={handleChangeUser}
+                                value={username}
+                                />
+                            </FormControl>
+                        </Grid>
+                        <Grid item md={12}>
+                            <FormControl>
+                                {/* <FormLabel>Password</FormLabel> */}
+                                <TextField
+                                required
+                                type="password"
+                                label="Password"
+                                name="password"
+                                onChange={handleChangePassword}
+                                value={password}
+                                />
+                            </FormControl>
+                        </Grid>
 
-                <FormControl>
-                    <TextField
-                     label="Codigo de Empleado (Opcional)"
-                     type="number"
-                     name="employeeId"
-                    />
-                </FormControl>
+                        <Grid item xs={12}>
+                            <FormControl>
+                                <TextField
+                                label="Codigo de Empleado (Opcional)"
+                                type="number"
+                                name="employeeId"
+                                onChange={handleChangeEmployeeId}
+                                value={employeeId}
+                                />
+                            </FormControl>
+                        </Grid>
 
-                <Button
-                 variant="outlined"
-                 size="large">
-                    Submit
-                </Button>
-            </form>
-         {/* </Box> */}
-        </Grid>
+                        <Grid item xs={12}>
+                            <Button
+                            variant="outlined"
+                            size="large">
+                                Registrar Usuario 
+                            </Button>
+                        </Grid>
+                    </form>
+                </Grid>
+            </Grid>
+        </Box>
     );
 }
 

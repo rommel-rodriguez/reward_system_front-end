@@ -10,6 +10,8 @@ import FormLabel from '@mui/material/FormLabel';
 import InputLabel from '@mui/material/InputLabel';
 import Grid from '@mui/material/Unstable_Grid2'; 
 
+import appUserService from "../../../services/appUserService";
+
 function Signup() {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -30,6 +32,14 @@ function Signup() {
 
     const handleSubmit = (event) => {
         console.log(`Form Submitted!!!!`);
+    };
+
+    const handleSubmitButton = (event) => {
+        console.log(`Form Submitted! Credentials:\n${username}::${password}::${employeeId}`);
+        appUserService.register(
+            username,
+            password,
+            employeeId !== 0 ? employeeId : null);
     };
 
     return (
@@ -88,7 +98,9 @@ function Signup() {
                         <Grid item xs={12}>
                             <Button
                             variant="outlined"
-                            size="large">
+                            size="large"
+                            onClick={handleSubmitButton}
+                            >
                                 Registrar Usuario 
                             </Button>
                         </Grid>

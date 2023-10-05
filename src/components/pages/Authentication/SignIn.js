@@ -1,94 +1,97 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-// import Avatar from '@mui/material/Avatar';
-import Avatar from '@mui/material/Avatar';
-import { Button } from '@mui/material';
-import CssBaseline from '@mui/material/CssBaseline';
-import { FormControl } from '@mui/material';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Input from '@mui/material/Input';
+import React from "react";
+import { Box } from "@mui/material";
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+// import { FormControl, FormLabel } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 import InputLabel from '@mui/material/InputLabel';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Unstable_Grid2'; 
 
-const styles = theme => ({
-  main: {
-    width: 'auto',
-    display: 'block', // Fix IE 11 issue.
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-      width: 400,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-  },
-  paper: {
-    marginTop: theme.spacing.unit * 8,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
-  },
-  avatar: {
-    margin: theme.spacing.unit,
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing.unit,
-  },
-  submit: {
-    marginTop: theme.spacing.unit * 3,
-  },
-});
+import authService from "../../../services/authService";
 
-function SignIn(props) {
-  const { classes } = props;
+function SignIn() {
+    const [username, setUsername] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    const [employeeId, setEmployeeId] = React.useState(0);
 
-  return (
-    <main className={classes.main}>
-      <CssBaseline />
-      <Paper className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form className={classes.form}>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus />
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <Input name="password" type="password" id="password" autoComplete="current-password" />
-          </FormControl>
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign in
-          </Button>
-        </form>
-      </Paper>
-    </main>
-  );
+    const handleChangeUser = (event) => {
+        setUsername(event.target.value);
+        console.log(`User name: ${event.target.value}`);
+    };
+
+    const handleChangePassword = (event) => {
+        setPassword(event.target.value);
+    };
+
+
+    const handleSubmit = (event) => {
+        console.log(`Form Submitted!!!!`);
+    };
+
+    const handleSubmitButton = (event) => {
+        // TODO: Need to create a Provider component to track the is-logged
+        // state across all the application
+        console.log(`Form Submitted! Credentials:\n${username}::${password}::${employeeId}`);
+        authService.login(username, password);
+    };
+
+    return (
+        <Box
+         sx={{ flexGrow: 1 }}
+         justifyContent="center"
+         alignItems="center"
+         >
+            <form onSubmit={handleSubmit}>
+                <Grid container
+                 spacing={2}
+                 md={6} 
+                 mdOffset={3} 
+                 xs={12} 
+                 xsOffset={0} 
+                 justifyContent="center"
+                 alignItems="center"
+                 >
+                        <Grid item xs={12} justity="center" alignItems="center">
+                            <FormControl>
+                                <TextField
+                                required
+                                label="Nombre de Usuario"
+                                name="username"
+                                onChange={handleChangeUser}
+                                value={username}
+                                />
+                            </FormControl>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <FormControl>
+                                {/* <FormLabel>Password</FormLabel> */}
+                                <TextField
+                                required
+                                type="password"
+                                label="Password"
+                                name="password"
+                                onChange={handleChangePassword}
+                                value={password}
+                                />
+                            </FormControl>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <Button
+                            variant="outlined"
+                            size="large"
+                            onClick={handleSubmitButton}
+                            >
+                                Login 
+                            </Button>
+                        </Grid>
+                </Grid>
+            </form>
+        </Box>
+    );
 }
 
-SignIn.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-// export default withStyles(styles)(SignIn);
 export default SignIn;

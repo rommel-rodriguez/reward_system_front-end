@@ -33,8 +33,12 @@ function Signup() {
     };
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={2}>
+        <Box
+         sx={{ flexGrow: 1 }}
+         justifyContent="center"
+         alignItems="center"
+         >
+            <form onSubmit={handleSubmit}>
                 <Grid container
                  spacing={2}
                  md={6} 
@@ -44,8 +48,7 @@ function Signup() {
                  justifyContent="center"
                  alignItems="center"
                  >
-                    <form onSubmit={handleSubmit}>
-                        <Grid item md={12} justity="center" alignItems="center">
+                        <Grid item xs={12} justity="center" alignItems="center">
                             <FormControl>
                                 <TextField
                                 required
@@ -56,7 +59,7 @@ function Signup() {
                                 />
                             </FormControl>
                         </Grid>
-                        <Grid item md={12}>
+                        <Grid item xs={12}>
                             <FormControl>
                                 {/* <FormLabel>Password</FormLabel> */}
                                 <TextField
@@ -89,9 +92,8 @@ function Signup() {
                                 Registrar Usuario 
                             </Button>
                         </Grid>
-                    </form>
                 </Grid>
-            </Grid>
+            </form>
         </Box>
     );
 }

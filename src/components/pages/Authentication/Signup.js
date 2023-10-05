@@ -33,16 +33,17 @@ function Signup() {
     };
 
     return (
-        <Box flexGrow={1}>
+        <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
                 <Grid container
                  spacing={2}
-                 md={9} 
+                 md={6} 
                  mdOffset={3} 
-                 justity="center"
-                //  alignItems="center"
+                 xs={12} 
+                 xsOffset={0} 
+                 justifyContent="center"
+                 alignItems="center"
                  >
-                    {/* <form style={{ columns: '100 2', display: 'flex'}}> */}
                     <form onSubmit={handleSubmit}>
                         <Grid item md={12} justity="center" alignItems="center">
                             <FormControl>

@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import Base from './components/common/Base/Base';
-import Signup from './components/pages/Authentication/Signup';
-import SignIn from './components/pages/Authentication/SignIn';
+import SignupPage from './components/pages/Authentication/SignupPage';
+import SignInPage from './components/pages/Authentication/SignInPage';
 import { useState } from 'react';
 import authService from './services/authService';
 import { useEffect } from 'react';
@@ -31,14 +31,15 @@ function App() {
   }
   // TODO: Must test whether the User is logged in here
 
-  // let content = <SignIn/>;
-  let content = <Signup/>;
+  // let content = <SignInPage/>;
+  let content = <SignupPage/>;
   // let content = <SignIn/>;
 
   return (
-    <Base>
-      {content}
-    </Base>
+    // <Base>
+    //   {content}
+    // </Base>
+    content
   );
 }
 

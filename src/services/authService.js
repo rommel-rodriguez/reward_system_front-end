@@ -48,7 +48,7 @@ const authService = {
       if (employeeId) {
         payload.employeeId = employeeId;  // Only include employeeId if provided
       }
-      const response = await api.post('/api/v1/signup', payload);
+      const response = await api.post('/api/v1/auth/signup', payload);
       return response;
     } catch (error) {
       console.error('Registration failed:', error);

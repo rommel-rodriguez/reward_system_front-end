@@ -6,6 +6,8 @@ import SignInPage from './components/pages/Authentication/SignInPage';
 import { useState } from 'react';
 import authService from './services/authService';
 import { useEffect } from 'react';
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -40,6 +42,12 @@ function App() {
     //   {content}
     // </Base>
     content
+  // <Router>
+  //   <Switch>
+  //     <Route exact path="/signin" component={SignInPage} />
+  //     <Route path="/signup" component={SignupPage} />
+  //   </Switch>
+  // </Router>
   );
 }
 

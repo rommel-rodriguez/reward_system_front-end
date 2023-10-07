@@ -40,6 +40,8 @@ function RegisterSalePage() {
 
     useEffect( () => {
        const fetchData = async () => {
+        // TODO: This can throw error if the back-end is not working, handle
+        // apropriatedly
         const idsAndNames = await productsService.getProductIdsAndNames(); 
         console.log(idsAndNames);
         setProductSelect(idsAndNames);

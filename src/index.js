@@ -14,6 +14,7 @@ import '@fontsource/roboto/700.css';
 
 import SignInPage from './components/pages/Authentication/SignInPage';
 import SignupPage from './components/pages/Authentication/SignupPage';
+import RegisterSalePage from './components/pages/Seller/RegisterSalePage';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignupPage/>,
+  },
+  {
+    path: "/register-sale",
+    element: <RegisterSalePage />,
   },
 ]);
 

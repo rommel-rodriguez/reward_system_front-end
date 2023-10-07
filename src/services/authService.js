@@ -2,6 +2,7 @@ import api from "../api/api";
 
 const authService = {
   login: async (username, password) => {
+    authService.logout(); // TODO: Emergency measure change later
     try {
       const response = await api.post('/api/v1/auth/signin', {
         username,
@@ -52,6 +53,19 @@ const authService = {
       return response;
     } catch (error) {
       console.error('Registration failed:', error);
+      throw error;  // Re-throw the error to be handled by the calling function
+    }
+  },
+  getIdentity: async () => {
+    if (!await authService.isTokenValid()) {
+      return null;
+    }
+
+    try {
+      const response = await api.get('/api/v1/me');
+      return response.data;
+    } catch (error) {
+      console.error('Failed to retrieve the identity:','\n', error);
       throw error;  // Re-throw the error to be handled by the calling function
     }
   },

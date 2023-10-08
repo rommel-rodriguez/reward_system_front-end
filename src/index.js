@@ -17,6 +17,7 @@ import SignupPage from './components/pages/Authentication/SignupPage';
 import RegisterSalePage from './components/pages/Seller/RegisterSalePage';
 import EmployeesAccordion from './components/standalone/EmployeesAccordion';
 import TrackEmployeesPage from './components/pages/Manager/TrackEmployeesPage';
+import { IdentityProvider } from './context/identity';
 
 const router = createBrowserRouter([
   {
@@ -45,7 +46,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <App /> */}
-    <RouterProvider router={router} />
+    <IdentityProvider>
+      <RouterProvider router={router} />
+    </IdentityProvider>
   </React.StrictMode>
 );
 

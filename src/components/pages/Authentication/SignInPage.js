@@ -1,4 +1,5 @@
 import React from "react";
+import { useContext } from "react";
 import { Box } from "@mui/material";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -10,12 +11,14 @@ import FormLabel from '@mui/material/FormLabel';
 import InputLabel from '@mui/material/InputLabel';
 import Grid from '@mui/material/Unstable_Grid2'; 
 import Base from "../../common/Base/Base";
+import IdentityContext from "../../../context/identity";
 
 import authService from "../../../services/authService";
 
 function SignInPage() {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const {identity, login} = useContext(IdentityContext);
 
     const handleChangeUser = (event) => {
         setUsername(event.target.value);
@@ -31,11 +34,16 @@ function SignInPage() {
         console.log(`Form Submitted!!!!`);
     };
 
-    const handleSubmitButton = (event) => {
+    const handleSubmitButton = async (event) => {
         // TODO: Need to create a Provider component to track the is-logged
         // state across all the application
         console.log(`Form Submitted! Credentials:\n${username}::${password}`);
-        authService.login(username, password);
+        // authService.login(username, password);
+        try {
+            await login(username, password);
+        } catch (error) {
+            // TODO: Show error window here
+        }
     };
 
     return (

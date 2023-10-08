@@ -17,7 +17,8 @@ import SignupPage from './components/pages/Authentication/SignupPage';
 import RegisterSalePage from './components/pages/Seller/RegisterSalePage';
 import EmployeesAccordion from './components/standalone/EmployeesAccordion';
 import TrackEmployeesPage from './components/pages/Manager/TrackEmployeesPage';
-import { IdentityProvider } from './context/identity';
+// import { IdentityProvider } from './context/identity';
+import ProfilePage from './components/pages/Profile/ProfilePage';
 
 const router = createBrowserRouter([
   {
@@ -40,13 +41,19 @@ const router = createBrowserRouter([
     path: "/track-employees",
     element: <TrackEmployeesPage/>,
   },
+  {
+    path: "/profile",
+    element: <ProfilePage />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <App /> */}
+    {/* <IdentityProvider> */}
       <RouterProvider router={router} />
+    {/* </IdentityProvider> */}
   </React.StrictMode>
 );
 

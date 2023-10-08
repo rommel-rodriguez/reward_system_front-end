@@ -1,17 +1,19 @@
 import React from "react";
+import { useContext } from "react";
 import { Box, Typography } from "@mui/material";
-import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 // import { FormControl, FormLabel } from '@mui/material';
-import FormControl from '@mui/material/FormControl';
 import Grid from '@mui/material/Unstable_Grid2'; 
 import Base from "../../common/Base/Base";
+import IdentityContext from "../../../context/identity";
 
-import authService from "../../../services/authService";
+// import authService from "../../../services/authService";
 
 function ProfilePage() {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const {identity} = useContext(IdentityContext);
+    console.log(`Profile Page, username: ${identity.username}`);
 
     const handleChangeUser = (event) => {
         setUsername(event.target.value);
@@ -51,7 +53,10 @@ function ProfilePage() {
                 >
                     <Grid item xs={12} md={4} justity="center" alignItems="center">
                         <Typography>
-
+                            {identity.firstName} <br />
+                            {identity.username} <br />
+                            {identity.documentType} <br />
+                            {identity.documentNumber} <br />
                         </Typography>
                     </Grid>
 

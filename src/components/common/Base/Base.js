@@ -12,11 +12,13 @@ function Base({children}) {
     };
 
     return (
-        <div className="App" >
-            <UpperBar handleMenuIconClick={handleToggleSidebar}></UpperBar>
-            <SideBar isOpen={sidebarOpen}></SideBar>
-            {children}
-        </div>
+        // <IdentityProvider>
+            <div className="App" >
+                <UpperBar handleMenuIconClick={handleToggleSidebar}></UpperBar>
+                <SideBar isOpen={sidebarOpen}></SideBar>
+                {children}
+            </div>
+        // </IdentityProvider>
     );
 
 }

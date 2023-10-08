@@ -46,9 +46,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <App /> */}
-    <IdentityProvider>
       <RouterProvider router={router} />
-    </IdentityProvider>
   </React.StrictMode>
 );
 

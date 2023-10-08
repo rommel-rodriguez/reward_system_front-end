@@ -12,8 +12,29 @@ const api = axios.create({
   },
 });
 
+const rawApi = axios.create({
+  baseURL: apiConfig.apiUrl,
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
 // Request Interceptor
 api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+rawApi.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -45,3 +66,4 @@ api.interceptors.response.use(
 );
 
 export default api;
+export {rawApi};

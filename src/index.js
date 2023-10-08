@@ -15,6 +15,8 @@ import '@fontsource/roboto/700.css';
 import SignInPage from './components/pages/Authentication/SignInPage';
 import SignupPage from './components/pages/Authentication/SignupPage';
 import RegisterSalePage from './components/pages/Seller/RegisterSalePage';
+import EmployeesAccordion from './components/standalone/EmployeesAccordion';
+import TrackEmployeesPage from './components/pages/Manager/TrackEmployeesPage';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +34,10 @@ const router = createBrowserRouter([
   {
     path: "/register-sale",
     element: <RegisterSalePage />,
+  },
+  {
+    path: "/track-employees",
+    element: <TrackEmployeesPage/>,
   },
 ]);
 

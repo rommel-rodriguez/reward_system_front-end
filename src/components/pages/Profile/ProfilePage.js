@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import Button from '@mui/material/Button';
 // import { FormControl, FormLabel } from '@mui/material';
@@ -7,13 +7,27 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Base from "../../common/Base/Base";
 import IdentityContext from "../../../context/identity";
 
-// import authService from "../../../services/authService";
+import authService from "../../../services/authService";
 
 function ProfilePage() {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
-    const {identity,} = useContext(IdentityContext);
+    const [identity, setIdentity] = React.useState({});
+    // const {identity,} = useContext(IdentityContext);
+    // const identity = authService.g;
     console.log(`Profile Page, username: ${identity.username}`);
+
+    useEffect( () => {
+       const fetchData = async () => {
+        // TODO: This can throw error if the back-end is not working, handle
+        // apropriatedly
+            let localIdentity = await authService.getIdentity();
+            console.log("Local Identity: ", localIdentity);
+            setIdentity(localIdentity);
+        };
+    //    return () => { };
+       fetchData();
+    }, []);
 
     const handleChangeUser = (event) => {
         setUsername(event.target.value);

@@ -12,22 +12,22 @@ import authService from "../../../services/authService";
 function ProfilePage() {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
-    const [identity, setIdentity] = React.useState({});
+    const {identity} = useContext(IdentityContext);
     // const {identity,} = useContext(IdentityContext);
     // const identity = authService.g;
     console.log(`Profile Page, username: ${identity.username}`);
 
-    useEffect( () => {
-       const fetchData = async () => {
-        // TODO: This can throw error if the back-end is not working, handle
-        // apropriatedly
-            let localIdentity = await authService.getIdentity();
-            console.log("Local Identity: ", localIdentity);
-            setIdentity(localIdentity);
-        };
-    //    return () => { };
-       fetchData();
-    }, []);
+    // useEffect( () => {
+    //    const fetchData = async () => {
+    //     // TODO: This can throw error if the back-end is not working, handle
+    //     // apropriatedly
+    //         let localIdentity = await authService.getIdentity();
+    //         console.log("Local Identity: ", localIdentity);
+    //         setIdentity(localIdentity);
+    //     };
+    // //    return () => { };
+    //    fetchData();
+    // }, []);
 
     const handleChangeUser = (event) => {
         setUsername(event.target.value);
@@ -71,7 +71,7 @@ function ProfilePage() {
                 justifyContent="center"
                 alignItems="center"
                 >
-                    <Grid item xs={12} md={4} justity="center" alignItems="center">
+                    <Grid xs={12} md={4} justity="center" alignItems="center">
                         <Typography>
                             {identity.firstName} <br />
                             {identity.username} <br />
@@ -80,16 +80,16 @@ function ProfilePage() {
                         </Typography>
                     </Grid>
 
-                    <Grid item xs={12} md={4} >
+                    <Grid xs={12} md={4} >
                     </Grid>
 
-                    <Grid item xs={12} md={4} >
+                    <Grid xs={12} md={4} >
                         <Typography>
 
                         </Typography>
                     </Grid>
 
-                    <Grid item xs={12}>
+                    <Grid xs={12}>
                         <Button
                         variant="outlined"
                         size="large"

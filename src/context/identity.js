@@ -7,24 +7,30 @@ import authService from "../services/authService";
 const IdentityContext = createContext();
 
 function IdentityProvider({children}) {
-    const [identity, setIdentity] = useState({});
+    const [identity, setIdentity] = useState(() => {
+    return JSON.parse(localStorage.getItem('persistentIdentity')) || {} 
+  });
     console.log("Identity: ", identity);
 
-    useEffect( () => {
-        const persistentIdentity = localStorage.getItem('persistentIdentity');
-        if (persistentIdentity) {
-            setIdentity(JSON.parse(persistentIdentity));
-        }
-    //    const fetchData = async () => {
-    //         let localIdentity = await authService.getIdentity();
-    //         console.log("Local Identity: ", localIdentity);
-    //         setIdentity(localIdentity);
-    //     };
-    // //    return () => { };
-    //    fetchData();
-    }, []);
+    // useEffect( () => {
+    //     const persistentIdentity = localStorage.getItem('persistentIdentity');
+    //     console.log("Serialized Persisntnent Identity: ", persistentIdentity);
+    //     if (persistentIdentity) {
+    //         let deserializedIdentity = JSON.parse(persistentIdentity);
+    //         console.log("Deserialized Persisntnent Identity: ", persistentIdentity);
+    //         setIdentity(deserializedIdentity);
+    //     }
+    // //    const fetchData = async () => {
+    // //         let localIdentity = await authService.getIdentity();
+    // //         console.log("Local Identity: ", localIdentity);
+    // //         setIdentity(localIdentity);
+    // //     };
+    // // //    return () => { };
+    // //    fetchData();
+    // }, []);
 
     useEffect(() => {
+        console.log("Persistent Identity being set to: ", identity);
         localStorage.setItem('persistentIdentity', JSON.stringify(identity));
     }, [identity]);
 

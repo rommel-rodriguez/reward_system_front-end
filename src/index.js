@@ -21,11 +21,16 @@ import { IdentityProvider } from './context/identity';
 import ProfilePage from './components/pages/Profile/ProfilePage';
 import RegisterNewCustomer from './components/pages/Seller/RegisterNewCustomer';
 import PrivateRoute from './components/routes/PrivateRoute';
+import HomePage from './components/pages/Home/HomePage';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <HomePage />,
+  },
+  {
+    path: "/home",
+    element:  <HomePage />,
   },
   {
     path: "/signin",

@@ -247,7 +247,7 @@ export default function SideBar({isOpen}) {
   return (
     <div>
         <React.Fragment key={'left'}>
-          <Button onClick={toggleDrawer('left', true)}>{'left'}</Button>
+          {/* <Button onClick={toggleDrawer('left', true)}>{'left'}</Button> */}
           <Drawer
             anchor={'left'}
             open={state['left']}

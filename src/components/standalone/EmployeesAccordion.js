@@ -4,7 +4,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Box, LinearProgress } from '@mui/material';
+import { Box, Card, CardContent, LinearProgress } from '@mui/material';
 
 export default function EmployeesAccordion({employees}) {
     /**
@@ -12,27 +12,6 @@ export default function EmployeesAccordion({employees}) {
      * where details is further divided into more attributes
      */
 
-    // const employees = [
-    //     {
-    //         id: 123,
-    //         firstName: "Test Name",
-    //         lastName: "Test Last Name 01",
-    //         progreso: 20,
-    //         documentType: "Type 01",
-    //         documentNumber: "jfosajfasi23313",
-    //         cellPhoneNumber: "987654325",
-
-
-    //     },
-    //     {
-    //         id: 1234,
-    //         firstName: "Mariela",
-    //         lastName: "Gonzales Rivera",
-    //         progreso: 50,
-    //         documentType: "Type 02",
-    //         cellPhoneNumber: "987654325",
-    //     },
-    // ];
 
     const employeesList = employees.map((employee) => {
 
@@ -43,9 +22,11 @@ export default function EmployeesAccordion({employees}) {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
             >
-                <Typography>
+                <Typography sx={{width: "100%"}}>
                     Asesor de Ventas: {employee.firstName + " " + employee.lastName} <br />
-                    Progreso: {employee.progress}
+                    Progreso: {employee.progress < 0 ? 0 : employee.progress}%<br/>
+                </Typography>
+                <Typography sx={{width: "100%"}}>
                     <LinearProgress
                     variant="determinate"
                     value={employee.progress}
@@ -54,11 +35,15 @@ export default function EmployeesAccordion({employees}) {
                 </Typography>
             </AccordionSummary>
             <AccordionDetails>
-                <Typography>
-                    Tipo de documento: {employee.documentType} <br />
-                    Numero de documento: {employee.documentNumber} <br />
-                    Numero de celular: {employee.cellPhoneNumber} <br />
-                </Typography>
+                <Card variant="outlined" sx={{pl: 33, backgroundColor: "#fff685"}}>
+                    <CardContent>
+                        <Typography textAlign="left">
+                            Tipo de documento: {employee.documentType} <br />
+                            Numero de documento: {employee.documentNumber} <br />
+                            Numero de celular: {employee.cellPhoneNumber} <br />
+                        </Typography>
+                    </CardContent>
+                </Card>
             </AccordionDetails>
             </Accordion>
         );

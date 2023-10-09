@@ -50,6 +50,7 @@ function IdentityProvider({children}) {
         }
     };
     const logout = () => {
+        setIdentity({});
         authService.logout();
     };
     const isTokenValid =  () => {

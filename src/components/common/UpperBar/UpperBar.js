@@ -6,22 +6,48 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import { useContext } from 'react';
+import IdentityContext from '../../../context/identity';
+import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
+import { useNavigate } from 'react-router-dom';
 
 export default function UpperBar({handleMenuIconClick}) {
-  const [auth, setAuth] = React.useState(true);
+  const {identity, logout} = useContext(IdentityContext);
+  const [auth, setAuth] = React.useState(!(Object.keys(identity).length === 0));
+  // const [auth, setAuth] = React.useState(Object.keys(identity).length === 0);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const navigate = useNavigate();
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
+
+  console.log("UpperBar, identity: ", identity);
+
+
+  // const handleChange = (event) => {
+  //   setAuth(event.target.checked);
+  // };
+
+  // React.useEffect( () => {
+  //   const fetchData = () => {
+  //     setAuth();
+  //   };
+
+  //   fetchData();
+  // }, []);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const handleLogout= (event) => {
+    logout();
+    setAuth(false);
+  };
+
+  const handleLogin = (event) => {
+    return(navigate("/signin"));
   };
 
   const handleClose = () => {
@@ -30,18 +56,6 @@ export default function UpperBar({handleMenuIconClick}) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <FormGroup>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={auth}
-              onChange={handleChange}
-              aria-label="login switch"
-            />
-          }
-          label={auth ? 'Logout' : 'Login'}
-        />
-      </FormGroup>
       {/* <AppBar position="fixed" sx={{background:"#3363FF"}} > */}
       <AppBar position="static" sx={{background:"#3363FF"}} >
         <Toolbar>
@@ -88,8 +102,33 @@ export default function UpperBar({handleMenuIconClick}) {
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
               </Menu>
+
+              <IconButton
+                size="large"
+                aria-label="Boton de para cerrar sesion"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleLogout}
+                color="inherit"
+              >
+                <LogoutIcon></LogoutIcon> 
+              </IconButton>
             </div>
           )}
+          {
+            <div>
+              <IconButton
+                size="large"
+                aria-label="Boton de para cerrar sesion"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleLogin}
+                color="inherit"
+              >
+                <LoginIcon></LoginIcon>
+              </IconButton>
+            </div>
+          }
         </Toolbar>
       </AppBar>
     </Box>

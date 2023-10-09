@@ -87,7 +87,7 @@ export default function SideBar({isOpen}) {
           disablePadding
           alignItems='center'
           sx={{mt:10}}>
-            <Link to="/register-sale" >
+            <Link to="/profile" >
               <ListItemButton
                 
               >

@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Box, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Autocomplete, Box, Card, CardContent, Typography } from "@mui/material";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Select from "@mui/material/Select";
@@ -14,12 +14,17 @@ import Base from "../../common/Base/Base";
 import authService from "../../../services/authService";
 import salesService from "../../../services/salesService";
 import productsService from "../../../services/productsService";
+import customerService from "../../../services/customerService";
 
 function RegisterSalePage() {
+    // const options = [{fullName:"option01", id: 1}, {fullName:"option02", id: 2}];
+
     // Required for single transaction
     const [clientId, setClientId] = React.useState(0);
+    // const [selectedClient, setSelectedClient] = React.useState(options[0]);
+    const [selectedClient, setSelectedClient] = React.useState(null);
+    const [options, setOptions] = React.useState([]);
     const [productId, setProductId] = React.useState(0);
-    const [employeeId, setEmployeeId] = React.useState(0); // TODO: This one must be retrieved from the identity
     const [amount, setAmount] = React.useState(0);
 
     const [productSelect, setProductSelect] = React.useState([]);
@@ -37,45 +42,55 @@ function RegisterSalePage() {
         width: "100%", // Will fill the parent component
     };
 
-
     useEffect( () => {
        const fetchData = async () => {
         // TODO: This can throw error if the back-end is not working, handle
         // apropriatedly
         const idsAndNames = await productsService.getProductIdsAndNames(); 
-        console.log(idsAndNames);
+        const customerOptions = await customerService.getCustomerOptions(); 
+        // console.log(idsAndNames);
+        console.log(customerOptions);
         setProductSelect(idsAndNames);
+        setOptions(customerOptions);
        };
     //    return () => { };
        fetchData();
     }, []);
-    
-
 
     const handleChangeClientId = (event) => {
         setClientId(event.target.value);
         // console.log(`User name: ${event.target.value}`);
     };
 
-    const handleChangeProductId= (event) => {
-        setProductId(event.target.value);
-    };
 
     const handleChangeAmount= (event) => {
-        setAmount(event.target.value);
+        const newValue = event.target.value;
+        if (newValue <= -1){
+            console.log("Invalid Amount Value");
+            event.target.error = true;
+        }
+        setAmount(newValue);
     };
 
-    const handleChangeEmployeeId = (event) => {
-        setEmployeeId(event.target.value);
-    };
 
     const handleChangeSelectedProduct= (event) => {
         setSelectedProduct(event.target.value);
     };
 
+    const handleClientSelected = (event, value) => {
+        console.log("Search value", value);
+        setSelectedClient(value);
+        setClientId(value.id);
+        setClientName(value.fullName);
+    };
+
 
     const handleSubmitButton = async (event) => {
         let identity = await authService.getIdentity();
+        if (amount <= -1) {
+            ///  Stop the sale here and send a message
+        }
+
         if (!identity){
             console.log('The identity could not be retrieved [BUTTON]');
             return;
@@ -105,6 +120,9 @@ function RegisterSalePage() {
             alignItems="center"
             >
                 <form >
+                    <Card variant="outlined">
+                        <CardContent>
+
                     <Grid container
                     spacing={2}
                     md={6} 
@@ -122,6 +140,29 @@ function RegisterSalePage() {
                             <Typography variant="h2" gutterBottom>
                                 Registro de Venta
                             </Typography>
+                        </Grid>
+                        <Grid item
+                         xs={12}
+                         justity="center"
+                         alignItems="center"
+                         mt={5}
+                         >
+                            <FormControl fullWidth>
+                                <Autocomplete
+                                    disablePortal
+                                    options={options}
+                                    id="combo-box-demo"
+                                    getOptionLabel={(option) => option.fullName}
+                                    onChange={ handleClientSelected}
+                                    value={selectedClient}
+                                    inputValue={clientName}
+                                    onInputChange={(event, newInputValue) => {
+                                        setClientName(newInputValue);
+                                    }}
+                                    sx={{ width: 300 }}
+                                    renderInput={(params) => <TextField {...params} label="Buscar por nombre de usuario" />}
+                                />
+                            </FormControl>
                         </Grid>
                         <Grid item
                          xs={12} md={2}
@@ -207,6 +248,8 @@ function RegisterSalePage() {
                                 onChange={handleChangeAmount}
                                 value={amount}
                                 type="number"
+                                error = {amount <= -1}
+                                // helperText = "Valor no Valido"
                                 />
                             </FormControl>
                         </Grid>
@@ -239,6 +282,8 @@ function RegisterSalePage() {
                             </Button>
                         </Grid>
                     </Grid>
+                        </CardContent>
+                    </Card>
                 </form>
             </Box>
         </Base>

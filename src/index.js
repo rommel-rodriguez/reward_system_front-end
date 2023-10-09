@@ -19,6 +19,7 @@ import EmployeesAccordion from './components/standalone/EmployeesAccordion';
 import TrackEmployeesPage from './components/pages/Manager/TrackEmployeesPage';
 import { IdentityProvider } from './context/identity';
 import ProfilePage from './components/pages/Profile/ProfilePage';
+import RegisterNewCustomer from './components/pages/Seller/RegisterNewCustomer';
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <ProfilePage />,
+  },
+  {
+    path: "/register-customer",
+    element: <RegisterNewCustomer/>,
   },
 ]);
 

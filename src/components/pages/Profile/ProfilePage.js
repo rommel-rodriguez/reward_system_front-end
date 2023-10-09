@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext, useEffect } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Card, CardContent, Typography } from "@mui/material";
 import Button from '@mui/material/Button';
 // import { FormControl, FormLabel } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2'; 
@@ -58,7 +58,7 @@ function ProfilePage() {
     return (
         <Base>
             <Box
-            sx={{ flexGrow: 1 }}
+            sx={{ flexGrow: 1, mt: "100px" }}
             justifyContent="center"
             alignItems="center"
             >
@@ -68,28 +68,116 @@ function ProfilePage() {
                 mdOffset={3} 
                 xs={12} 
                 xsOffset={0} 
-                justifyContent="center"
-                alignItems="center"
+                // justifyContent="center"
+                alignItems="left"
                 >
-                    <Grid xs={12} md={4} justity="center" alignItems="center">
-                        <Typography>
-                            {identity.firstName} <br />
-                            {identity.username} <br />
-                            {identity.documentType} <br />
-                            {identity.documentNumber} <br />
-                        </Typography>
+                    <Grid container xs={12} justity="left" alignItems="left">
+                        <Grid xs={6}>
+                            <Card>
+                                <CardContent>
+                                    <Typography textAlign="left">
+                                        Nombre: 
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid xs={6}>
+                            <Card>
+                                <CardContent>
+                                    <Typography textAlign="left">
+                                        {identity.firstName + ' ' + identity.lastName}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
                     </Grid>
 
-                    <Grid xs={12} md={4} >
+                    <Grid container xs={12} justity="left" alignItems="left">
+                        <Grid xs={6}>
+                            <Card>
+                                <CardContent>
+                                    <Typography textAlign="left">
+                                        Tipo de Documento:
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid xs={6}>
+                            <Card>
+                                <CardContent>
+                                    <Typography textAlign="left">
+                                        {identity.documentType}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
                     </Grid>
 
-                    <Grid xs={12} md={4} >
-                        <Typography>
-
-                        </Typography>
+                    <Grid container xs={12} justity="left" alignItems="left">
+                        <Grid xs={6}>
+                            <Card>
+                                <CardContent>
+                                    <Typography textAlign="left">
+                                        Username: 
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid xs={6}>
+                            <Card>
+                                <CardContent>
+                                    <Typography textAlign="left">
+                                        {identity.username}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
                     </Grid>
 
-                    <Grid xs={12}>
+
+                    <Grid container xs={12} justity="left" alignItems="left">
+                        <Grid xs={6}>
+                            <Card>
+                                <CardContent>
+                                    <Typography textAlign="left">
+                                        Nombre: 
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid xs={6}>
+                            <Card>
+                                <CardContent>
+                                    <Typography textAlign="left">
+                                        {identity.firstName + ' ' + identity.lastName}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                    </Grid>
+
+                    <Grid container xs={12} justity="left" alignItems="left">
+                        <Grid xs={6}>
+                            <Card>
+                                <CardContent>
+                                    <Typography textAlign="left">
+                                        Número de documento
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid xs={6}>
+                            <Card>
+                                <CardContent>
+                                    <Typography textAlign="left">
+                                        {identity.documentNumber}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                    </Grid>
+
+                    {/* <Grid xs={12}>
                         <Button
                         variant="outlined"
                         size="large"
@@ -97,7 +185,7 @@ function ProfilePage() {
                         >
                             Test 
                         </Button>
-                    </Grid>
+                    </Grid> */}
                 </Grid>
             </Box>
         </Base>

@@ -105,6 +105,7 @@ export default function UpperBar({handleMenuIconClick}) {
             </div>
           )}
           {
+            !auth && (
             <div>
               <IconButton
                 size="large"
@@ -117,6 +118,7 @@ export default function UpperBar({handleMenuIconClick}) {
                 <LoginIcon></LoginIcon>
               </IconButton>
             </div>
+            )
           }
         </Toolbar>
       </AppBar>

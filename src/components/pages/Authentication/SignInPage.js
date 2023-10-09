@@ -19,6 +19,7 @@ function SignInPage() {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const {identity, login} = useContext(IdentityContext);
+    console.log("Signin page: ", identity);
 
     const handleChangeUser = (event) => {
         setUsername(event.target.value);

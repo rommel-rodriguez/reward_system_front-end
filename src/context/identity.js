@@ -8,15 +8,17 @@ const IdentityContext = createContext();
 
 function IdentityProvider({children}) {
     const [identity, setIdentity] = useState({});
+    console.log("Identity: ", identity);
 
     const login =  async (username, password) => {
+        console.log("Inside Context Login");
         try{
             await authService.login(username, password);
             const tempIdentity =await authService.getIdentity();
-            console.log("Temp Identity:");
-            console.log(tempIdentity);
-            setIdentity(tempIdentity);
-            console.log("Identity: ", identity);
+            // console.log("Identity: ", identity);
+            console.log("Temp Identity: ", tempIdentity);
+            setIdentity({...identity, ...tempIdentity});
+            // console.log("Identity: ", identity);
         } catch (error) {
             console.log(error);
             throw error;

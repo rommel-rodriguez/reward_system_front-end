@@ -12,7 +12,7 @@ import IdentityContext from "../../../context/identity";
 function ProfilePage() {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
-    const {identity} = useContext(IdentityContext);
+    const {identity,} = useContext(IdentityContext);
     console.log(`Profile Page, username: ${identity.username}`);
 
     const handleChangeUser = (event) => {
@@ -33,7 +33,13 @@ function ProfilePage() {
         // TODO: Need to create a Provider component to track the is-logged
         // state across all the application
         console.log(`Form Submitted! Credentials:\n${username}::${password}`);
+        console.log("Profile Page : ", identity);
+        console.log(`Profile Page, username: ${identity.username}`);
     };
+
+    // const handleSubmitButton = async (event) => {
+    //     console.log(`Form Submitted! Credentials:\n${username}::${password}`);
+    // };
 
     return (
         <Base>
@@ -67,6 +73,16 @@ function ProfilePage() {
                         <Typography>
 
                         </Typography>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Button
+                        variant="outlined"
+                        size="large"
+                        onClick={handleSubmitButton}
+                        >
+                            Test 
+                        </Button>
                     </Grid>
                 </Grid>
             </Box>

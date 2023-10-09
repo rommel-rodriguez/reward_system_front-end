@@ -25,17 +25,6 @@ export default function UpperBar({handleMenuIconClick}) {
   console.log("UpperBar, identity: ", identity);
 
 
-  // const handleChange = (event) => {
-  //   setAuth(event.target.checked);
-  // };
-
-  // React.useEffect( () => {
-  //   const fetchData = () => {
-  //     setAuth();
-  //   };
-
-  //   fetchData();
-  // }, []);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);

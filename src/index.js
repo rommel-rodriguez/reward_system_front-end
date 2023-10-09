@@ -20,6 +20,7 @@ import TrackEmployeesPage from './components/pages/Manager/TrackEmployeesPage';
 import { IdentityProvider } from './context/identity';
 import ProfilePage from './components/pages/Profile/ProfilePage';
 import RegisterNewCustomer from './components/pages/Seller/RegisterNewCustomer';
+import PrivateRoute from './components/routes/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -36,19 +37,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/register-sale",
-    element: <RegisterSalePage />,
+    element: <PrivateRoute> <RegisterSalePage /></PrivateRoute>,
   },
   {
     path: "/track-employees",
-    element: <TrackEmployeesPage/>,
+    element: <PrivateRoute> <TrackEmployeesPage/></PrivateRoute>,
   },
   {
     path: "/profile",
-    element: <ProfilePage />,
+    element: <PrivateRoute> <ProfilePage /></PrivateRoute>,
   },
   {
     path: "/register-customer",
-    element: <RegisterNewCustomer/>,
+    element: <PrivateRoute><RegisterNewCustomer/></PrivateRoute> ,
   },
 ]);
 

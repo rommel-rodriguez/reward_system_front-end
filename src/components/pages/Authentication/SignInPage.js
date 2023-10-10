@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Select from "@mui/material/Select";
@@ -10,14 +10,36 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import InputLabel from '@mui/material/InputLabel';
 import Grid from '@mui/material/Unstable_Grid2'; 
+import Modal from '@mui/material/Modal';
 import Base from "../../common/Base/Base";
 import IdentityContext from "../../../context/identity";
 
 import authService from "../../../services/authService";
+import { useNavigate } from "react-router-dom";
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 function SignInPage() {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [modalMessage, setModalMessage] = React.useState({title: '', content:''});
+    const [open, setOpen] = React.useState(false);
+    const navigate = useNavigate();
+
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
     const {identity, login} = useContext(IdentityContext);
     console.log("Signin page: ", identity);
 
@@ -42,9 +64,24 @@ function SignInPage() {
         // authService.login(username, password);
         try {
             await login(username, password);
+
         } catch (error) {
             // TODO: Show error window here
+            setModalMessage({
+                title: "Fallo en logearse",
+                content: "Credenciales incorrectas"
+            });
+            setOpen(true);
         }
+
+        setModalMessage({
+            title: "Se ha autenticado con exito",
+            content: "Sera redirigido en unos momentos"
+        });
+        setOpen(true);
+        setTimeout(() => {
+            navigate("/profile");
+        }, 3000); 
     };
 
     return (
@@ -100,6 +137,21 @@ function SignInPage() {
                             </Grid>
                     </Grid>
                 </form>
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={style}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        {modalMessage.title}
+                    </Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        {modalMessage.content}
+                    </Typography>
+                    </Box>
+                </Modal>
             </Box>
         </Base>
     );

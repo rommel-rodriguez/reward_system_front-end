@@ -22,6 +22,7 @@ import ProfilePage from './components/pages/Profile/ProfilePage';
 import RegisterNewCustomer from './components/pages/Seller/RegisterNewCustomer';
 import PrivateRoute from './components/routes/PrivateRoute';
 import HomePage from './components/pages/Home/HomePage';
+import SaleDetailShow from './components/SaleDetailList/SaleDetailShow';
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignupPage/>,
+  },
+  {
+    path: "/test",
+    element: <SaleDetailShow></SaleDetailShow>,
   },
   {
     path: "/register-sale",

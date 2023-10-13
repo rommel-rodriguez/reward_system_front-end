@@ -23,6 +23,7 @@ import RegisterNewCustomer from './components/pages/Seller/RegisterNewCustomer';
 import PrivateRoute from './components/routes/PrivateRoute';
 import HomePage from './components/pages/Home/HomePage';
 import SaleDetailShow from './components/SaleDetailList/SaleDetailShow';
+import SaleDetailTable from './components/SaleDetailList/SaleDetailTable';
 
 const router = createBrowserRouter([
   {
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/test",
-    element: <SaleDetailShow></SaleDetailShow>,
+    element: <SaleDetailTable></SaleDetailTable>,
   },
   {
     path: "/register-sale",

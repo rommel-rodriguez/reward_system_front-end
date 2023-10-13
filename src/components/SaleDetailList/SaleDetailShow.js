@@ -4,14 +4,10 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import {
-    Box,
     Button,
     Typography,
     IconButton,
-    Card,
-    CardContent,
     TableRow,
-    TableCell,
 } from "@mui/material";
 import { useState } from "react";
 import {TextField} from "@mui/material";
@@ -39,10 +35,20 @@ function SaleDetailShow () {
     const [ amount, setAmount] = useState(detail.amount);
     const [edit, setEdit] = useState(false);
 
+    console.log("Edit Mode When rendering:", edit);
 
-    const handleClick = (event) => {
-        setEdit(!edit);
+    const handleEditClick = (event) => {
+        console.log("Inside Edit Handler");
+        console.log("Edit Mode Before:", edit);
+        setEdit(true);
     };
+
+    const handleEditClose = (event) => {
+        console.log("Inside Close Handler");
+        console.log("Edit Mode Before:", edit);
+        setEdit(false);
+    };
+
 
     const handleProductId = (event) => {
         setProductId(event.target.value)
@@ -64,6 +70,66 @@ function SaleDetailShow () {
             {
                 edit ?
                 <TableRow
+                    key={productId}
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    >
+                    <DetailCell component="th" scope="row">
+                        {detail.index}
+                    </DetailCell>
+
+                    <DetailCell>
+                        {productId}
+                    </DetailCell>
+
+                    <DetailCell>
+                        <TextField
+                        required
+                        label="Name (replace)"
+                        sx={{ml: 2, width: "202px"}}
+                        // onChange={}
+                        // value={}
+                        />
+                    </DetailCell>
+
+                    <DetailCell>
+                        <TextField
+                            required
+                            // type="password"
+                            label="amount"
+                            sx={{ml: 2, width: "100px"}}
+                            // onChange={}
+                            value={amount}
+                        />
+                    </DetailCell>
+
+                    <DetailCell>
+                        <IconButton
+                            size="large"
+                            edge="end"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ ml: 2 }}
+                            // onClick={handleMenuIconClick} 
+                        >
+                            <SaveIcon></SaveIcon>
+                        </IconButton>
+                    </DetailCell>
+
+                    <DetailCell onClick={handleEditClose}>
+                        <IconButton
+                            size="large"
+                            edge="end"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ ml: 2 }}
+                            // onClick={handleMenuIconClick} 
+                        >
+                            <CloseIcon></CloseIcon>
+                        </IconButton>
+                    </DetailCell>
+                </TableRow>
+                :
+                <TableRow
                     key={detail.productId}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
@@ -78,11 +144,11 @@ function SaleDetailShow () {
                         {detail.productId}
                     </DetailCell>
 
-                    <DetailCell>{detail.productName}</DetailCell>
+                    <DetailCell sx={{width: "202px"}}>{detail.productName}</DetailCell>
 
-                    <DetailCell>{detail.amount}</DetailCell>
+                    <DetailCell sx={{width: "100px"}}>{detail.amount}</DetailCell>
 
-                    <DetailCell>
+                    <DetailCell onClick={handleEditClick}>
                         <IconButton
                             size="large"
                             edge="end"
@@ -108,68 +174,8 @@ function SaleDetailShow () {
                         </IconButton>
                     </DetailCell>
                 </TableRow>
-                :
-                <TableRow
-                    key={productId}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                    >
-                    <TableCell component="th" scope="row">
-                        {detail.index}
-                    </TableCell>
 
-                    <TableCell component="th" scope="row">
-                        {productId}
-                    </TableCell>
-
-                    <TableCell align="right">
-                        <TextField
-                        required
-                        label="Name (replace)"
-                        sx={{ml: 2}}
-                        // onChange={}
-                        // value={}
-                        />
-                    </TableCell>
-
-                    <TableCell align="right">
-                        <TextField
-                            required
-                            // type="password"
-                            label="amount"
-                            sx={{ml: 2}}
-                            // onChange={}
-                            value={amount}
-                        />
-                    </TableCell>
-
-                    <TableCell align="right">
-                        <IconButton
-                            size="large"
-                            edge="end"
-                            color="inherit"
-                            aria-label="menu"
-                            sx={{ ml: 2 }}
-                            // onClick={handleMenuIconClick} 
-                        >
-                            <SaveIcon></SaveIcon>
-                        </IconButton>
-                    </TableCell>
-
-                    <TableCell align="right">
-                        <IconButton
-                            size="large"
-                            edge="end"
-                            color="inherit"
-                            aria-label="menu"
-                            sx={{ ml: 2 }}
-                            // onClick={handleMenuIconClick} 
-                        >
-                            <CloseIcon></CloseIcon>
-                        </IconButton>
-                    </TableCell>
-                </TableRow>
-                        }
-            <Button onClick={handleClick}>ToggleEdit</Button>
+            }
         </div>
 
     );

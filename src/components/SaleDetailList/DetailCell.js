@@ -15,7 +15,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 function DetailCell ({children, ...rest}) {
     return (
-        <TableCell {...rest} align="right">
+        <TableCell align="center" {...rest} >
             {children}
         </TableCell>
     );

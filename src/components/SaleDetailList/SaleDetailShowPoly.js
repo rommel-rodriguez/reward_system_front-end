@@ -13,6 +13,7 @@ import { useState } from "react";
 import {TextField} from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import DetailCell from "./DetailCell";
+import DetailCellPolymorph from "./DetailCellPolymorph";
 
 
 // function SaleDetailShow ({detail}) {

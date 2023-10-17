@@ -74,6 +74,7 @@ function SaleDetailShow () {
                     {detail.index}
                 </DetailCell>
 
+
                 <DetailCell>
                     {productId}
                 </DetailCell>

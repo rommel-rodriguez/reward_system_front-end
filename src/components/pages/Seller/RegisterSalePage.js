@@ -201,7 +201,7 @@ function RegisterSalePage() {
                                  labelId="product-select"
                                  id="product-select"
                                  value={selectedProduct}
-                                 label="Age"
+                                 label="Producto"
                                  onChange={handleChangeSelectedProduct}
                                 >
                                     { 

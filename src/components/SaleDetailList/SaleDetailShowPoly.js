@@ -8,6 +8,9 @@ import {
     Typography,
     IconButton,
     TableRow,
+    InputLabel,
+    Select,
+    MenuItem,
 } from "@mui/material";
 import { useState } from "react";
 import {TextField} from "@mui/material";
@@ -17,7 +20,7 @@ import DetailCellPolymorph from "./DetailCellPolymorph";
 
 
 // function SaleDetailShow ({detail}) {
-function SaleDetailShow () {
+function SaleDetailShowPoly () {
     /**
      * detail: {index, productId, productName, amount}
      */
@@ -25,12 +28,27 @@ function SaleDetailShow () {
     // const [ productName, setProductName] = useState(detail.productName);
     // const [ amount, setAmount] = useState(detail.amount);
     // const [edit, setEdit] = useState(false);
+    /** detail is prop */
     const detail = {
         index: 10,
         productId: 1,
         productName: "Credit Card",
         amount: 10,
     };
+
+    /** Get productSelect from provider */
+    const productSelect = [
+        {
+            id: 5,
+            name: "prod1"
+        },
+        {
+            id: 1,
+            name: "Credit Card"
+        },
+    ];
+    // const selectedProduct = productSelect[1].name;
+
     const [ productId, setProductId] = useState(detail.productId);
     const [ productName, setProductName] = useState(detail.productName);
     const [ amount, setAmount] = useState(detail.amount);
@@ -66,40 +84,64 @@ function SaleDetailShow () {
 
     return (
         // <Grid item xs={12} justity="center" alignItems="center"></Grid>
-            edit ?
             <TableRow
                 key={productId}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                <DetailCell component="th" scope="row">
-                    {detail.index}
-                </DetailCell>
 
-                <DetailCell>
-                    {productId}
-                </DetailCell>
+                <DetailCellPolymorph component="th" scope="row"
+                    cellValue={detail.index}
+                />
 
-                <DetailCell>
-                    <TextField
-                    required
-                    label="Name (replace)"
+                <DetailCellPolymorph
+                    cellValue={productId}
+                />
+
+                <DetailCellPolymorph
+                    edit={edit}
+                    cellValue={productName}
                     sx={{ml: 2, width: "202px"}}
-                    // onChange={}
-                    // value={}
-                    />
-                </DetailCell>
+                    inputComponent={
+                        <Select
+                            required
+                            labelId="product-select"
+                            id="product-select"
+                            value={productId}
+                            label="Age"
+                            // onChange={handleChangeProduct}
+                            sx={{ml: 2, width: "202px"}}
+                        >
+                            { 
+                                productSelect.map(
+                                    (item) => {
+                                        return (
+                                            <MenuItem
+                                            value={item.id}
+                                            key={item.id}
+                                            >
+                                            {item.name} 
+                                            </MenuItem>
+                                        );
+                                    }
+                                )
+                            }
+                        </Select>
+                    }
+                />
 
-                <DetailCell>
-                    <TextField
-                        required
-                        // type="password"
-                        label="amount"
-                        sx={{ml: 2, width: "100px"}}
-                        // onChange={}
-                        value={amount}
-                    />
-                </DetailCell>
 
+                <DetailCellPolymorph
+                    required
+                    inputType="number"
+                    cellValue={productId}
+                    sx={{ml: 2, width: "100px"}}
+                    value={amount}
+                    // onChange={handleChangeAmount}
+                />
+
+
+            {
+                edit ?
                 <DetailCell>
                     <IconButton
                         size="large"
@@ -112,40 +154,7 @@ function SaleDetailShow () {
                         <SaveIcon></SaveIcon>
                     </IconButton>
                 </DetailCell>
-
-                <DetailCell onClick={handleEditClose}>
-                    <IconButton
-                        size="large"
-                        edge="end"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ ml: 2 }}
-                        // onClick={handleMenuIconClick} 
-                    >
-                        <CloseIcon></CloseIcon>
-                    </IconButton>
-                </DetailCell>
-            </TableRow>
-            :
-            <TableRow
-                key={detail.productId}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                {/* <TableCell component="th" scope="row">
-                    {detail.index}
-                </TableCell> */}
-                <DetailCell component="th" scope="row">
-                    {detail.index}
-                </DetailCell>
-
-                <DetailCell>
-                    {detail.productId}
-                </DetailCell>
-
-                <DetailCell sx={{width: "202px"}}>{detail.productName}</DetailCell>
-
-                <DetailCell sx={{width: "100px"}}>{detail.amount}</DetailCell>
-
+                :
                 <DetailCell onClick={handleEditClick}>
                     <IconButton
                         size="large"
@@ -158,7 +167,24 @@ function SaleDetailShow () {
                         <EditIcon></EditIcon>
                     </IconButton>
                 </DetailCell>
+            }
+            
+            {
+                edit ?
+                <DetailCell onClick={handleEditClose}>
+                    <IconButton
+                        size="large"
+                        edge="end"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{ ml: 2 }}
+                        // onClick={handleMenuIconClick} 
+                    >
+                        <CloseIcon></CloseIcon>
+                    </IconButton>
+                </DetailCell>
 
+                :
                 <DetailCell>
                     <IconButton
                         size="large"
@@ -171,8 +197,9 @@ function SaleDetailShow () {
                         <DeleteIcon />
                     </IconButton>
                 </DetailCell>
+            }
             </TableRow>
     );
 }
 
-export default SaleDetailShow;
+export default SaleDetailShowPoly;

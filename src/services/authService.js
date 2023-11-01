@@ -57,9 +57,6 @@ const authService = {
     }
   },
   getIdentity: async () => {
-    // if (!await authService.isTokenValid()) {
-    //   return null;
-    // }
 
     try {
       const response = await api.get('/api/v1/me');

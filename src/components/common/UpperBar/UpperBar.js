@@ -45,7 +45,6 @@ export default function UpperBar({handleMenuIconClick}) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      {/* <AppBar position="fixed" sx={{background:"#3363FF"}} > */}
       <AppBar position="static" sx={{background:"#3363FF"}} >
         <Toolbar>
           <IconButton

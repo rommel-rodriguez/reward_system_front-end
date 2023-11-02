@@ -21,10 +21,6 @@ function RegisterNewCustomer() {
     // const options = [{fullName:"option01", id: 1}, {fullName:"option02", id: 2}];
 
     // Required for single transaction
-    const [clientId, setClientId] = React.useState(0);
-    const [selectedClient, setSelectedClient] = React.useState(null);
-    const [options, setOptions] = React.useState([]);
-    const [amount, setAmount] = React.useState(0);
 
     const [documentTypeSelect, setDocumentTypeSelect] = React.useState(['DNI', 'PASSPORT', 'OTHER']);
     const [selectedDocumentType, setSelectedDocumentType] = React.useState(""); // This one must also show on table
@@ -42,14 +38,11 @@ function RegisterNewCustomer() {
 
     useEffect( () => {
        const fetchData = async () => {
-        // TODO: This can throw error if the back-end is not working, handle
-        // apropriatedly
-        const idsAndNames = await productsService.getProductIdsAndNames(); 
-        const customerOptions = await customerService.getCustomerOptions(); 
-        // console.log(idsAndNames);
-        console.log(customerOptions);
-        // setDocumentTypeSelect(idsAndNames);
-        setOptions(customerOptions);
+        /**
+         * TODO: Should fetch Document Type Optionos from the database
+         * instead of harcoding the types inside this file. Also, add a cleanup
+         * method later.
+         *  */ 
        };
     //    return () => { };
        fetchData();
@@ -72,33 +65,12 @@ function RegisterNewCustomer() {
     };
 
 
-    const handleChangeAmount= (event) => {
-        const newValue = event.target.value;
-        if (newValue <= -1){
-            console.log("Invalid Amount Value");
-            event.target.error = true;
-        }
-        setAmount(newValue);
-    };
-
-
     const handleChangeSelectedProduct= (event) => {
         setSelectedDocumentType(event.target.value);
     };
 
-    const handleClientSelected = (event, value) => {
-        console.log("Search value", value);
-        setSelectedClient(value);
-        setClientId(value.id);
-        setClientFirstName(value.fullName);
-    };
-
 
     const handleSubmitButton = async (event) => {
-        // let identity = await authService.getIdentity();
-
-        // console.log(`EmployeeId:\n${identity.employeeId}`);
-        // console.log(`Manager?:\n${identity.manager}`);
         try{
             const registerResponse = await customerService.register(
                 selectedDocumentType,
@@ -140,29 +112,6 @@ function RegisterNewCustomer() {
                                 Registro de Nuevos Clientes
                             </Typography>
                         </Grid>
-                        {/* <Grid item
-                         xs={12}
-                         justity="center"
-                         alignItems="center"
-                         mt={5}
-                         >
-                            <FormControl fullWidth>
-                                <Autocomplete
-                                    disablePortal
-                                    options={options}
-                                    id="combo-box-demo"
-                                    getOptionLabel={(option) => option.fullName}
-                                    onChange={ handleClientSelected}
-                                    value={selectedClient}
-                                    inputValue={clientName}
-                                    onInputChange={(event, newInputValue) => {
-                                        setClientName(newInputValue);
-                                    }}
-                                    sx={{ width: 300 }}
-                                    renderInput={(params) => <TextField {...params} label="Buscar por nombre de usuario" />}
-                                />
-                            </FormControl>
-                        </Grid> */}
 
                         <Grid item
                          xs={12} md={5} mt={4}

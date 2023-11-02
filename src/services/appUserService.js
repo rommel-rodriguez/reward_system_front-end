@@ -1,22 +1,13 @@
 import api from "../api/api";
 
 const appUserService = {
-  // register: async (username, password, employeeId = null) => {
-  //   try {
-  //     const payload = {
-  //       username,
-  //       password,
-  //     };
-  //     if (employeeId) {
-  //       payload.employeeId = employeeId;  // Only include employeeId if provided
-  //     }
-  //     const response = await api.post('/api/v1/applicationUsers', payload);
-  //     return response;
-  //   } catch (error) {
-  //     console.error('Registration failed:', error);
-  //     throw error;  // Re-throw the error to be handled by the calling function
-  //   }
-  // },
+  /**
+   * NOTE: Register user, as well as password updates (maybe), should not be
+   * handled here, because user create/register must pass by the 
+   * /v1/auth/signup endpoint in order for they data to pass the proper
+   * procedure. Else, they passwords might not get encrypted in for database
+   * storage.
+   */
 
   getUser: async (username) => {
     try {

@@ -93,19 +93,6 @@ const employeesService = {
 
         return uniqueMonthsAndYears;
     },
-
-  updateDetail: async (saleId, updatedData) => {
-    // try {
-    //   const response = await api.put(`/api/v1/users/${username}`, updatedData);
-    //   return response;
-    // } catch (error) {
-    //   console.error('Update user failed:', error);
-    //   throw error;
-    // }
-  },
-
-  deleteDetail: async (saleId, productId) => {
-  },
 };
 
 export default employeesService;

@@ -1,22 +1,12 @@
-import { useState, useEffect, useContext, useCallback, createContext } from "react";
-import api from "../api/api";
-import { rawApi } from "../api/api";
-import authService from "../services/authService";
+import { useState, useEffect, useCallback, createContext } from "react";
 import productsService from "../services/productsService";
-import customerService from "../services/customerService";
-
 
 const SalesContext = createContext();
 
 function SalesProvider({children}) {
     const [saleDetails, setSaleDetails] = useState([]);
     const [productSelect, setProductSelect] = useState([]);
-    const [options, setOptions] = useState([]);
     // TODO: Replace this lambda for a authService function
-    const [identity, setIdentity] = useState(() => {
-        return JSON.parse(localStorage.getItem('persistentIdentity')) || {} 
-    });
-    // console.log("Identity: ", identity);
 
     const addDetail = (newDetail) => {
         setSaleDetails([...saleDetails, newDetail]);
@@ -52,15 +42,9 @@ function SalesProvider({children}) {
         // console.log(idsAndNames);
         setProductSelect(idsAndNames);
        };
-    //    return () => { };
        fetchData();
+       // TODO: Recommended to return a cleanup function
     }, []);
-
-    // useEffect(() => {
-    //     console.log("Persistent Identity being set to: ", identity);
-    //     localStorage.setItem('persistentIdentity', JSON.stringify(identity));
-    // }, [identity]);
-
 
     const shared = {
         productSelect,
@@ -79,4 +63,4 @@ function SalesProvider({children}) {
 }
 
 export default SalesContext;
-export {SalesProvider as SalesProvider};
+export {SalesProvider};

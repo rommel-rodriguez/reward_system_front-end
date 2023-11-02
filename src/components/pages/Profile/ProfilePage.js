@@ -7,27 +7,11 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Base from "../../common/Base/Base";
 import IdentityContext from "../../../context/identity";
 
-import authService from "../../../services/authService";
-
 function ProfilePage() {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const {identity} = useContext(IdentityContext);
-    // const {identity,} = useContext(IdentityContext);
-    // const identity = authService.g;
     console.log(`Profile Page, username: ${identity.username}`);
-
-    // useEffect( () => {
-    //    const fetchData = async () => {
-    //     // TODO: This can throw error if the back-end is not working, handle
-    //     // apropriatedly
-    //         let localIdentity = await authService.getIdentity();
-    //         console.log("Local Identity: ", localIdentity);
-    //         setIdentity(localIdentity);
-    //     };
-    // //    return () => { };
-    //    fetchData();
-    // }, []);
 
 
     const handleChangeUser = (event) => {
@@ -45,16 +29,10 @@ function ProfilePage() {
     };
 
     const handleSubmitButton = (event) => {
-        // TODO: Need to create a Provider component to track the is-logged
-        // state across all the application
         console.log(`Form Submitted! Credentials:\n${username}::${password}`);
         console.log("Profile Page : ", identity);
         console.log(`Profile Page, username: ${identity.username}`);
     };
-
-    // const handleSubmitButton = async (event) => {
-    //     console.log(`Form Submitted! Credentials:\n${username}::${password}`);
-    // };
 
     return (
         <Base>
@@ -178,15 +156,6 @@ function ProfilePage() {
                         </Grid>
                     </Grid>
 
-                    {/* <Grid xs={12}>
-                        <Button
-                        variant="outlined"
-                        size="large"
-                        onClick={handleSubmitButton}
-                        >
-                            Test 
-                        </Button>
-                    </Grid> */}
                 </Grid>
             </Box>
         </Base>

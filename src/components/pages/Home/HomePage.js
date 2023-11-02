@@ -11,36 +11,8 @@ import IdentityContext from "../../../context/identity";
 
 
 function HomePage() {
-    const [username, setUsername] = React.useState('');
-    const [password, setPassword] = React.useState('');
-    const {identity, login} = useContext(IdentityContext);
+    const {identity} = useContext(IdentityContext);
     console.log("Signin page: ", identity);
-
-    const handleChangeUser = (event) => {
-        setUsername(event.target.value);
-        // console.log(`User name: ${event.target.value}`);
-    };
-
-    const handleChangePassword = (event) => {
-        setPassword(event.target.value);
-    };
-
-
-    const handleSubmit = (event) => {
-        console.log(`Form Submitted!!!!`);
-    };
-
-    const handleSubmitButton = async (event) => {
-        // TODO: Need to create a Provider component to track the is-logged
-        // state across all the application
-        console.log(`Form Submitted! Credentials:\n${username}::${password}`);
-        // authService.login(username, password);
-        try {
-            await login(username, password);
-        } catch (error) {
-            // TODO: Show error window here
-        }
-    };
 
     return (
         <Base>

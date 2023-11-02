@@ -61,9 +61,7 @@ function RegisterSalePage() {
         // apropriatedly
         const idsAndNames = await productsService.getProductIdsAndNames(); 
         const customerOptions = await customerService.getCustomerOptions(); 
-        // console.log(idsAndNames);
         console.log(customerOptions);
-        // setProductSelect(idsAndNames);
         setOptions(customerOptions);
        };
     //    return () => { };
@@ -258,20 +256,6 @@ function RegisterSalePage() {
                                 </Select>
                             </FormControl>
                         </Grid>
-
-                        {/* <Grid item xs={12} md={2} justity="center" alignItems="center">
-                            <FormControl style={customStyle}>
-                                <TextField
-                                required
-                                label="Codigo del producto"
-                                name="productId"
-                                onChange={handleChangeProductId}
-                                value={productId}
-                                type="number"
-                                />
-                            </FormControl>
-                        </Grid> */}
-
 
                         <Grid item xs={12} md={4} justity="center" alignItems="center">
                             <FormControl style={customStyle}>

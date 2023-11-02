@@ -19,23 +19,7 @@ import DetailCell from "./DetailCell";
 import DetailCellPolymorph from "./DetailCellPolymorph";
 
 
-// function SaleDetailShow ({detail}) {
 function SaleDetailShowPoly ({detail}) {
-    /**
-     * detail: {index, productId, productName, amount}
-     */
-    // const [ productId, setProductId] = useState(detail.productId);
-    // const [ productName, setProductName] = useState(detail.productName);
-    // const [ amount, setAmount] = useState(detail.amount);
-    // const [edit, setEdit] = useState(false);
-
-    /** detail is prop */
-    // const detail = {
-    //     index: 10,
-    //     productId: 1,
-    //     productName: "Credit Card",
-    //     amount: 10,
-    // };
 
     /** Get productSelect from provider */
     const productSelect = [
@@ -48,7 +32,6 @@ function SaleDetailShowPoly ({detail}) {
             name: "Credit Card"
         },
     ];
-    // const selectedProduct = productSelect[1].name;
 
     const [ productId, setProductId] = useState(detail.productId);
     const [ productName, setProductName] = useState(detail.productName);
@@ -84,7 +67,6 @@ function SaleDetailShowPoly ({detail}) {
 
 
     return (
-        // <Grid item xs={12} justity="center" alignItems="center"></Grid>
             <TableRow
                 key={productId}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -111,7 +93,6 @@ function SaleDetailShowPoly ({detail}) {
                             id="product-select"
                             value={productId}
                             label="ProductId"
-                            // onChange={handleChangeProduct}
                             sx={{width: "202px"}}
                         >
                             { 

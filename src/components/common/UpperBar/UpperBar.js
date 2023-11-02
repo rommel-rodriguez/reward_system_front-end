@@ -59,7 +59,7 @@ export default function UpperBar({handleMenuIconClick}) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Caja Piura - Ventas 
+            Sales and Rewards System 
           </Typography>
           {auth && (
             <div>

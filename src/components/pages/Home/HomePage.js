@@ -71,12 +71,6 @@ function HomePage() {
                             />
                             <CardContent>
                                 <Typography variant="body2" color="text.secondary">
-
-                                    Potenciando la Excelencia
-
-                                    En Caja Piura, nos impulsa una búsqueda incansable de la excelencia. Creemos que cada empleado posee talentos y capacidades únicas, y es nuestro compromiso colectivo aprovechar y nutrir estas fortalezas lo que nos impulsa hacia adelante. Tu dedicación no solo es apreciada; es celebrada. Te empoderamos para que hagas un impacto significativo, no solo dentro de nuestra organización, sino también en la vida de nuestros clientes. Tu experiencia y compromiso inquebrantable son los pilares de nuestro éxito. A medida que continuamos en este viaje, recuerda que eres el corazón de Caja Piura y, juntos, alcanzaremos alturas aún mayores.
-
-
                                 </Typography>
                             </CardContent>
                         </Card>
@@ -91,9 +85,6 @@ function HomePage() {
                             />
                             <CardContent>
                                 <Typography variant="body2" color="text.secondary">
-                                    **Un Viaje de Crecimiento:**
-
-                                    El crecimiento no es solo una palabra en Caja Piura; es una forma de vida. Entendemos que tus aspiraciones no se limitan al éxito profesional; también se extienden al desarrollo personal. Es por eso que ofrecemos un entorno de apoyo y dinámico que fomenta el aprendizaje continuo y la innovación. Ya sea a través de nuestros programas de capacitación en curso, oportunidades de mentoría o exposición a desafíos diversos, tu viaje con nosotros está diseñado para ser transformador. No solo estamos construyendo carreras; estamos dando forma a vidas. Tu historia de crecimiento es nuestra historia de éxito y estamos comprometidos en ayudarte a escribir una notable.
                                 </Typography>
                             </CardContent>
                         </Card>
@@ -108,11 +99,6 @@ function HomePage() {
                             />
                             <CardContent>
                                 <Typography variant="body2" color="text.secondary">
-                                Dando Forma a Futuros Financieros:
-
-                                Nuestro propósito en Caja Piura es claro: dar forma a futuros financieros más brillantes para nuestros clientes. Tu papel en esta misión es fundamental. Cada interacción, cada decisión y cada solución que brindas contribuye al bienestar financiero de nuestros clientes. Como miembro de nuestro equipo, no eres solo una pieza en la maquinaria; eres la fuerza que impulsa nuestra visión hacia adelante. No se trata solo de banca; se trata de crear oportunidades, infundir confianza y asegurar sueños. Juntos, somos arquitectos de la estabilidad financiera y la prosperidad. Tu dedicación a esta causa es lo que nos distingue y, juntos, seguiremos marcando la diferencia.
-
-                                Espero que encuentres estos párrafos revisados más abundantes y ricos en contenido. Si necesitas ajustes adicionales o tienes preferencias específicas, no dudes en hacérmelo saber.
                                 </Typography>
                             </CardContent>
                         </Card>

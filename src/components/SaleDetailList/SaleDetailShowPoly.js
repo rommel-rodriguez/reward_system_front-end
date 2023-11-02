@@ -20,7 +20,7 @@ import DetailCellPolymorph from "./DetailCellPolymorph";
 
 
 // function SaleDetailShow ({detail}) {
-function SaleDetailShowPoly () {
+function SaleDetailShowPoly ({detail}) {
     /**
      * detail: {index, productId, productName, amount}
      */
@@ -28,13 +28,14 @@ function SaleDetailShowPoly () {
     // const [ productName, setProductName] = useState(detail.productName);
     // const [ amount, setAmount] = useState(detail.amount);
     // const [edit, setEdit] = useState(false);
+
     /** detail is prop */
-    const detail = {
-        index: 10,
-        productId: 1,
-        productName: "Credit Card",
-        amount: 10,
-    };
+    // const detail = {
+    //     index: 10,
+    //     productId: 1,
+    //     productName: "Credit Card",
+    //     amount: 10,
+    // };
 
     /** Get productSelect from provider */
     const productSelect = [
@@ -77,7 +78,7 @@ function SaleDetailShowPoly () {
         setProductName(event.target.value)
     };
 
-    const handleAmount = (event) => {
+    const handleChangeAmount = (event) => {
         setAmount(event.target.value)
     };
 
@@ -133,9 +134,9 @@ function SaleDetailShowPoly () {
                 <DetailCellPolymorph
                     required
                     inputType="number"
-                    cellValue={productId}
+                    cellValue={amount}
                     sx={{ml: 2, width: "100px"}}
-                    value={amount}
+                    // value={amount}
                     // onChange={handleChangeAmount}
                 />
 

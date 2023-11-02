@@ -25,6 +25,7 @@ import HomePage from './components/pages/Home/HomePage';
 import SaleDetailShow from './components/SaleDetailList/SaleDetailShow';
 import SaleDetailTable from './components/SaleDetailList/SaleDetailTable';
 import SaleDetailShowPoly from './components/SaleDetailList/SaleDetailShowPoly';
+import { SalesProvider } from './context/sales';
 
 const router = createBrowserRouter([
   {
@@ -53,7 +54,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/register-sale",
-    element: <PrivateRoute> <RegisterSalePage /></PrivateRoute>,
+    element: <PrivateRoute> <SalesProvider> <RegisterSalePage /> </SalesProvider> </PrivateRoute>,
   },
   {
     path: "/track-employees",

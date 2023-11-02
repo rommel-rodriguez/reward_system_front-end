@@ -64,6 +64,7 @@ function SalesProvider({children}) {
 
     const shared = {
         productSelect,
+        saleDetails,
         addDetail,
         removeDetail,
         updateDetail,
@@ -78,4 +79,4 @@ function SalesProvider({children}) {
 }
 
 export default SalesContext;
-export {SalesProvider as IdentityProvider};
+export {SalesProvider as SalesProvider};

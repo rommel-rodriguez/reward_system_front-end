@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Autocomplete, Box, Card, CardContent, Typography } from "@mui/material";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -15,6 +15,8 @@ import authService from "../../../services/authService";
 import salesService from "../../../services/salesService";
 import productsService from "../../../services/productsService";
 import customerService from "../../../services/customerService";
+import SalesContext from "../../../context/sales";
+import SaleDetailTable from "../../SaleDetailList/SaleDetailTable";
 
 function RegisterSalePage() {
     // const options = [{fullName:"option01", id: 1}, {fullName:"option02", id: 2}];
@@ -25,9 +27,18 @@ function RegisterSalePage() {
     const [selectedClient, setSelectedClient] = React.useState(null);
     const [options, setOptions] = React.useState([]);
     const [productId, setProductId] = React.useState(0);
+    let productName = "";
     const [amount, setAmount] = React.useState(0);
 
-    const [productSelect, setProductSelect] = React.useState([]);
+    // const [productSelect, setProductSelect] = React.useState([]);
+    const {
+        productSelect,
+        saleDetails,
+        addDetail,
+        updateDetail,
+        removeDetail,
+          } = useContext(SalesContext);
+
     const [date, setDate] = React.useState(
         (new Date()).toLocaleDateString('en-CA')
         );
@@ -50,7 +61,7 @@ function RegisterSalePage() {
         const customerOptions = await customerService.getCustomerOptions(); 
         // console.log(idsAndNames);
         console.log(customerOptions);
-        setProductSelect(idsAndNames);
+        // setProductSelect(idsAndNames);
         setOptions(customerOptions);
        };
     //    return () => { };
@@ -74,7 +85,18 @@ function RegisterSalePage() {
 
 
     const handleChangeSelectedProduct= (event) => {
-        setSelectedProduct(event.target.value);
+        const id = event.target.value;
+        const name = null;
+        setSelectedProduct(id);
+        try{
+            name = productSelect
+                .filter((product) => product.id === id)
+                .map((product) => product.name)[0];
+        } catch(error) {
+            console.error("handleChangeSelectedProduct Error:", error.message);
+        }
+        
+        productName = name;
     };
 
     const handleClientSelected = (event, value) => {
@@ -110,6 +132,20 @@ function RegisterSalePage() {
             // TODO: Show message window here
             throw error;    
         }
+    };
+
+    const handleAddDetail = () => {
+        const index = saleDetails.length + 1; 
+        const newDetail = {
+            index,
+            productId: selectedProduct,
+            productName,
+            amount,
+        };
+
+        console.log("[DEBUG] Details: ", saleDetails);
+
+        addDetail(newDetail);
     };
 
     return (
@@ -267,6 +303,20 @@ function RegisterSalePage() {
                                 type="date"
                                 />
                             </FormControl>
+                        </Grid>
+
+                        <Grid item xs={12} md={3}>
+                            <Button
+                            variant="contained"
+                            size="large"
+                            onClick={handleAddDetail}
+                            >
+                               Agregar
+                            </Button>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <SaleDetailTable details={saleDetails}></SaleDetailTable>
                         </Grid>
 
                         <Grid item xs={12}>

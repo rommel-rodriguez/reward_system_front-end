@@ -54,7 +54,7 @@ function DetailCellPolymorph ({
     content = edit ? altForm: cellValue;
 
     return (
-        <TableCell align="center" {...rest} >
+        <TableCell align="left" {...rest} >
             {content}
         </TableCell>
     );

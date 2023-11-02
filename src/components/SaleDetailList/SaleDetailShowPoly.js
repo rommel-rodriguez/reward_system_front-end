@@ -91,10 +91,12 @@ function SaleDetailShowPoly ({detail}) {
                 >
 
                 <DetailCellPolymorph component="th" scope="row"
+                    edit={edit}
                     cellValue={detail.index}
                 />
 
                 <DetailCellPolymorph
+                    edit={edit}
                     cellValue={productId}
                 />
 
@@ -108,9 +110,9 @@ function SaleDetailShowPoly ({detail}) {
                             labelId="product-select"
                             id="product-select"
                             value={productId}
-                            label="Age"
+                            label="ProductId"
                             // onChange={handleChangeProduct}
-                            sx={{ml: 2, width: "202px"}}
+                            sx={{width: "202px"}}
                         >
                             { 
                                 productSelect.map(
@@ -132,6 +134,7 @@ function SaleDetailShowPoly ({detail}) {
 
 
                 <DetailCellPolymorph
+                    edit={edit}
                     required
                     inputType="number"
                     cellValue={amount}

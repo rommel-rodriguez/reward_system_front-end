@@ -27,9 +27,9 @@ function SaleDetailTable({details}) {
         <TableHead>
           <TableRow>
             <TableCell>Index</TableCell>
-            <TableCell align="right">Cod. Product</TableCell>
-            <TableCell align="right">Nombre&nbsp;</TableCell>
-            <TableCell align="right">Cantidad&nbsp;</TableCell>
+            <TableCell >Cod. Product</TableCell>
+            <TableCell >Nombre&nbsp;</TableCell>
+            <TableCell >Cantidad&nbsp;</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

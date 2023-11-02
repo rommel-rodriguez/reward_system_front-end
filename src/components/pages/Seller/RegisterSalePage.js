@@ -53,6 +53,8 @@ function RegisterSalePage() {
         width: "100%", // Will fill the parent component
     };
 
+    console.log("[DEBUG] Details: ", saleDetails);
+
     useEffect( () => {
        const fetchData = async () => {
         // TODO: This can throw error if the back-end is not working, handle
@@ -143,7 +145,6 @@ function RegisterSalePage() {
             amount,
         };
 
-        console.log("[DEBUG] Details: ", saleDetails);
 
         addDetail(newDetail);
     };

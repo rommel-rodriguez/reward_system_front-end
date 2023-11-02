@@ -34,7 +34,7 @@ function SaleDetailTable({details}) {
         </TableHead>
         <TableBody>
           {details.map((detail) => (
-            <SaleDetailShowPoly detail={detail} />
+            <SaleDetailShowPoly detail={detail} key={detail.productId}/>
           ))}
         </TableBody>
       </Table>

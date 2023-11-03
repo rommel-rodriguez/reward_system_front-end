@@ -27,7 +27,7 @@ function RegisterSalePage() {
     const [selectedClient, setSelectedClient] = React.useState(null);
     const [options, setOptions] = React.useState([]);
     const [productId, setProductId] = React.useState(0);
-    let productName = "";
+    const [productName, setProductName ] = useState("");
     const [amount, setAmount] = React.useState(0);
 
     // const [productSelect, setProductSelect] = React.useState([]);
@@ -86,7 +86,7 @@ function RegisterSalePage() {
 
     const handleChangeSelectedProduct= (event) => {
         const id = event.target.value;
-        const name = null;
+        let name = null;
         setSelectedProduct(id);
         try{
             name = productSelect
@@ -96,7 +96,7 @@ function RegisterSalePage() {
             console.error("handleChangeSelectedProduct Error:", error.message);
         }
         
-        productName = name;
+        setProductName(name);
     };
 
     const handleClientSelected = (event, value) => {

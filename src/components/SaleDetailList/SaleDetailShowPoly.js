@@ -34,8 +34,8 @@ const reducer  = ( state, action) => {
             break;
 
         default:
+            newState = {...state};
             console.log("The provided action type on the row state is not valid");
-
     };
 
     return newState;

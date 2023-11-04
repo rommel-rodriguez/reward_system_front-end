@@ -63,7 +63,7 @@ function SaleDetailShowPoly ({detail}) {
 
     const rowStateToDetail = () => {
         return {
-            index: rowState.index,
+            index: detail.index,
             productId: rowState.productId,
             productName: rowState.productName,
             amount: rowState.amount
@@ -114,7 +114,8 @@ function SaleDetailShowPoly ({detail}) {
 
                 <DetailCellPolymorph component="th" scope="row"
                     // edit={edit}
-                    cellValue={rowState.index}
+                    // cellValue={rowState.index}
+                    cellValue={detail.index}
                 />
 
                 <DetailCellPolymorph

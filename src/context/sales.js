@@ -28,11 +28,11 @@ function SalesProvider({children}) {
     };
 
     const updateDetail = (updatedDetail) => {
-        if (saleDetails.some((detail) => detail.productId===updatedDetail.productId)){
-            // TODO: Show modal message telling the user that he can not add
-            // more than one item of the same product. 
-            throw new Error("Product already in list");
-        }
+        // if (saleDetails.some((detail) => detail.productId===updatedDetail.productId)){
+        //     // TODO: Show modal message telling the user that he can not add
+        //     // more than one item of the same product. 
+        //     throw new Error("Product already in list");
+        // }
 
         const updatedDetails = saleDetails.filter(
                 (detail) => detail.productId !== updatedDetail.productId
@@ -43,6 +43,10 @@ function SalesProvider({children}) {
         setSaleDetails(
            updatedDetails 
         );
+    };
+
+    const resetSaleDetails = () => {
+        setSaleDetails([]);
     };
 
     useEffect( () => {
@@ -63,6 +67,7 @@ function SalesProvider({children}) {
         addDetail,
         removeDetail,
         updateDetail,
+        resetSaleDetails,
     };
 
     return (

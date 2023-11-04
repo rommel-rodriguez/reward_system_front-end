@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useContext } from "react";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
@@ -12,27 +13,43 @@ import {
     Select,
     MenuItem,
 } from "@mui/material";
-import { useState } from "react";
 import {TextField} from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import DetailCell from "./DetailCell";
 import DetailCellPolymorph from "./DetailCellPolymorph";
+import SalesContext from "../../context/sales";
+
+function createDetail(index, productId, productName, amount) {
+    return{
+        index,
+        productId,
+        productName,
+        amount,
+    }
+}
 
 
 function SaleDetailShowPoly ({detail}) {
 
     /** Get productSelect from provider */
-    const productSelect = [
-        {
-            id: 5,
-            name: "prod1"
-        },
-        {
-            id: 1,
-            name: "Credit Card"
-        },
-    ];
+    // const productSelect = [
+    //     {
+    //         id: 5,
+    //         name: "prod1"
+    //     },
+    //     {
+    //         id: 1,
+    //         name: "Credit Card"
+    //     },
+    // ];
 
+    const {
+            productSelect,
+            updateDetail,
+            removeDetail,
+          } = useContext(SalesContext);
+
+    // const [ localDetail, setLocalDetail] = useState(detail);
     const [ productId, setProductId] = useState(detail.productId);
     const [ productName, setProductName] = useState(detail.productName);
     const [ amount, setAmount] = useState(detail.amount);
@@ -44,6 +61,19 @@ function SaleDetailShowPoly ({detail}) {
         console.log("Inside Edit Handler");
         console.log("Edit Mode Before:", edit);
         setEdit(true);
+    };
+
+    const handleSaveDetail= (event) => {
+        console.log("Inside Save Detail Handler");
+        const changedDetail = createDetail(detail.index, productId, productName, amount);
+        updateDetail(changedDetail);
+        setEdit(false);
+    };
+
+    const handleDeleteDetail = (event) => {
+        console.log("Inside Edit Handler");
+        console.log("Edit Mode Before:", edit);
+        setEdit(false);
     };
 
     const handleEditClose = (event) => {
@@ -63,6 +93,9 @@ function SaleDetailShowPoly ({detail}) {
 
     const handleChangeAmount = (event) => {
         setAmount(event.target.value)
+        // TODO: Need to update de detail here
+        // const changedDetail = createDetail(detail.index, productId, productName, amount);
+        // updateDetail(changedDetail);
     };
 
 
@@ -73,12 +106,12 @@ function SaleDetailShowPoly ({detail}) {
                 >
 
                 <DetailCellPolymorph component="th" scope="row"
-                    edit={edit}
+                    // edit={edit}
                     cellValue={detail.index}
                 />
 
                 <DetailCellPolymorph
-                    edit={edit}
+                    // edit={edit}
                     cellValue={productId}
                 />
 
@@ -94,6 +127,13 @@ function SaleDetailShowPoly ({detail}) {
                             value={productId}
                             label="ProductId"
                             sx={{width: "202px"}}
+                            onChange={
+                                (event)=> {
+                                    setProductId(event.target.value);
+                                    // const changedDetail = createDetail(detail.index, productId, productName, amount);
+                                    // updateDetail(changedDetail);
+                                }
+                            }
                         >
                             { 
                                 productSelect.map(
@@ -120,8 +160,7 @@ function SaleDetailShowPoly ({detail}) {
                     inputType="number"
                     cellValue={amount}
                     sx={{ml: 2, width: "100px"}}
-                    // value={amount}
-                    // onChange={handleChangeAmount}
+                    onChange={handleChangeAmount}
                 />
 
 
@@ -134,7 +173,7 @@ function SaleDetailShowPoly ({detail}) {
                         color="inherit"
                         aria-label="menu"
                         sx={{ ml: 2 }}
-                        // onClick={handleMenuIconClick} 
+                        onClick={handleSaveDetail} 
                     >
                         <SaveIcon></SaveIcon>
                     </IconButton>
@@ -177,7 +216,7 @@ function SaleDetailShowPoly ({detail}) {
                         color="inherit"
                         aria-label="menu"
                         sx={{ ml: 2 }}
-                        // onClick={handleMenuIconClick} 
+                        // onClick={handleDeleteDetail} 
                     >
                         <DeleteIcon />
                     </IconButton>

@@ -9,6 +9,11 @@ function SalesProvider({children}) {
     // TODO: Replace this lambda for a authService function
 
     const addDetail = (newDetail) => {
+        if (saleDetails.some((detail) => detail.productId===newDetail.productId)){
+            // TODO: Show modal message telling the user that he can not add
+            // more than one item of the same product. 
+            return;
+        }
         setSaleDetails([...saleDetails, newDetail]);
     };
 

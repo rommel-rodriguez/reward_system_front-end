@@ -138,7 +138,7 @@ function RegisterSalePage() {
             // index,
             productId: selectedProduct,
             productName,
-            amount,
+            amount: parseFloat(amount),
         };
 
         addDetail(newDetail);

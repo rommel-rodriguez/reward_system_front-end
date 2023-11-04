@@ -78,7 +78,7 @@ function SaleDetailShowPoly ({detail}) {
         setRowState(
             {
                 ...rowState,
-                amount: event.target.value,
+                amount: parseFloat(event.target.value),
             }
         );
     };

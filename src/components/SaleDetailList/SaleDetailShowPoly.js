@@ -117,7 +117,7 @@ function SaleDetailShowPoly ({detail}) {
                 />
 
                 <DetailCellPolymorph
-                    edit={edit}
+                    // edit={edit}
                     cellValue={productName}
                     sx={{ml: 2, width: "202px"}}
                     inputComponent={
@@ -130,7 +130,10 @@ function SaleDetailShowPoly ({detail}) {
                             sx={{width: "202px"}}
                             onChange={
                                 (event)=> {
+                                    console.log("Select Callback");
+                                    console.log(event.target);
                                     setProductId(event.target.value);
+                                    // setProductName();
                                     // const changedDetail = createDetail(detail.index, productId, productName, amount);
                                     // updateDetail(changedDetail);
                                 }

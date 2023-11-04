@@ -136,12 +136,18 @@ function RegisterSalePage() {
 
     const handleAddDetail = () => {
         const index = saleDetails.length + 1; 
+        if (saleDetails.some((detail) => detail.productId===selectedProduct)){
+            // TODO: Show modal message telling the user that he can not add
+            // more than one item of the same product. 
+            return;
+        }
         const newDetail = {
             index,
             productId: selectedProduct,
             productName,
             amount,
         };
+
 
 
         addDetail(newDetail);

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useContext } from "react";
+import { useState, useContext, useReducer } from "react";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
@@ -22,6 +22,23 @@ import SalesContext from "../../context/sales";
 
 const reducer  = ( state, action) => {
 
+    let newState = {};
+
+    switch ( action.type ) {
+        case 'change-amount':
+            newState = {...state, amount: action.payload};
+            break;
+
+        case 'change-productId':
+            newState = {...state, productId: action.payload};
+            break;
+
+        default:
+            console.log("The provided action type on the row state is not valid");
+
+    };
+
+    return newState;
 };
 
 
@@ -34,7 +51,11 @@ function SaleDetailShowPoly ({detail}) {
             removeDetail,
           } = useContext(SalesContext);
 
-    const [ rowState, setRowState] = useState(detail);
+    // const [ rowState, setRowState] = useState(detail);
+    const [ rowState, dispatchRow ] = useReducer(
+        reducer,
+        detail,
+    );
     console.log("Row Poly's State", rowState);
     const [edit, setEdit] = useState(false);
 
@@ -76,10 +97,10 @@ function SaleDetailShowPoly ({detail}) {
 
     const handleChangeAmount = (event) => {
         // setAmount(event.target.value)
-        setRowState(
+        dispatchRow(
             {
-                ...rowState,
-                amount: parseFloat(event.target.value),
+                type: "change-amount",
+                payload: parseFloat(event.target.value),
             }
         );
     };
@@ -117,9 +138,12 @@ function SaleDetailShowPoly ({detail}) {
                                 (event)=> {
                                     console.log("Select Callback");
                                     console.log(event.target);
-                                    setRowState(
-                                        {...rowState, productId:event.target.value}
-                                        );
+                                    dispatchRow(
+                                        {
+                                            type: "change-productId",
+                                            payload: event.target.value
+                                        }
+                                    );
                                     // setProductName();
                                     // const changedDetail = createDetail(detail.index, productId, productName, amount);
                                     // updateDetail(changedDetail);

@@ -20,6 +20,10 @@ import DetailCellPolymorph from "./DetailCellPolymorph";
 import SalesContext from "../../context/sales";
 
 
+const reducer  = ( state, action) => {
+
+};
+
 
 function SaleDetailShowPoly ({detail}) {
 
@@ -32,9 +36,6 @@ function SaleDetailShowPoly ({detail}) {
 
     const [ rowState, setRowState] = useState(detail);
     console.log("Row Poly's State", rowState);
-    // const [ productId, setProductId] = useState(detail.productId);
-    // const [ productName, setProductName] = useState(detail.productName);
-    // const [ amount, setAmount] = useState(detail.amount);
     const [edit, setEdit] = useState(false);
 
     console.log("Edit Mode When rendering:", edit);

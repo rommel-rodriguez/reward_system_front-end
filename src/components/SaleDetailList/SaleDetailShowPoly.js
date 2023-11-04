@@ -70,9 +70,10 @@ function SaleDetailShowPoly ({detail}) {
         setEdit(false);
     };
 
-    const handleDeleteDetail = (event) => {
-        console.log("Inside Edit Handler");
-        console.log("Edit Mode Before:", edit);
+    const handleRemoveDetail = (event) => {
+        console.log("Inside Remove Detail");
+        const changedDetail = createDetail(detail.index, productId, productName, amount);
+        removeDetail(changedDetail);
         setEdit(false);
     };
 
@@ -216,7 +217,7 @@ function SaleDetailShowPoly ({detail}) {
                         color="inherit"
                         aria-label="menu"
                         sx={{ ml: 2 }}
-                        // onClick={handleDeleteDetail} 
+                        onClick={handleRemoveDetail} 
                     >
                         <DeleteIcon />
                     </IconButton>

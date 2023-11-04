@@ -133,9 +133,9 @@ function RegisterSalePage() {
     };
 
     const handleAddDetail = () => {
-        const index = saleDetails.length + 1; 
+        // const index = saleDetails.length + 1; 
         const newDetail = {
-            index,
+            // index,
             productId: selectedProduct,
             productName,
             amount,

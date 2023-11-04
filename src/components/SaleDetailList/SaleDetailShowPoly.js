@@ -23,6 +23,7 @@ import SalesContext from "../../context/sales";
 
 function SaleDetailShowPoly ({detail}) {
 
+    console.log("Row Poly's init detail", detail);
     const {
             productSelect,
             updateDetail,
@@ -30,6 +31,7 @@ function SaleDetailShowPoly ({detail}) {
           } = useContext(SalesContext);
 
     const [ rowState, setRowState] = useState(detail);
+    console.log("Row Poly's State", rowState);
     // const [ productId, setProductId] = useState(detail.productId);
     // const [ productName, setProductName] = useState(detail.productName);
     // const [ amount, setAmount] = useState(detail.amount);

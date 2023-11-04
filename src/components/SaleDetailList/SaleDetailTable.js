@@ -26,9 +26,14 @@ function SaleDetailTable({details}) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {details.map((detail) => (
-            <SaleDetailShowPoly detail={detail} key={detail.productId}/>
-          ))}
+          {
+            details.map((detail, index) => (
+              <SaleDetailShowPoly
+                detail={{...detail, index:(index+1)}}
+                key={detail.productId}
+              />
+            ))
+          }
         </TableBody>
       </Table>
     </TableContainer>

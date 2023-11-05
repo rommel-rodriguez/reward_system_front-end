@@ -26,15 +26,15 @@ const reducer  = ( state, action) => {
 
     switch ( action.type ) {
         case 'change-amount':
-            newState = {...state, amount: action.payload};
+            newState = {...state, amount: action.payload,};
             break;
 
         case 'change-productId':
-            newState = {...state, productId: action.payload};
+            newState = {...state, productId: action.payload,};
             break;
 
         default:
-            newState = {...state};
+            newState = {...state,};
             console.log("The provided action type on the row state is not valid");
     };
 

@@ -31,3 +31,7 @@ const store = configureStore({
         identity: identitySlice.reducer,
     }
 })
+
+export {store};
+
+export const { login } = identitySlice.actions.login;

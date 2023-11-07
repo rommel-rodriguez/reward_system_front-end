@@ -6,6 +6,11 @@ const identitySlice = createSlice({
     initialState:
         JSON.parse(localStorage.getItem('persistentIdentity')) || {},
     reducers: {
+        //TODO: Can NOT make requests inside a reducer, need to either use
+        // Async Thunks or RTK to achieve this. The name of the login reducer
+        // might need to be changed to reflect this, because after the
+        // changes, this reducer is probably just going to update the state
+        // related with the identity.
         async login(state, action) {
             console.log("Inside Redux Login");
             try{

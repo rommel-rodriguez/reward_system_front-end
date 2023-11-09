@@ -16,6 +16,7 @@ import IdentityContext from "../../../context/identity";
 
 import authService from "../../../services/authService";
 import { useNavigate } from "react-router-dom";
+import { useSignInMutation } from "../../../store";
 
 const style = {
   position: 'absolute',
@@ -40,8 +41,13 @@ function SignInPage() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-    const {identity, login} = useContext(IdentityContext);
-    console.log("Signin page: ", identity);
+    // const {identity, login} = useContext(IdentityContext);
+    // const signInRTKQ = useSignInMutation();
+    // console.log("SignIn RTKQ:\n", signInRTKQ);
+    const [signIn, { isLoading, isError, error }] = useSignInMutation();
+
+
+    // console.log("Signin page: ", identity);
 
     const handleChangeUser = (event) => {
         setUsername(event.target.value);
@@ -63,7 +69,9 @@ function SignInPage() {
         console.log(`Form Submitted! Credentials:\n${username}::${password}`);
         // authService.login(username, password);
         try {
-            await login(username, password);
+            // await login(username, password);
+            const token = await signIn({username, password});
+            console.log('Token:', token);
 
         } catch (error) {
             // TODO: Show error window here

@@ -26,6 +26,8 @@ import SaleDetailShow from './components/SaleDetailList/SaleDetailShow';
 import SaleDetailTable from './components/SaleDetailList/SaleDetailTable';
 import SaleDetailShowPoly from './components/SaleDetailList/SaleDetailShowPoly';
 import { SalesProvider } from './context/sales';
+import { store } from './store'; 
+import { Provider } from 'react-redux';
 
 const router = createBrowserRouter([
   {
@@ -74,9 +76,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <App /> */}
-    <IdentityProvider>
-      <RouterProvider router={router} />
-    </IdentityProvider>
+    <Provider store={store}>
+      <IdentityProvider>
+        <RouterProvider router={router} />
+      </IdentityProvider>
+    </Provider>
   </React.StrictMode>
 );
 

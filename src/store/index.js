@@ -1,42 +1,20 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { configureStore} from "@reduxjs/toolkit";
+import { setupListeners } from '@reduxjs/toolkit/query';
 import authService from "../services/authService";
 
-const identitySlice = createSlice({
-    name: 'identity',
-    initialState:
-        JSON.parse(localStorage.getItem('persistentIdentity')) || {},
-    reducers: {
-        //TODO: Can NOT make requests inside a reducer, need to either use
-        // Async Thunks or RTK to achieve this. The name of the login reducer
-        // might need to be changed to reflect this, because after the
-        // changes, this reducer is probably just going to update the state
-        // related with the identity.
-        async login(state, action) {
-            console.log("Inside Redux Login");
-            try{
-                await authService.login(
-                    action.payload.username,
-                    action.payload.password
-                );
-                const retrievedIdentity =await authService.getIdentity();
-                console.log("Temp Identity: ", retrievedIdentity);
-                // Using Immer, so I can just assign(?) and the identity
-                // application state is updated.
-                state = retrievedIdentity;
-            } catch (error) {
-                console.log(error);
-                throw error;
-            }
-        },
-    },
-});
+import { authenticationReducer } from "./slices/authenticationSlice";
+import { authApi } from "./api/authApi";
+
 
 const store = configureStore({
     reducer: {
-        identity: identitySlice.reducer,
-    }
+        [authApi.reducerPath]: authApi.reducer, 
+    },
+    middleware: (getDefaultMiddleware) => {
+        return getDefaultMiddleware().concat(authApi.middleware);
+    },
 })
 
+setupListeners(store.dispatch);
 export {store};
-
-export const { login } = identitySlice.actions.login;
+export { useSignInMutation } from './api/authApi';

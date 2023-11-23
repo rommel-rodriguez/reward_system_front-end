@@ -62,8 +62,8 @@ const authSlice = createSlice({
         },
         removeToken(state, action) {
             // NOTE: Removes the token and returns user back to an empty object 
-            // or null. This is kind of a signout function
-            state = {};
+            state.user = null;
+            state.token = null;
             storageService.persistInLocal('persistentIdentity', state);
         },
     },

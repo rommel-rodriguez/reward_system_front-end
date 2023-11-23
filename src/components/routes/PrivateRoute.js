@@ -6,7 +6,7 @@ function PrivateRoute({children}) {
     // const {identity} = useContext(IdentityContext);
     const user = useSelector((state) => state.identity.user);
     console.log("Inside Private Route logic");
-    if ( user && Object.keys(user).length === 0 ) {
+    if ( (!user) || Object.keys(user).length === 0 ) {
         console.log("Identity is NOT Set!!!", user);
         return <Navigate to="/signin"/> ;
     }

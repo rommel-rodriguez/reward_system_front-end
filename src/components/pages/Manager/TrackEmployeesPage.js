@@ -26,6 +26,7 @@ function TrackEmployeesPage() {
        const fetchData = async () => {
         // TODO: This can throw error if the back-end is not working, handle
         // apropriatedly
+        // TODO: Replace by Redux API reducer.
             const employees = await employeesService
                 .getEmployeesManagedEmployees(user.employeeId); 
 

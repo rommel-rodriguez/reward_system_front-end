@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { useSelector } from "react-redux";
 import { Autocomplete, Box, Card, CardContent, Typography } from "@mui/material";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -29,6 +30,7 @@ function RegisterSalePage() {
     const [productId, setProductId] = React.useState(0);
     const [productName, setProductName ] = useState("");
     const [amount, setAmount] = React.useState(0);
+    const user = useSelector((state) => state.identity.user);
 
     // const [productSelect, setProductSelect] = React.useState([]);
     const {
@@ -106,26 +108,27 @@ function RegisterSalePage() {
 
 
     const handleSubmitButton = async (event) => {
-        let identity = await authService.getIdentity();
+        // let identity = await authService.getIdentity();
         if (amount <= -1) {
             ///  Stop the sale here and send a message
         }
 
-        if (!identity){
-            console.log('The identity could not be retrieved [BUTTON]');
+        if (!user){
+            console.log('The identity could not be retrieved');
             return;
         }
-        console.log(`Successful Identity Retrieval:\n${identity.username}`);
-        console.log(`EmployeeId:\n${identity.employeeId}`);
-        console.log(`Manager?:\n${identity.manager}`);
+        console.log(`Successful Identity Retrieval:\n${user.username}`);
+        console.log(`EmployeeId:\n${user.employeeId}`);
+        console.log(`Manager?:\n${user.manager}`);
         try{
             const registerResponse = await salesService.register(
-                identity.employeeId,
+                user.employeeId,
                 clientId,
                 selectedProduct,
                 date,
                 amount
             );
+            console.log("Sale registration response:", registerResponse);
         }catch(error) {
             // TODO: Show message window here
             throw error;    

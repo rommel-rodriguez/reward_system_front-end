@@ -14,12 +14,11 @@ import { Home } from '@mui/icons-material';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { redirect } from "react-router-dom";
-import { useContext } from 'react';
-import IdentityContext from '../../../context/identity';
 import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import PersonIcon from '@mui/icons-material/Person';
 import { Typography } from '@mui/material';
+import { useSelector } from "react-redux";
 
 
 export default function SideBar({isOpen}) {
@@ -29,7 +28,7 @@ export default function SideBar({isOpen}) {
     // bottom: false,
     // right: false,
   });
-  const {identity} = useContext(IdentityContext);
+  const user = useSelector((state) => state.identity.user);
   // setState({ ...state, left: isOpen});
   // NOTE: Maybe use useEffect here?
 
@@ -130,7 +129,7 @@ export default function SideBar({isOpen}) {
         </ListItem>
 
         {
-          (identity.manager) &&
+          (user.manager) &&
             <ListItem key={Math.random} disablePadding alignItems='center'sx={{mt:3}}>
                 <Link to="/track-employees" >
                   <ListItemButton

@@ -1,37 +1,33 @@
 import React from "react";
 import { Box } from "@mui/material";
-import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 // import { FormControl, FormLabel } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
 import InputLabel from '@mui/material/InputLabel';
 import Grid from '@mui/material/Unstable_Grid2'; 
 import Base from "../../common/Base/Base";
 import EmployeesAccordion from "../../standalone/EmployeesAccordion";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 import authService from "../../../services/authService";
-import productsService from "../../../services/productsService";
 import employeesService from "../../../services/employeesService";
 
 function TrackEmployeesPage() {
-    const [username, setUsername] = React.useState('');
-    const [password, setPassword] = React.useState('');
     const [monthYearSelect, setMonthYearSelect] = React.useState([]);
     const [selectedMonthYear, setSelectedMonthYear] = React.useState(""); // This one must also show on table
     const [managedEmployees, setManagedEmployees] = React.useState([]);
     const [shownEmployees, setShownEmployees] = React.useState([]);
+    const user = useSelector((state) => state.identity.user);
 
     useEffect( () => {
        const fetchData = async () => {
         // TODO: This can throw error if the back-end is not working, handle
         // apropriatedly
-            let identity = await authService.getIdentity();
             const employees = await employeesService
-                .getEmployeesManagedEmployees(identity.employeeId); 
+                .getEmployeesManagedEmployees(user.employeeId); 
 
             setManagedEmployees(employees)
 
@@ -48,14 +44,6 @@ function TrackEmployeesPage() {
        fetchData();
     }, []);
 
-    const handleChangeUser = (event) => {
-        setUsername(event.target.value);
-        // console.log(`User name: ${event.target.value}`);
-    };
-
-    const handleChangePassword = (event) => {
-        setPassword(event.target.value);
-    };
 
     const handleChangeSelectedMonthYear= (event) => {
         // console.log(`Selected Month Year: ${selectedMonthYear}`);

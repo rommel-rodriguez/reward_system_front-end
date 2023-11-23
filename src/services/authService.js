@@ -1,4 +1,5 @@
 import api from "../api/api";
+import { jwtDecode } from "jwt-decode";
 
 const authService = {
   login: async (username, password) => {
@@ -68,9 +69,12 @@ const authService = {
   },
 
   decodeToken: (token) => {
+    const decodedToken = jwtDecode(token);
+    console.log("Auth Service, Decoded Token", decodedToken)
     return {
-      // TODO: Set the same attributes as the Provider version of identity.
-    };
+        ...decodedToken,
+        username: decodedToken.sub,
+    }; 
   },
 
 

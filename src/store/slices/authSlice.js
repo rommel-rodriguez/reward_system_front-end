@@ -1,12 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import storageService from "../../services/storageService";
+import { jwtDecode } from "jwt-decode";
 
 const decodeToken = (token) => {
     // NOTE: Either extracts all the necessary data from the token or makes
     // and API call to get it. 
     // TODO: But, wait a sec, I can NOT (or should not) make requests inside
     // the reducers. Then, how do I do this?
-    return {name: "retrieveUser function NOT Implemented"};
+    const decodedToken = jwtDecode(token);
+    console.log("Decoded Token", decodedToken)
+    return {
+        ...decodedToken,
+        username: decodedToken.sub,
+    }; 
 };
 
 const authSlice = createSlice({

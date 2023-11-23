@@ -9,20 +9,24 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { useContext } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import IdentityContext from '../../../context/identity';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import { useNavigate } from 'react-router-dom';
+import { removeToken } from '../../../store/slices/authSlice';
 
 export default function UpperBar({handleMenuIconClick}) {
-  const {identity, logout} = useContext(IdentityContext);
-  const [auth, setAuth] = React.useState(!(Object.keys(identity).length === 0));
+  // const {identity, logout} = useContext(IdentityContext);
+  const user = useSelector((state) => state.identity.user);
+  const [auth, setAuth] = React.useState(user ? !(Object.keys(user).length === 0) : false);
   // const [auth, setAuth] = React.useState(Object.keys(identity).length === 0);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
 
-  console.log("UpperBar, identity: ", identity);
+  console.log("UpperBar, identity: ", user);
 
 
 
@@ -31,7 +35,7 @@ export default function UpperBar({handleMenuIconClick}) {
   };
 
   const handleLogout= (event) => {
-    logout();
+    dispatch(removeToken());
     setAuth(false);
   };
 

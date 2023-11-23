@@ -1,38 +1,14 @@
 import React from "react";
-import { useContext, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Box, Card, CardContent, Typography } from "@mui/material";
-import Button from '@mui/material/Button';
 // import { FormControl, FormLabel } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2'; 
 import Base from "../../common/Base/Base";
-import IdentityContext from "../../../context/identity";
 
 function ProfilePage() {
-    const [username, setUsername] = React.useState('');
-    const [password, setPassword] = React.useState('');
-    const {identity} = useContext(IdentityContext);
+    // const {identity} = useContext(IdentityContext);
+    const identity = useSelector((state) => state.identity.user);
     console.log(`Profile Page, username: ${identity.username}`);
-
-
-    const handleChangeUser = (event) => {
-        setUsername(event.target.value);
-        // console.log(`User name: ${event.target.value}`);
-    };
-
-    const handleChangePassword = (event) => {
-        setPassword(event.target.value);
-    };
-
-
-    const handleSubmit = (event) => {
-        console.log(`Form Submitted!!!!`);
-    };
-
-    const handleSubmitButton = (event) => {
-        console.log(`Form Submitted! Credentials:\n${username}::${password}`);
-        console.log("Profile Page : ", identity);
-        console.log(`Profile Page, username: ${identity.username}`);
-    };
 
     return (
         <Base>

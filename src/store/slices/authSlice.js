@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import storageService from "../../services/storageService";
 
-const retrieveUser = (token) => {
+const decodeToken = (token) => {
     // NOTE: Either extracts all the necessary data from the token or makes
     // and API call to get it. 
     // TODO: But, wait a sec, I can NOT (or should not) make requests inside
@@ -37,7 +37,7 @@ const authSlice = createSlice({
             // state.token = token;
             // NOTE: Current assumption is that retrieveUser is not making 
             // and API call
-            user = retrieveUser(token);
+            user = decodeToken(token);
 
             if (!user) {
                 console.log("[DEBUG] User not found!!!");
@@ -49,6 +49,8 @@ const authSlice = createSlice({
             state.user = user;
 
             console.log("[DEBUG] State after", state);
+            console.log("[DEBUG] State after token: ", state.token);
+            console.log("[DEBUG] State after user: ", state.user);
 
             storageService.persistInLocal('persistentIdentity', state);
         },

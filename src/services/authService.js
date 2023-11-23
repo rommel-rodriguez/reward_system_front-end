@@ -67,6 +67,12 @@ const authService = {
     }
   },
 
+  decodeToken: (token) => {
+    return {
+      // TODO: Set the same attributes as the Provider version of identity.
+    };
+  },
+
 
 }
 

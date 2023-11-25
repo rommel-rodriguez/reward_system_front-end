@@ -71,12 +71,16 @@ function TrackEmployeesPage() {
             let monthsAndYears = employeesService
                 .extractUniqueMonthsAndYears(managedEmployees);
 
+            console.log("TEP Unique Months and Years", monthsAndYears);
+
             setMonthYearSelect(
                 monthsAndYears.map((obj) => ({
                     ...obj,
                     chain: `${obj.year}-${obj.month.toString().padStart(2, '0')}`,
                 }))
             );
+
+            // console.log("TEP monthYearSelect: ", monthYearSelect);
         };
     //    return () => { };
        fetchData();

@@ -48,6 +48,7 @@ const employeesService = {
 // Define a function to filter and transform managed employees
   filterAndTransformManagedEmployees: (managedEmployees, targetMonth, targetYear) => {
         return managedEmployees
+            // TODO: This filter most likely needs to be removed
             .filter((employee) =>
                 employee.monthlyGoals.some(
                     (goal) => goal.month === targetMonth && goal.year === targetYear

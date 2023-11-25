@@ -77,17 +77,18 @@ const employeesService = {
 
         managedEmployees.forEach((employee) => {
             employee.monthlyGoals.forEach((goal) => {
-            const { month, year } = goal;
+              const { month, year } = goal;
 
-            // Check if the { month, year } object is already in the unique list
-            const isDuplicate = uniqueMonthsAndYears.some(
-                (uniqueObj) => uniqueObj.month === month && uniqueObj.year === year
-            );
+              // Check if the { month, year } object is already in the unique list
+              const isDuplicate = uniqueMonthsAndYears.some(
+                  (uniqueObj) => uniqueObj.month === month && uniqueObj.year === year
+              );
 
-            // If not a duplicate, add it to the list
-            if (!isDuplicate) {
-                uniqueMonthsAndYears.push({ month, year });
-            }
+              // If not a duplicate, add it to the list
+              if (!isDuplicate) {
+                  uniqueMonthsAndYears.push({ month, year });
+              }
+
             });
         });
 

@@ -51,18 +51,26 @@ function TrackEmployeesPage() {
         console.log("Manager's Data: ", managerData);
 
 
+
     useEffect( () => {
        const fetchData = async () => {
         // TODO: This can throw error if the back-end is not working, handle
         // apropriatedly
         // TODO: Replace by Redux API reducer.
-            const employees = await employeesService
-                .getEmployeesManagedEmployees(user.employeeId); 
+            // const employees = await employeesService
+            //     .getEmployeesManagedEmployees(user.employeeId); 
 
-            setManagedEmployees(employees)
+            // setManagedEmployees(employees)
 
-            console.log(employees);
-            let monthsAndYears = employeesService.extractUniqueMonthsAndYears(employees);
+
+            console.log("TEP Executing useEffect", managedEmployeesData);
+
+            if (managedEmployeesData)
+                setManagedEmployees(managedEmployeesData);
+
+            let monthsAndYears = employeesService
+                .extractUniqueMonthsAndYears(managedEmployees);
+
             setMonthYearSelect(
                 monthsAndYears.map((obj) => ({
                     ...obj,
@@ -72,7 +80,7 @@ function TrackEmployeesPage() {
         };
     //    return () => { };
        fetchData();
-    }, []);
+    }, [managedEmployeesIsLoading]);
 
 
     const handleChangeSelectedMonthYear= (event) => {

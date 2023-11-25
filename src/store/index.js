@@ -4,16 +4,23 @@ import authService from "../services/authService";
 
 import authReducer from "./slices/authSlice";
 import { authApi } from "./api/authApi";
+import { employeesApi } from "./api/employeesApi";
+import { managersApi } from "./api/managersApi";
 
 
 const store = configureStore({
     reducer: {
         [authApi.reducerPath]: authApi.reducer, 
         identity: authReducer,
+        [employeesApi.reducerPath]: employeesApi.reducer,
+        [managersApi.reducerPath]: managersApi.reducer,
 
     },
     middleware: (getDefaultMiddleware) => {
-        return getDefaultMiddleware().concat(authApi.middleware);
+        return getDefaultMiddleware()
+            .concat(authApi.middleware)
+            .concat(employeesApi.middleware)
+            .concat(managersApi.middleware);
     },
 })
 
@@ -25,3 +32,10 @@ export {store};
 
 
 export { useSignInMutation } from './api/authApi';
+export {useFetchEmployeesQuery} from './api/employeesApi';
+export {
+    useFetchManagersQuery,
+    useFetchManagerByIdQuery,
+    useFetchManagedEmployeesByManagerIdQuery,
+} from './api/managersApi';
+    

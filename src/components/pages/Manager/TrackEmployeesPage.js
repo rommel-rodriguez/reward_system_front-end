@@ -15,12 +15,41 @@ import { useSelector } from "react-redux";
 import authService from "../../../services/authService";
 import employeesService from "../../../services/employeesService";
 
+
+import {
+    useFetchEmployeesQuery,
+    useFetchManagerByIdQuery,
+    useFetchManagedEmployeesByManagerIdQuery,
+} from "../../../store";
+
 function TrackEmployeesPage() {
     const [monthYearSelect, setMonthYearSelect] = React.useState([]);
     const [selectedMonthYear, setSelectedMonthYear] = React.useState(""); // This one must also show on table
     const [managedEmployees, setManagedEmployees] = React.useState([]);
     const [shownEmployees, setShownEmployees] = React.useState([]);
     const user = useSelector((state) => state.identity.user);
+    const { data, error, isLoading } = useFetchEmployeesQuery();
+    const {
+        data: managerData,
+        error: managerError,
+        isLoading: managerIsLoading
+    } = useFetchManagerByIdQuery(user.employeeId);
+
+    const {
+        data: managedEmployeesData,
+        error: managedEmployeesError,
+        isLoading: managedEmployeesIsLoading
+    } = useFetchManagedEmployeesByManagerIdQuery(user.employeeId);
+
+    if (data)
+        console.log("Employees: ", data);
+
+    if (managedEmployeesData)
+        console.log("Managed Employee's Data: ", managedEmployeesData);
+
+    if (managerData)
+        console.log("Manager's Data: ", managerData);
+
 
     useEffect( () => {
        const fetchData = async () => {
@@ -64,14 +93,13 @@ function TrackEmployeesPage() {
 
 
     const handleSubmitButton = async (event) => {
-        let identity = await authService.getIdentity();
-        if (!identity){
+        if (!user){
             console.log('The identity could not be retrieved [BUTTON]');
             return;
         }
-        console.log(`Successful Identity Retrieval:\n${identity.username}`);
-        console.log(`EmployeeId:\n${identity.employeeId}`);
-        console.log(`Manager?:\n${identity.manager}`);
+        console.log(`Successful Identity Retrieval:\n${user.username}`);
+        console.log(`EmployeeId:\n${user.employeeId}`);
+        console.log(`Manager?:\n${user.manager}`);
         try{
         }catch(error) {
             // TODO: Show message window here

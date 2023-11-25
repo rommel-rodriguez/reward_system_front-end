@@ -129,7 +129,7 @@ export default function SideBar({isOpen}) {
         </ListItem>
 
         {
-          (user.manager) &&
+          (user && user.manager) &&
             <ListItem key={Math.random} disablePadding alignItems='center'sx={{mt:3}}>
                 <Link to="/track-employees" >
                   <ListItemButton

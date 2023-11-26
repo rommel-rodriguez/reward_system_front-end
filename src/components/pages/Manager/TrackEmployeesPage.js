@@ -40,6 +40,8 @@ function TrackEmployeesPage() {
         isLoading: managedEmployeesIsLoading
     } = useFetchManagedEmployeesByManagerIdQuery(user.employeeId);
 
+    console.log("[TEP] Show Employees", shownEmployees);
+    console.log("[TEP] Selected Month Year", selectedMonthYear);
 
     if (data)
         console.log("Employees: ", data);
@@ -55,6 +57,8 @@ function TrackEmployeesPage() {
     if (managedEmployeesData) {
         const monthsAndYears = employeesService
             .extractUniqueMonthsAndYears(managedEmployeesData);
+        // TODO: State is not updated here, cause monthYearSelect is no longer
+        // a piece of state, fix this.
         monthYearSelect = monthsAndYears.map((obj) => ({
             ...obj,
             chain: `${obj.year}-${obj.month.toString().padStart(2, '0')}`,
@@ -97,9 +101,9 @@ function TrackEmployeesPage() {
         setSelectedMonthYear(event.target.value);
         setShownEmployees(
             employeesService.filterAndTransformManagedEmployees(
-                managedEmployees,
-                month,
-                year
+                    managedEmployeesData,
+                    month,
+                    year
                 )
         );
         console.log(managedEmployees);

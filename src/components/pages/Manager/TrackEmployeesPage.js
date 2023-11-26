@@ -24,7 +24,6 @@ import {
 function TrackEmployeesPage() {
     // const [monthYearSelect, setMonthYearSelect] = React.useState([]);
     const [selectedMonthYear, setSelectedMonthYear] = React.useState(""); // This one must also show on table
-    const [managedEmployees, setManagedEmployees] = React.useState([]);
     const [shownEmployees, setShownEmployees] = React.useState([]);
     const user = useSelector((state) => state.identity.user);
     const { data, error, isLoading } = useFetchEmployeesQuery();
@@ -78,7 +77,6 @@ function TrackEmployeesPage() {
                     year
                 )
         );
-        console.log(managedEmployees);
         console.log(shownEmployees);
     };
 

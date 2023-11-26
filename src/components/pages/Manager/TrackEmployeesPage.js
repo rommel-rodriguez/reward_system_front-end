@@ -12,7 +12,6 @@ import EmployeesAccordion from "../../standalone/EmployeesAccordion";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import authService from "../../../services/authService";
 import employeesService from "../../../services/employeesService";
 
 
@@ -144,9 +143,6 @@ function TrackEmployeesPage() {
                                 value={selectedMonthYear}
                                 onChange={handleChangeSelectedMonthYear}
                             >
-                                {/* <MenuItem value={10}>Ten</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem> */}
                                 { 
                                     monthYearSelect.map(
                                         (item) => {

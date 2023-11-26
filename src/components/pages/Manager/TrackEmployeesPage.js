@@ -22,7 +22,7 @@ import {
 } from "../../../store";
 
 function TrackEmployeesPage() {
-    const [monthYearSelect, setMonthYearSelect] = React.useState([]);
+    // const [monthYearSelect, setMonthYearSelect] = React.useState([]);
     const [selectedMonthYear, setSelectedMonthYear] = React.useState(""); // This one must also show on table
     const [managedEmployees, setManagedEmployees] = React.useState([]);
     const [shownEmployees, setShownEmployees] = React.useState([]);
@@ -40,6 +40,7 @@ function TrackEmployeesPage() {
         isLoading: managedEmployeesIsLoading
     } = useFetchManagedEmployeesByManagerIdQuery(user.employeeId);
 
+
     if (data)
         console.log("Employees: ", data);
 
@@ -49,37 +50,41 @@ function TrackEmployeesPage() {
     if (managerData)
         console.log("Manager's Data: ", managerData);
 
-
+    // let monthsAndYears = [];
+    let monthYearSelect;
+    if (managedEmployeesData) {
+        const monthsAndYears = employeesService
+            .extractUniqueMonthsAndYears(managedEmployeesData);
+        monthYearSelect = monthsAndYears.map((obj) => ({
+            ...obj,
+            chain: `${obj.year}-${obj.month.toString().padStart(2, '0')}`,
+        }));
+    }
 
     useEffect( () => {
        const fetchData = async () => {
         // TODO: This can throw error if the back-end is not working, handle
         // apropriatedly
 
+        // let employees = await managedEmployeesData;
 
-        let employees = await managedEmployeesData;
-
-        // console.log("TEP Executing useEffect", managedEmployeesData);
-
-        setManagedEmployees(employees || []);
+        // setManagedEmployees(employees || []);
 
         //TODO: Seems like, even after executing the setManagedEmployees
         // function, the managedEmployee's data is still not ready yet?
-        console.log("Managed Employees State: ", employees);
+        // console.log("Managed Employees State: ", employees);
 
-        let monthsAndYears = employeesService
-            .extractUniqueMonthsAndYears(employees);
+        // let monthsAndYears = employeesService
+        //     .extractUniqueMonthsAndYears(employees);
 
-        console.log("TEP Unique Months and Years", monthsAndYears);
+        // console.log("TEP Unique Months and Years", monthsAndYears);
 
-        setMonthYearSelect(
-            monthsAndYears.map((obj) => ({
-                ...obj,
-                chain: `${obj.year}-${obj.month.toString().padStart(2, '0')}`,
-            }))
-        );
-
-            // console.log("TEP monthYearSelect: ", monthYearSelect);
+        // setMonthYearSelect(
+        //     monthsAndYears.map((obj) => ({
+        //         ...obj,
+        //         chain: `${obj.year}-${obj.month.toString().padStart(2, '0')}`,
+        //     }))
+        // );
         };
     //    return () => { };
        fetchData();
@@ -145,18 +150,19 @@ function TrackEmployeesPage() {
                                 onChange={handleChangeSelectedMonthYear}
                             >
                                 { 
-                                    monthYearSelect.map(
-                                        (item) => {
-                                            return (
-                                                <MenuItem
-                                                value={item.chain}
-                                                key={item.chain}
-                                                >
-                                                {item.chain} 
-                                                </MenuItem>
-                                            );
-                                        }
-                                    )
+                                    (!managedEmployeesIsLoading) &&
+                                        monthYearSelect.map(
+                                            (item) => {
+                                                return (
+                                                    <MenuItem
+                                                    value={item.chain}
+                                                    key={item.chain}
+                                                    >
+                                                    {item.chain} 
+                                                    </MenuItem>
+                                                );
+                                            }
+                                        )
                                 }
                             </Select>
                             </FormControl>

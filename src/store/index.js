@@ -21,8 +21,8 @@ const store = configureStore({
         return getDefaultMiddleware()
             .concat(authApi.middleware)
             .concat(employeesApi.middleware)
-            .concat(customersApi.middleware)
-            .concat(managersApi.middleware);
+            .concat(managersApi.middleware)
+            .concat(customersApi.middleware);
     },
 })
 

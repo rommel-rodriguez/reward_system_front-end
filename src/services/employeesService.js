@@ -47,13 +47,13 @@ const employeesService = {
   },
 // Define a function to filter and transform managed employees
   filterAndTransformManagedEmployees: (managedEmployees, targetMonth, targetYear) => {
+        // TODO: This filter most likely needs to be removed
         return managedEmployees
-            // TODO: This filter most likely needs to be removed
-            .filter((employee) =>
-                employee.monthlyGoals.some(
-                    (goal) => goal.month === targetMonth && goal.year === targetYear
-                )
-            )
+            // .filter((employee) =>
+            //     employee.monthlyGoals.some(
+            //         (goal) => goal.month === targetMonth && goal.year === targetYear
+            //     )
+            // )
             .map((employee) => {
                 const matchingGoal = employee.monthlyGoals.find(
                     (goal) => goal.month === targetMonth && goal.year === targetYear
@@ -66,7 +66,7 @@ const employeesService = {
                     firstName: employee.firstName,
                     cellPhoneNumber: employee.cellPhoneNumber,
                     monthlyGoal: matchingGoal,
-                    progress: matchingGoal.progress,
+                    progress: matchingGoal?.progress,
                     selfLink: employee.selfLink,
                     salesLink: employee.salesLink,
                 };

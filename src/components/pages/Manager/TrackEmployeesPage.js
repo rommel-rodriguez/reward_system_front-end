@@ -56,35 +56,34 @@ function TrackEmployeesPage() {
        const fetchData = async () => {
         // TODO: This can throw error if the back-end is not working, handle
         // apropriatedly
-        // TODO: Replace by Redux API reducer.
-            // const employees = await employeesService
-            //     .getEmployeesManagedEmployees(user.employeeId); 
 
-            // setManagedEmployees(employees)
+        console.log("TEP Executing useEffect", managedEmployeesData);
 
+        await managedEmployeesData;
 
-            console.log("TEP Executing useEffect", managedEmployeesData);
+        setManagedEmployees(managedEmployeesData || []);
 
-            if (managedEmployeesData)
-                setManagedEmployees(managedEmployeesData);
+        //TODO: Seems like, even after executing the setManagedEmployees
+        // function, the managedEmployee's data is still not ready yet?
+        console.log("Managed Employees State: ", managedEmployees);
 
-            let monthsAndYears = employeesService
-                .extractUniqueMonthsAndYears(managedEmployees);
+        let monthsAndYears = employeesService
+            .extractUniqueMonthsAndYears(managedEmployeesData);
 
-            console.log("TEP Unique Months and Years", monthsAndYears);
+        console.log("TEP Unique Months and Years", monthsAndYears);
 
-            setMonthYearSelect(
-                monthsAndYears.map((obj) => ({
-                    ...obj,
-                    chain: `${obj.year}-${obj.month.toString().padStart(2, '0')}`,
-                }))
-            );
+        setMonthYearSelect(
+            monthsAndYears.map((obj) => ({
+                ...obj,
+                chain: `${obj.year}-${obj.month.toString().padStart(2, '0')}`,
+            }))
+        );
 
             // console.log("TEP monthYearSelect: ", monthYearSelect);
         };
     //    return () => { };
        fetchData();
-    }, [managedEmployeesIsLoading]);
+    }, [managedEmployeesData]);
 
 
     const handleChangeSelectedMonthYear= (event) => {

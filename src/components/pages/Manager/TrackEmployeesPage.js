@@ -56,11 +56,12 @@ function TrackEmployeesPage() {
         // TODO: This can throw error if the back-end is not working, handle
         // apropriatedly
 
-        console.log("TEP Executing useEffect", managedEmployeesData);
 
         let employees = await managedEmployeesData;
 
-        setManagedEmployees(managedEmployeesData || []);
+        // console.log("TEP Executing useEffect", managedEmployeesData);
+
+        setManagedEmployees(employees || []);
 
         //TODO: Seems like, even after executing the setManagedEmployees
         // function, the managedEmployee's data is still not ready yet?

@@ -58,16 +58,16 @@ function TrackEmployeesPage() {
 
         console.log("TEP Executing useEffect", managedEmployeesData);
 
-        await managedEmployeesData;
+        let employees = await managedEmployeesData;
 
         setManagedEmployees(managedEmployeesData || []);
 
         //TODO: Seems like, even after executing the setManagedEmployees
         // function, the managedEmployee's data is still not ready yet?
-        console.log("Managed Employees State: ", managedEmployees);
+        console.log("Managed Employees State: ", employees);
 
         let monthsAndYears = employeesService
-            .extractUniqueMonthsAndYears(managedEmployeesData);
+            .extractUniqueMonthsAndYears(employees);
 
         console.log("TEP Unique Months and Years", monthsAndYears);
 

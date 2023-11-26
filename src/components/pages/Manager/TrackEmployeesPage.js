@@ -65,34 +65,6 @@ function TrackEmployeesPage() {
         }));
     }
 
-    useEffect( () => {
-       const fetchData = async () => {
-        // TODO: This can throw error if the back-end is not working, handle
-        // apropriatedly
-
-        // let employees = await managedEmployeesData;
-
-        // setManagedEmployees(employees || []);
-
-        //TODO: Seems like, even after executing the setManagedEmployees
-        // function, the managedEmployee's data is still not ready yet?
-        // console.log("Managed Employees State: ", employees);
-
-        // let monthsAndYears = employeesService
-        //     .extractUniqueMonthsAndYears(employees);
-
-        // console.log("TEP Unique Months and Years", monthsAndYears);
-
-        // setMonthYearSelect(
-        //     monthsAndYears.map((obj) => ({
-        //         ...obj,
-        //         chain: `${obj.year}-${obj.month.toString().padStart(2, '0')}`,
-        //     }))
-        // );
-        };
-    //    return () => { };
-       fetchData();
-    }, [managedEmployeesData]);
 
 
     const handleChangeSelectedMonthYear= (event) => {

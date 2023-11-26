@@ -40,6 +40,16 @@ const customerService = {
       throw error;
     }
   },
+  constructCustomerOptions: (customers) => {
+      const customerOptions =  customers.map((customer) => {
+        const parts = (customer._links.self.href).split('/');
+        const id = parseInt(parts[parts.length - 1]);
+        const fullName = `${customer.person.firstName} ${customer.person.lastName}`;
+
+        return { fullName, id };
+      });
+      return customerOptions;
+  },
 
 };
 

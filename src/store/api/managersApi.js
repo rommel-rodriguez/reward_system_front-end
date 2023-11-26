@@ -5,6 +5,18 @@ const managersApi = createApi({
     reducerPath: 'managers',
     baseQuery: fetchBaseQuery({
         baseUrl: config.apiUrl + '/api/v1/managers',
+        prepareHeaders: (headers, { getState }) => {
+            // Get the token from the state
+            const token = getState().identity.token; // Adjust based on where your token is stored
+
+            // If the token is available, set the Authorization header
+            if (token) {
+                headers.set('Authorization', `Bearer ${token}`);
+                console.log("Token: ",token, "set in header");
+            }
+
+            return headers;
+        },
     }),
     endpoints(builder) {
         return {

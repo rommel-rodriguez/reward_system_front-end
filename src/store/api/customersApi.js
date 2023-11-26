@@ -3,7 +3,7 @@ import config from '../../config/config';
 import customerService from "../../services/customerService";
 
 const customersApi = createApi({
-    reducerPath: 'managers',
+    reducerPath: 'customers',
     baseQuery: fetchBaseQuery({
         baseUrl: config.apiUrl + '/api/v1/customers',
         prepareHeaders: (headers, { getState }) => {

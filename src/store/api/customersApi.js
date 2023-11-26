@@ -2,6 +2,10 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import config from '../../config/config';
 import customerService from "../../services/customerService";
 
+const  tags = {
+    FETCH: "fetch_customers",
+};
+
 const customersApi = createApi({
     reducerPath: 'customers',
     baseQuery: fetchBaseQuery({
@@ -38,9 +42,10 @@ const customersApi = createApi({
                 },
             }),
             fetchCustomerOptions: builder.query({
+                providesTags: [tags.FETCH],
                 query: () => {
                     return {
-                        url: '',
+                        url: '?size=1000',
                         method: 'GET',
                     };
                 },
@@ -52,11 +57,26 @@ const customersApi = createApi({
                 },
             }),
             addCustomer: builder.mutation({
-                query: (customer) => {
+                invalidatesTags: [tags.FETCH],
+                query: ({
+                            documentType,
+                            documentNumber,
+                            lastName,
+                            firstName,
+                            cellPhoneNumber,
+                        }) => {
                     return {
                         url: '',
                         method: 'POST',
-                        body: customer,
+                        body:  {
+                            person: {
+                                documentType,
+                                documentNumber,
+                                lastName,
+                                firstName,
+                                cellPhoneNumber,
+                            },
+                        },
                     };
                 },
             }),

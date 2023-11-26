@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Autocomplete, Box, Card, CardContent, Typography } from "@mui/material";
+import { useAddCustomerMutation } from "../../../store";
+
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Select from "@mui/material/Select";
@@ -30,6 +32,17 @@ function RegisterNewCustomer() {
 
     const [clientFirstName, setClientFirstName] = React.useState("");
     const [clientLastName, setClientLastName] = React.useState("");
+
+    const [
+        addCustomer,
+        {
+            data,
+            error,
+            isLoading,
+            isSuccess,
+            isError
+        }
+    ] = useAddCustomerMutation();
 
 
     const customStyle = {
@@ -71,18 +84,16 @@ function RegisterNewCustomer() {
 
 
     const handleSubmitButton = async (event) => {
-        try{
-            const registerResponse = await customerService.register(
-                selectedDocumentType,
-                documentNumber,
-                clientLastName,
-                clientFirstName,
-                cellPhoneNumber,
-            );
-        }catch(error) {
-            // TODO: Show message window here
-            throw error;    
-        }
+
+        const customer = {
+            documentType: selectedDocumentType,
+            documentNumber,
+            lastName: clientLastName,
+            firstName: clientFirstName,
+            cellPhoneNumber,
+        };
+
+        addCustomer(customer);
     };
 
     return (

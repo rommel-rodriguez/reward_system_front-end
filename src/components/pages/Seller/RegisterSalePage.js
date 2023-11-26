@@ -38,6 +38,7 @@ function RegisterSalePage() {
         isLoading: isLoadingCustomerOptions
     } = useFetchCustomerOptionsQuery(); 
 
+    console.log("[DEBUG] RegiterSalePage, customerOPtions:", customerOptions);
     // const [productSelect, setProductSelect] = React.useState([]);
     const {
             productSelect,

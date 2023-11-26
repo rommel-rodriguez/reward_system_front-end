@@ -18,6 +18,7 @@ import productsService from "../../../services/productsService";
 import customerService from "../../../services/customerService";
 import SalesContext from "../../../context/sales";
 import SaleDetailTable from "../../SaleDetailList/SaleDetailTable";
+import { useFetchCustomerOptionsQuery } from "../../../store";
 
 function RegisterSalePage() {
     // const options = [{fullName:"option01", id: 1}, {fullName:"option02", id: 2}];
@@ -26,11 +27,16 @@ function RegisterSalePage() {
     const [clientId, setClientId] = React.useState(0);
     // const [selectedClient, setSelectedClient] = React.useState(options[0]);
     const [selectedClient, setSelectedClient] = React.useState(null);
-    const [options, setOptions] = React.useState([]);
+    // const [customerOptions, setOptions] = React.useState([]);
     const [productId, setProductId] = React.useState(0);
     const [productName, setProductName ] = useState("");
     const [amount, setAmount] = React.useState(0);
     const user = useSelector((state) => state.identity.user);
+    const {
+        data: customerOptions,
+        error: errorCustomerOptions,
+        isLoading: isLoadingCustomerOptions
+    } = useFetchCustomerOptionsQuery(); 
 
     // const [productSelect, setProductSelect] = React.useState([]);
     const {
@@ -59,10 +65,10 @@ function RegisterSalePage() {
        const fetchData = async () => {
         // TODO: This can throw error if the back-end is not working, handle
         // apropriatedly
-        const idsAndNames = await productsService.getProductIdsAndNames(); 
-        const customerOptions = await customerService.getCustomerOptions(); 
-        console.log(customerOptions);
-        setOptions(customerOptions);
+        // const idsAndNames = await productsService.getProductIdsAndNames(); 
+        // const customerOptions = await customerService.getCustomerOptions(); 
+        // console.log(customerOptions);
+        // setOptions(customerOptions);
        };
     //    return () => { };
        fetchData();
@@ -102,8 +108,8 @@ function RegisterSalePage() {
     const handleClientSelected = (event, value) => {
         console.log("Search value", value);
         setSelectedClient(value);
-        setClientId(value.id);
-        setClientName(value.fullName);
+        setClientId(value ? value.id : 0);
+        setClientName(value ? value.fullName : "");
     };
 
 
@@ -185,7 +191,7 @@ function RegisterSalePage() {
                             <FormControl fullWidth>
                                 <Autocomplete
                                     disablePortal
-                                    options={options}
+                                    options={ isLoadingCustomerOptions ? [] : customerOptions}
                                     id="combo-box-demo"
                                     getOptionLabel={(option) => option.fullName}
                                     onChange={ handleClientSelected}

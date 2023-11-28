@@ -6,8 +6,9 @@ import { useState } from 'react';
 function Base({children}) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
+    console.info("Is sidebar open?: ", sidebarOpen);
+
     const handleToggleSidebar = () => {
-        console.log(`Toggling the sidebar: ${sidebarOpen}`)
         setSidebarOpen(!sidebarOpen);
     };
 

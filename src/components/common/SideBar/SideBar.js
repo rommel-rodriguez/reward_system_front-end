@@ -20,47 +20,37 @@ import PersonIcon from '@mui/icons-material/Person';
 import { Typography } from '@mui/material';
 import { useSelector } from "react-redux";
 
+const drawerPosition = 'left';
 
 export default function SideBar({isOpen}) {
-  const [state, setState] = React.useState({
-    // top: false,
-    left: isOpen,
-    // bottom: false,
-    // right: false,
-  });
-  const user = useSelector((state) => state.identity.user);
-  // setState({ ...state, left: isOpen});
-  // NOTE: Maybe use useEffect here?
 
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const user = useSelector((state) => state.identity.user);
+
+  // NOTE: Updates the local's SideBar state, based on the parent's state
+  // change. This state, is also synched with the UpperBar sidebar button.
   useEffect( () => {
     console.log(`Should Trigger only once ${isOpen}`)
+    setDrawerOpen(isOpen);
   }, [isOpen]);
 
-  console.log(`Rendering SideBar\n\tLeft State: ${state.left}\n\tisOpen:${isOpen}`);
-
-
-  const toggleDrawer = (anchor, open) => (event) => {
+  const handleChangeDrawerOpen = (isOpen) => (event) => {
     // console.log(`ToggleDrawer called\n\topen: ${open}\n\state: ${state}`)
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
-    setState({ ...state, [anchor]: open });
-    console.log(`ToggleDrawer called\n\topen: ${open}\n\tstate: ${state}`)
+    setDrawerOpen(isOpen);
+    console.log(`ToggleDrawer called\n\topen: ${isOpen}\n\tstate: ${drawerOpen}`)
   };
 
-  useEffect( () => {
-    console.log(`Should Trigger only once ${isOpen}`)
-    setState({ ...state, "left": isOpen});
-  }, [isOpen]);
-  // toggleDrawer('left', isOpen);
 
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
       role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
+      onClick={handleChangeDrawerOpen(false)}
+      onKeyDown={handleChangeDrawerOpen(false)}
       className="findMe"
     >
       <List pt={5}>
@@ -249,9 +239,9 @@ export default function SideBar({isOpen}) {
           {/* <Button onClick={toggleDrawer('left', true)}>{'left'}</Button> */}
           <Drawer
             anchor={'left'}
-            open={state['left']}
+            open={drawerOpen}
             // open={isOpen}
-            onClose={toggleDrawer('left', false)}
+            onClose={handleChangeDrawerOpen(false)}
           >
             {list('left')}
           </Drawer>

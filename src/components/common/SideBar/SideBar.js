@@ -51,7 +51,7 @@ export default function SideBar({isOpen}) {
       role="presentation"
       onClick={handleChangeDrawerOpen(false)}
       onKeyDown={handleChangeDrawerOpen(false)}
-      className="findMe"
+      className="findMe text-white bg-gray-600"
     >
       <List pt={5}>
         <ListItem key={Math.random} disablePadding alignItems='center'>

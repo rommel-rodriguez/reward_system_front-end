@@ -19,6 +19,7 @@ import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import PersonIcon from '@mui/icons-material/Person';
 import { Typography } from '@mui/material';
 import { useSelector } from "react-redux";
+import './SideBar.css';
 
 const drawerPosition = 'left';
 
@@ -56,7 +57,7 @@ export default function SideBar({isOpen}) {
     >
       <List pt={5}>
         <ListItem key={Math.random} disablePadding alignItems='center'>
-            <Link to="/" fullWidht >
+            <Link to="/" className='w-full'>
               <ListItemButton
                 
               >

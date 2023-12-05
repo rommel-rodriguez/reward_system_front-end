@@ -160,10 +160,11 @@ function RegisterSalePage() {
             sx={{ flexGrow: 1 }}
             justifyContent="center"
             alignItems="center"
+            className="flex justify-center "
             >
-                <form >
+                <form className="max-w-screen-xl">
                     <Card variant="outlined">
-                        <CardContent>
+                        <CardContent className="bg-neutral-300">
 
                     <Grid container
                     spacing={2}
@@ -280,7 +281,7 @@ function RegisterSalePage() {
                         </Grid>
 
                         <Grid item
-                         xs={12} md={2}
+                         xs={12} md={3}
                          justity="center"
                          alignItems="center"
                          >

@@ -17,6 +17,7 @@ import SignupPage from './components/pages/Authentication/SignupPage';
 import RegisterSalePage from './components/pages/Seller/RegisterSalePage';
 import EmployeesAccordion from './components/standalone/EmployeesAccordion';
 import TrackEmployeesPage from './components/pages/Manager/TrackEmployeesPage';
+import ModalPage from './components/pages/ModalTest/ModalPage';
 import { IdentityProvider } from './context/identity';
 import ProfilePage from './components/pages/Profile/ProfilePage';
 import RegisterNewCustomer from './components/pages/Seller/RegisterNewCustomer';
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
   {
     path: "/register-customer",
     element: <PrivateRoute><RegisterNewCustomer/></PrivateRoute> ,
+  },
+  {
+    path: "/modal",
+    element: <ModalPage></ModalPage>,
   },
 ]);
 

@@ -1,13 +1,32 @@
-import { ReactDOM } from "react";
+import { Button } from '@mui/material';
+import ReactDOM from 'react-dom';
 
-function Modal() {
+function Modal({closeModal}) {
     return ReactDOM.createPortal (
         <div>
-            <div className="absolute inset-0 bg-gray-300 opacity-80"></div>
-            <div className="absolute inset-40 p-10 bg-white"></div>
-            <h2>Hello Modal</h2>
+            <div
+                className="absolute inset-0 bg-gray-300 opacity-80"
+                onClick={closeModal}
+                ></div>
+            <div className="absolute inset-40 p-10 bg-white items-center space-x-1.5 space-y-10 rounded h-80">
+                <h2 className="text-center">Hello Modal</h2>
+                <Button
+                // startIcon={<OpenWith />}
+                variant="contained"
+                color="error"
+                >
+                   Accept 
+                </Button>
+                <Button
+                // startIcon={<OpenWith />}
+                variant="contained"
+                color="secondary"
+                >
+                   Reject 
+                </Button>
+            </div>
         </div>,
-        document.querySelector('')
+        document.querySelector('.modal-container')
     );
 
 }

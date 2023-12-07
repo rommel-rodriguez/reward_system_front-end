@@ -10,14 +10,23 @@ function ModalPage() {
         setShowModal(true);
     };
 
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
+
     return (
         <Fragment>
-            <Button startIcon={<OpenWith />} onClick={handleClick}>
-
+            <Button
+             startIcon={<OpenWith />}
+             onClick={handleClick}
+             variant="contained"
+             color="warning"
+             >
+                Open Modal
             </Button>
             {
                 showModal &&
-                    <Modal />
+                    <Modal closeModal={handleCloseModal} />
             }
 
         </Fragment>

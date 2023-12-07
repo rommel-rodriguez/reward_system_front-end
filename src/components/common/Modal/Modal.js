@@ -1,15 +1,15 @@
 import { Button } from '@mui/material';
 import ReactDOM from 'react-dom';
 
-function Modal({closeModal}) {
+function Modal({children, actionBar}) {
     return ReactDOM.createPortal (
         <div>
             <div
                 className="absolute inset-0 bg-gray-300 opacity-80"
-                onClick={closeModal}
+                // onClick={closeModal}
                 ></div>
             <div className="absolute inset-40 p-10 bg-white items-center space-x-1.5 space-y-10 rounded h-80">
-                <h2 className="text-center">Hello Modal</h2>
+                {children}
                 <Button
                 // startIcon={<OpenWith />}
                 variant="contained"

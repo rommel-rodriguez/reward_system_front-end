@@ -14,6 +14,10 @@ function ModalPage() {
         setShowModal(false);
     };
 
+    const modal = <Modal>
+        <p>Some text</p>
+    </Modal>;
+
     return (
         <Fragment>
             <Button
@@ -25,8 +29,7 @@ function ModalPage() {
                 Open Modal
             </Button>
             {
-                showModal &&
-                    <Modal closeModal={handleCloseModal} />
+                showModal && modal 
             }
 
         </Fragment>

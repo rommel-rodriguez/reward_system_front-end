@@ -10,7 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import InputLabel from '@mui/material/InputLabel';
 import Grid from '@mui/material/Unstable_Grid2'; 
-import Modal from '@mui/material/Modal';
+import Modal from "../../common/Modal/Modal";
 import Base from "../../common/Base/Base";
 import IdentityContext from "../../../context/identity";
 
@@ -34,18 +34,25 @@ function SignInPage() {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [modalMessage, setModalMessage] = React.useState({title: '', content:''});
-    const [open, setOpen] = React.useState(false);
+    const [showModal, setShowModal] = React.useState(false);
     const navigate = useNavigate();
 
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+    const handleOpen = () => setShowModal(true);
+    const handleClose = () => setShowModal(false);
 
-    // const {identity, login} = useContext(IdentityContext);
-    // const signInRTKQ = useSignInMutation();
-    // console.log("SignIn RTKQ:\n", signInRTKQ);
     const [signIn, { isLoading, isError, error }] = useSignInMutation();
 
+
+    const actionBar = <div>
+        <Button variant="contained" onClick={handleClose}>SomeButton</Button>
+    </div>;
+    const modal = <Modal actionBar={actionBar} closeModal={handleClose}>
+        <div>
+            <h2>{modalMessage.title}</h2>
+            <p>{modalMessage.content}</p>
+        </div>
+    </Modal>;
 
     // console.log("Signin page: ", identity);
 
@@ -79,14 +86,14 @@ function SignInPage() {
                 title: "Fallo en logearse",
                 content: "Credenciales incorrectas"
             });
-            setOpen(true);
+            setShowModal(true);
         }
 
         setModalMessage({
             title: "Se ha autenticado con exito",
             content: "Sera redirigido en unos momentos"
         });
-        setOpen(true);
+        setShowModal(true);
         setTimeout(() => {
             navigate("/profile");
         }, 3000); 
@@ -145,21 +152,9 @@ function SignInPage() {
                             </Grid>
                     </Grid>
                 </form>
-                <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                >
-                    <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        {modalMessage.title}
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        {modalMessage.content}
-                    </Typography>
-                    </Box>
-                </Modal>
+            {
+                showModal && modal 
+            }
             </Box>
         </Base>
     );

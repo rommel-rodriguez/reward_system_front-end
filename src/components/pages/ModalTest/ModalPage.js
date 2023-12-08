@@ -15,8 +15,8 @@ function ModalPage() {
     };
     
     const actionBar = <div className="flex space-x-1.5">
-        <Button  onClick={handleCloseModal} variant="outlined" size="large">Accept</Button>
-        <Button variant="outlined" size="large">Reject</Button>
+        <Button  onClick={handleCloseModal} variant="contained" size="large">Accept</Button>
+        <Button variant="contained" size="large">Reject</Button>
 
     </div>;
 

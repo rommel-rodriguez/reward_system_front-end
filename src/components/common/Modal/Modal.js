@@ -21,7 +21,7 @@ function Modal({children, closeModal, actionBar}) {
                 className="fixed inset-0 bg-gray-300 opacity-80"
                 onClick={closeModal}
                 ></div>
-            <div className="fixed inset-40 p-10 bg-slate-400 text-white shadow-xl rounded-3xl h-80">
+            <div className="fixed inset-x-10 inset-y-24 md:inset-40 p-10 bg-slate-400 text-white shadow-xl rounded-3xl h-80">
                 <div className='flex flex-col justify-between h-full'>
                     {children}
                     <div className='flex justify-end'>

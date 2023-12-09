@@ -45,12 +45,13 @@ function SignInPage() {
 
 
     const actionBar = <div>
-        <Button variant="contained" onClick={handleClose}>SomeButton</Button>
+        {/* <Button variant="contained" onClick={handleClose}>SomeButton</Button> */}
     </div>;
     const modal = <Modal actionBar={actionBar} closeModal={handleClose}>
         <div>
-            <h2>{modalMessage.title}</h2>
-            <p>{modalMessage.content}</p>
+            <Typography variant="h3">{modalMessage.title}</Typography>
+            <br></br>
+            <Typography>{modalMessage.content}</Typography>
         </div>
     </Modal>;
 
@@ -96,7 +97,7 @@ function SignInPage() {
         setShowModal(true);
         setTimeout(() => {
             navigate("/profile");
-        }, 3000); 
+        }, 10000); 
     };
 
     return (

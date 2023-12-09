@@ -4,6 +4,7 @@ import { Box, Card, CardContent, Typography } from "@mui/material";
 // import { FormControl, FormLabel } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2'; 
 import Base from "../../common/Base/Base";
+import profilePicture from '../../../assets/images/profile.png';
 
 function ProfilePage() {
     // const {identity} = useContext(IdentityContext);
@@ -13,20 +14,32 @@ function ProfilePage() {
     return (
         <Base>
             <Box
-            sx={{ flexGrow: 1, mt: "100px" }}
+            sx={{ flexGrow: 1}}
             justifyContent="center"
             alignItems="center"
+            className="flex flex-col justify-center mt-6"
             >
+                <picture className="w-full flex justify-center">
+                    <source media="(min-width: 800px)" srcSet={profilePicture} />
+                    <source media="(min-width: 450px)" srcSet="medium-image.jpg" />
+                    <img
+                        src="default-image.jpg"
+                        alt="Description"
+                        className="mb-10 rounded-3xl h-72 w-full md:w-3/5"
+                    />
+                </picture>
                 <Grid container
                 spacing={2}
                 md={6} 
-                mdOffset={3} 
+                // mdOffset={3} 
                 xs={12} 
                 xsOffset={0} 
                 // justifyContent="center"
                 alignItems="left"
                 >
+
                     <Grid container xs={12} justity="left" alignItems="left">
+
                         <Grid xs={6}>
                             <Card>
                                 <CardContent>

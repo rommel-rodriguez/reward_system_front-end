@@ -9,14 +9,14 @@ function Base({children}) {
     console.info("Is sidebar open?: ", sidebarOpen);
 
     const handleToggleSidebar = () => {
-        setSidebarOpen(true);
+        setSidebarOpen(!sidebarOpen);
     };
 
     return (
         // <IdentityProvider>
             <div className="App" >
                 <UpperBar handleMenuIconClick={handleToggleSidebar}></UpperBar>
-                <SideBar isOpen={sidebarOpen}></SideBar>
+                <SideBar isOpen={sidebarOpen} toggleDrawerOpen={handleToggleSidebar}></SideBar>
                 {children}
             </div>
         // </IdentityProvider>

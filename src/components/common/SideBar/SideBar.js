@@ -23,7 +23,7 @@ import './SideBar.css';
 
 const drawerPosition = 'left';
 
-export default function SideBar({isOpen}) {
+export default function SideBar({isOpen, toggleDrawerOpen}) {
 
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const user = useSelector((state) => state.identity.user);
@@ -42,6 +42,7 @@ export default function SideBar({isOpen}) {
     }
 
     setDrawerOpen(isOpen);
+    toggleDrawerOpen();
     console.log(`ToggleDrawer called\n\topen: ${isOpen}\n\tstate: ${drawerOpen}`)
   };
 

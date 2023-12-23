@@ -44,72 +44,70 @@ function SignupPage() {
     };
 
     return (
-        <Base>
-            <Box
-            sx={{ flexGrow: 1 }}
-            justifyContent="center"
-            alignItems="center"
-            >
-                <form onSubmit={handleSubmit}>
-                    <Grid container
-                    spacing={2}
-                    md={6} 
-                    mdOffset={3} 
-                    xs={12} 
-                    xsOffset={0} 
-                    justifyContent="center"
-                    alignItems="center"
-                    >
-                            <Grid item xs={12} justity="center" alignItems="center">
-                                <FormControl>
-                                    <TextField
-                                    required
-                                    label="Nombre de Usuario"
-                                    name="username"
-                                    onChange={handleChangeUser}
-                                    value={username}
-                                    />
-                                </FormControl>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <FormControl>
-                                    {/* <FormLabel>Password</FormLabel> */}
-                                    <TextField
-                                    required
-                                    type="password"
-                                    label="Password"
-                                    name="password"
-                                    onChange={handleChangePassword}
-                                    value={password}
-                                    />
-                                </FormControl>
-                            </Grid>
+        <Box
+        sx={{ flexGrow: 1 }}
+        justifyContent="center"
+        alignItems="center"
+        >
+            <form onSubmit={handleSubmit}>
+                <Grid container
+                spacing={2}
+                md={6} 
+                mdOffset={3} 
+                xs={12} 
+                xsOffset={0} 
+                justifyContent="center"
+                alignItems="center"
+                >
+                        <Grid item xs={12} justity="center" alignItems="center">
+                            <FormControl>
+                                <TextField
+                                required
+                                label="Nombre de Usuario"
+                                name="username"
+                                onChange={handleChangeUser}
+                                value={username}
+                                />
+                            </FormControl>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <FormControl>
+                                {/* <FormLabel>Password</FormLabel> */}
+                                <TextField
+                                required
+                                type="password"
+                                label="Password"
+                                name="password"
+                                onChange={handleChangePassword}
+                                value={password}
+                                />
+                            </FormControl>
+                        </Grid>
 
-                            <Grid item xs={12}>
-                                <FormControl>
-                                    <TextField
-                                    label="Codigo de Empleado (Opcional)"
-                                    type="number"
-                                    name="employeeId"
-                                    onChange={handleChangeEmployeeId}
-                                    value={employeeId}
-                                    />
-                                </FormControl>
-                            </Grid>
+                        <Grid item xs={12}>
+                            <FormControl>
+                                <TextField
+                                label="Codigo de Empleado (Opcional)"
+                                type="number"
+                                name="employeeId"
+                                onChange={handleChangeEmployeeId}
+                                value={employeeId}
+                                />
+                            </FormControl>
+                        </Grid>
 
-                            <Grid item xs={12}>
-                                <Button
-                                variant="outlined"
-                                size="large"
-                                onClick={handleSubmitButton}
-                                >
-                                    Registrar Usuario 
-                                </Button>
-                            </Grid>
-                    </Grid>
-                </form>
-            </Box>
-        </Base>
+                        <Grid item xs={12}>
+                            <Button
+                            variant="outlined"
+                            size="large"
+                            onClick={handleSubmitButton}
+                            >
+                                Registrar Usuario 
+                            </Button>
+                        </Grid>
+                </Grid>
+            </form>
+        </Box>
     );
 }
 

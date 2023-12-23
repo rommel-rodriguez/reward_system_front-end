@@ -29,47 +29,55 @@ import SaleDetailShowPoly from './components/SaleDetailList/SaleDetailShowPoly';
 import { SalesProvider } from './context/sales';
 import { store } from './store'; 
 import { Provider } from 'react-redux';
+import Base from './components/common/Base/Base';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
-  },
-  {
-    path: "/home",
-    element:  <HomePage />,
-  },
-  {
-    path: "/signin",
-    element: <SignInPage />,
-  },
-  {
-    path: "/signup",
-    element: <SignupPage/>,
-  },
-  // {
-  //   path: "/test",
-  //   element: <SaleDetailTable></SaleDetailTable>,
-  // },
-  // {
-  //   path: "/test",
-  //   element: <SaleDetailShowPoly></SaleDetailShowPoly>,
-  // },
-  {
-    path: "/register-sale",
-    element: <PrivateRoute> <SalesProvider> <RegisterSalePage /> </SalesProvider> </PrivateRoute>,
-  },
-  {
-    path: "/track-employees",
-    element: <PrivateRoute> <TrackEmployeesPage/></PrivateRoute>,
-  },
-  {
-    path: "/profile",
-    element: <PrivateRoute> <ProfilePage /></PrivateRoute>,
-  },
-  {
-    path: "/register-customer",
-    element: <PrivateRoute><RegisterNewCustomer/></PrivateRoute> ,
+    element: <Base />,
+    children: [
+      {
+        // path: "home",
+        index: true,
+        element: <HomePage />,
+      },
+      {
+        path: "home",
+        element: <HomePage />,
+      },
+      {
+        path: "signin",
+        element: <SignInPage />,
+      },
+      {
+        path: "signup",
+        element: <SignupPage/>,
+      },
+      // {
+      //   path: "/test",
+      //   element: <SaleDetailTable></SaleDetailTable>,
+      // },
+      // {
+      //   path: "/test",
+      //   element: <SaleDetailShowPoly></SaleDetailShowPoly>,
+      // },
+      {
+        path: "register-sale",
+        element: <PrivateRoute> <SalesProvider> <RegisterSalePage /> </SalesProvider> </PrivateRoute>,
+      },
+      {
+        path: "track-employees",
+        element: <PrivateRoute> <TrackEmployeesPage/></PrivateRoute>,
+      },
+      {
+        path: "profile",
+        element: <PrivateRoute> <ProfilePage /></PrivateRoute>,
+      },
+      {
+        path: "register-customer",
+        element: <PrivateRoute><RegisterNewCustomer/></PrivateRoute> ,
+      },
+    ],
   },
   {
     path: "/modal",

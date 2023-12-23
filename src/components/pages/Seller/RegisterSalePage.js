@@ -155,178 +155,176 @@ function RegisterSalePage() {
     };
 
     return (
-        <Base>
-            <Box
-            sx={{ flexGrow: 1 }}
-            justifyContent="center"
-            alignItems="center"
-            className="flex justify-center "
-            >
-                <form className="max-w-screen-xl">
-                    <Card variant="outlined">
-                        <CardContent className="bg-neutral-300">
+        <Box
+        sx={{ flexGrow: 1 }}
+        justifyContent="center"
+        alignItems="center"
+        className="flex justify-center "
+        >
+            <form className="max-w-screen-xl">
+                <Card variant="outlined">
+                    <CardContent className="bg-neutral-300">
 
-                    <Grid container
-                    spacing={2}
-                    md={6} 
-                    mdOffset={3} 
-                    xs={12} 
-                    xsOffset={0} 
-                    // justifyContent="center"
-                    // alignItems="center"
-                    >
-                        <Grid item
-                         xs={12}
-                         justity="center"
-                         alignItems="center"
-                         >
-                            <Typography variant="h2" gutterBottom>
-                                Registro de Venta
-                            </Typography>
-                        </Grid>
-                        <Grid item
-                         xs={12}
-                         justity="center"
-                         alignItems="center"
-                         mt={5}
-                         >
-                            <FormControl fullWidth>
-                                <Autocomplete
-                                    disablePortal
-                                    options={ isLoadingCustomerOptions ? [] : customerOptions}
-                                    id="combo-box-demo"
-                                    getOptionLabel={(option) => option.fullName}
-                                    onChange={ handleClientSelected}
-                                    value={selectedClient}
-                                    inputValue={clientName}
-                                    onInputChange={(event, newInputValue) => {
-                                        setClientName(newInputValue);
-                                    }}
-                                    sx={{ width: 300 }}
-                                    renderInput={(params) => <TextField {...params} label="Buscar por nombre de usuario" />}
-                                />
-                            </FormControl>
-                        </Grid>
-                        <Grid item
-                         xs={12} md={2}
-                         justity="center"
-                         alignItems="center"
-                         >
-                            <FormControl style={customStyle}>
-                                <TextField
-                                required
-                                label="Codigo del Cliente"
-                                name="clientId"
-                                onChange={handleChangeClientId}
-                                value={clientId}
-                                type="number"
-                                />
-                            </FormControl>
-                        </Grid>
-                        <Grid item
-                         xs={12} md={10}
-                         >
-                            <FormControl style={customStyle}>
-                                <TextField
-                                label="Nombre del Cliente"
-                                name="clientName"
-                                onChange={handleChangeClientId}
-                                value={clientName}
-                                />
-                            </FormControl>
-                        </Grid>
-
-                        <Grid item xs={12} md={7} justity="center" alignItems="center">
-                            <FormControl fullWidth>
-                                <InputLabel id="product-select">Producto</InputLabel>
-                                <Select
-                                 required
-                                 labelId="product-select"
-                                 id="product-select"
-                                 value={selectedProduct}
-                                 label="Producto"
-                                 onChange={handleChangeSelectedProduct}
-                                >
-                                    { 
-                                        productSelect.map(
-                                            (item) => {
-                                                return (
-                                                    <MenuItem
-                                                    value={item.id}
-                                                    key={item.id}
-                                                    >
-                                                    {item.name} 
-                                                    </MenuItem>
-                                                );
-                                            }
-                                        )
-                                    }
-                                </Select>
-                            </FormControl>
-                        </Grid>
-
-                        <Grid item xs={12} md={4} justity="center" alignItems="center">
-                            <FormControl style={customStyle}>
-                                <TextField
-                                required
-                                label="Cantidad"
-                                name="amount"
-                                onChange={handleChangeAmount}
-                                value={amount}
-                                type="number"
-                                error = {amount <= -1}
-                                // helperText = "Valor no Valido"
-                                />
-                            </FormControl>
-                        </Grid>
-
-                        <Grid item
-                         xs={12} md={3}
-                         justity="center"
-                         alignItems="center"
-                         >
-                            <FormControl style={customStyle}>
-                                <TextField
-                                disabled
-                                required
-                                label="Fecha"
-                                name="amount"
-                                // onChange={handleChangeAmount}
-                                value={date}
-                                type="date"
-                                />
-                            </FormControl>
-                        </Grid>
-
-                        <Grid item xs={12} md={3}>
-                            <Button
-                            variant="contained"
-                            size="large"
-                            onClick={handleAddDetail}
-                            >
-                               Agregar
-                            </Button>
-                        </Grid>
-
-                        <Grid item xs={12}>
-                            <SaleDetailTable details={saleDetails}></SaleDetailTable>
-                        </Grid>
-
-                        <Grid item xs={12}>
-                            <Button
-                            variant="outlined"
-                            size="large"
-                            onClick={handleSubmitButton}
-                            >
-                                Procesar Venta 
-                            </Button>
-                        </Grid>
+                <Grid container
+                spacing={2}
+                md={6} 
+                mdOffset={3} 
+                xs={12} 
+                xsOffset={0} 
+                // justifyContent="center"
+                // alignItems="center"
+                >
+                    <Grid item
+                        xs={12}
+                        justity="center"
+                        alignItems="center"
+                        >
+                        <Typography variant="h2" gutterBottom>
+                            Registro de Venta
+                        </Typography>
                     </Grid>
-                        </CardContent>
-                    </Card>
-                </form>
-            </Box>
-        </Base>
+                    <Grid item
+                        xs={12}
+                        justity="center"
+                        alignItems="center"
+                        mt={5}
+                        >
+                        <FormControl fullWidth>
+                            <Autocomplete
+                                disablePortal
+                                options={ isLoadingCustomerOptions ? [] : customerOptions}
+                                id="combo-box-demo"
+                                getOptionLabel={(option) => option.fullName}
+                                onChange={ handleClientSelected}
+                                value={selectedClient}
+                                inputValue={clientName}
+                                onInputChange={(event, newInputValue) => {
+                                    setClientName(newInputValue);
+                                }}
+                                sx={{ width: 300 }}
+                                renderInput={(params) => <TextField {...params} label="Buscar por nombre de usuario" />}
+                            />
+                        </FormControl>
+                    </Grid>
+                    <Grid item
+                        xs={12} md={2}
+                        justity="center"
+                        alignItems="center"
+                        >
+                        <FormControl style={customStyle}>
+                            <TextField
+                            required
+                            label="Codigo del Cliente"
+                            name="clientId"
+                            onChange={handleChangeClientId}
+                            value={clientId}
+                            type="number"
+                            />
+                        </FormControl>
+                    </Grid>
+                    <Grid item
+                        xs={12} md={10}
+                        >
+                        <FormControl style={customStyle}>
+                            <TextField
+                            label="Nombre del Cliente"
+                            name="clientName"
+                            onChange={handleChangeClientId}
+                            value={clientName}
+                            />
+                        </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12} md={7} justity="center" alignItems="center">
+                        <FormControl fullWidth>
+                            <InputLabel id="product-select">Producto</InputLabel>
+                            <Select
+                                required
+                                labelId="product-select"
+                                id="product-select"
+                                value={selectedProduct}
+                                label="Producto"
+                                onChange={handleChangeSelectedProduct}
+                            >
+                                { 
+                                    productSelect.map(
+                                        (item) => {
+                                            return (
+                                                <MenuItem
+                                                value={item.id}
+                                                key={item.id}
+                                                >
+                                                {item.name} 
+                                                </MenuItem>
+                                            );
+                                        }
+                                    )
+                                }
+                            </Select>
+                        </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12} md={4} justity="center" alignItems="center">
+                        <FormControl style={customStyle}>
+                            <TextField
+                            required
+                            label="Cantidad"
+                            name="amount"
+                            onChange={handleChangeAmount}
+                            value={amount}
+                            type="number"
+                            error = {amount <= -1}
+                            // helperText = "Valor no Valido"
+                            />
+                        </FormControl>
+                    </Grid>
+
+                    <Grid item
+                        xs={12} md={3}
+                        justity="center"
+                        alignItems="center"
+                        >
+                        <FormControl style={customStyle}>
+                            <TextField
+                            disabled
+                            required
+                            label="Fecha"
+                            name="amount"
+                            // onChange={handleChangeAmount}
+                            value={date}
+                            type="date"
+                            />
+                        </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12} md={3}>
+                        <Button
+                        variant="contained"
+                        size="large"
+                        onClick={handleAddDetail}
+                        >
+                            Agregar
+                        </Button>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <SaleDetailTable details={saleDetails}></SaleDetailTable>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Button
+                        variant="outlined"
+                        size="large"
+                        onClick={handleSubmitButton}
+                        >
+                            Procesar Venta 
+                        </Button>
+                    </Grid>
+                </Grid>
+                    </CardContent>
+                </Card>
+            </form>
+        </Box>
     );
 }
 

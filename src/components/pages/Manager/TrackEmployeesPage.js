@@ -98,67 +98,65 @@ function TrackEmployeesPage() {
     };
 
     return (
-        <Base>
-            <Box
-            sx={{ flexGrow: 1 }}
+        <Box
+        sx={{ flexGrow: 1 }}
+        justifyContent="center"
+        alignItems="center"
+        >
+            <Grid container
+            spacing={2}
+            md={6} 
+            mdOffset={3} 
+            xs={12} 
+            xsOffset={0} 
             justifyContent="center"
             alignItems="center"
             >
-                <Grid container
-                spacing={2}
-                md={6} 
-                mdOffset={3} 
-                xs={12} 
-                xsOffset={0} 
-                justifyContent="center"
-                alignItems="center"
-                >
-                    <Grid item xs={12} md={7} justity="center" alignItems="center">
-                        <FormControl fullWidth>
-                            <InputLabel id="product-select">Periodo</InputLabel>
-                            <Select
-                                required
-                                labelId="product-select"
-                                id="product-select"
-                                value={selectedMonthYear}
-                                onChange={handleChangeSelectedMonthYear}
-                            >
-                                { 
-                                    (!managedEmployeesIsLoading) &&
-                                        monthYearSelect.map(
-                                            (item) => {
-                                                return (
-                                                    <MenuItem
-                                                    value={item.chain}
-                                                    key={item.chain}
-                                                    >
-                                                    {item.chain} 
-                                                    </MenuItem>
-                                                );
-                                            }
-                                        )
-                                }
-                            </Select>
-                            </FormControl>
-                        </Grid>
-                    <Grid item xs={12} justity="center" alignItems="center">
-                        <EmployeesAccordion employees={shownEmployees} fullWidth/>
-                    </Grid>
-                    <Grid item xs={12}>
-                    </Grid>
-
-                    <Grid item xs={12}>
-                        <Button
-                        variant="outlined"
-                        size="large"
-                        onClick={handleSubmitButton}
+                <Grid item xs={12} md={7} justity="center" alignItems="center">
+                    <FormControl fullWidth>
+                        <InputLabel id="product-select">Periodo</InputLabel>
+                        <Select
+                            required
+                            labelId="product-select"
+                            id="product-select"
+                            value={selectedMonthYear}
+                            onChange={handleChangeSelectedMonthYear}
                         >
-                            Login 
-                        </Button>
+                            { 
+                                (!managedEmployeesIsLoading) &&
+                                    monthYearSelect.map(
+                                        (item) => {
+                                            return (
+                                                <MenuItem
+                                                value={item.chain}
+                                                key={item.chain}
+                                                >
+                                                {item.chain} 
+                                                </MenuItem>
+                                            );
+                                        }
+                                    )
+                            }
+                        </Select>
+                        </FormControl>
                     </Grid>
+                <Grid item xs={12} justity="center" alignItems="center">
+                    <EmployeesAccordion employees={shownEmployees} fullWidth/>
                 </Grid>
-            </Box>
-        </Base>
+                <Grid item xs={12}>
+                </Grid>
+
+                <Grid item xs={12}>
+                    <Button
+                    variant="outlined"
+                    size="large"
+                    onClick={handleSubmitButton}
+                    >
+                        Login 
+                    </Button>
+                </Grid>
+            </Grid>
+        </Box>
     );
 }
 

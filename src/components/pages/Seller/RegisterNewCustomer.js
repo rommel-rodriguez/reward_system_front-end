@@ -97,127 +97,125 @@ function RegisterNewCustomer() {
     };
 
     return (
-        <Base>
-            <Box
-            sx={{ flexGrow: 1 }}
-            justifyContent="center"
-            alignItems="center"
-            >
-                <form >
-                    <Card variant="outlined">
-                        <CardContent>
+        <Box
+        sx={{ flexGrow: 1 }}
+        justifyContent="center"
+        alignItems="center"
+        >
+            <form >
+                <Card variant="outlined">
+                    <CardContent>
 
-                    <Grid container
-                    spacing={2}
-                    md={6} 
-                    mdOffset={3} 
-                    xs={12} 
-                    xsOffset={0} 
-                    >
-                        <Grid item
-                         xs={12}
-                         justity="center"
-                         alignItems="center"
-                         >
-                            <Typography variant="h2" gutterBottom>
-                                Registro de Nuevos Clientes
-                            </Typography>
-                        </Grid>
-
-                        <Grid item
-                         xs={12} md={5} mt={4}
-                         >
-                            <FormControl style={customStyle}>
-                                <TextField
-                                label="Primer Nombre"
-                                onChange={handleChangeFirstName}
-                                value={clientFirstName}
-                                />
-                            </FormControl>
-                        </Grid>
-                        <Grid item
-                         xs={12} md={7} mt={4}
-                         >
-                            <FormControl style={customStyle}>
-                                <TextField
-                                label="Apellido/s del Cliente"
-                                onChange={handleChangeLastName}
-                                value={clientLastName}
-                                />
-                            </FormControl>
-                        </Grid>
-
-                        <Grid item xs={12} md={4} justity="center" alignItems="center">
-                            <FormControl fullWidth>
-                                <InputLabel id="product-select">Tipo de Documento</InputLabel>
-                                <Select
-                                 required
-                                 labelId="product-select"
-                                 id="product-select"
-                                 value={selectedDocumentType}
-                                 label="Age"
-                                 onChange={handleChangeSelectedProduct}
-                                >
-                                    { 
-                                        documentTypeSelect.map(
-                                            (item) => {
-                                                return (
-                                                    <MenuItem
-                                                    value={item}
-                                                    key={item}
-                                                    >
-                                                    {item} 
-                                                    </MenuItem>
-                                                );
-                                            }
-                                        )
-                                    }
-                                </Select>
-                            </FormControl>
-                        </Grid>
-
-                        <Grid item xs={12} md={6} justity="center" alignItems="center">
-                            <FormControl style={customStyle}>
-                                <TextField
-                                required
-                                label="Numero de Documento"
-                                name="amount"
-                                onChange={handleChangeDocumentNumber}
-                                value={documentNumber}
-                                // helperText = "Valor no Valido"
-                                />
-                            </FormControl>
-                        </Grid>
-
-                        <Grid item xs={12} md={6} justity="center" alignItems="center">
-                            <FormControl style={customStyle}>
-                                <TextField
-                                required
-                                label="Numero de Mobil"
-                                type="number"
-                                onChange={handleCellPhoneNumber}
-                                value={cellPhoneNumber}
-                                // helperText = "Valor no Valido"
-                                />
-                            </FormControl>
-                        </Grid>
-
-
-                        <Grid item xs={12} mt={10}>
-                            <Button
-                            variant="outlined"
-                            size="large"
-                            onClick={handleSubmitButton}
-                            >
-                                Registrar Cliente 
-                            </Button>
-                        </Grid>
+                <Grid container
+                spacing={2}
+                md={6} 
+                mdOffset={3} 
+                xs={12} 
+                xsOffset={0} 
+                >
+                    <Grid item
+                        xs={12}
+                        justity="center"
+                        alignItems="center"
+                        >
+                        <Typography variant="h2" gutterBottom>
+                            Registro de Nuevos Clientes
+                        </Typography>
                     </Grid>
-                        </CardContent>
-                    </Card>
-                </form>
-            </Box>
-        </Base>
+
+                    <Grid item
+                        xs={12} md={5} mt={4}
+                        >
+                        <FormControl style={customStyle}>
+                            <TextField
+                            label="Primer Nombre"
+                            onChange={handleChangeFirstName}
+                            value={clientFirstName}
+                            />
+                        </FormControl>
+                    </Grid>
+                    <Grid item
+                        xs={12} md={7} mt={4}
+                        >
+                        <FormControl style={customStyle}>
+                            <TextField
+                            label="Apellido/s del Cliente"
+                            onChange={handleChangeLastName}
+                            value={clientLastName}
+                            />
+                        </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12} md={4} justity="center" alignItems="center">
+                        <FormControl fullWidth>
+                            <InputLabel id="product-select">Tipo de Documento</InputLabel>
+                            <Select
+                                required
+                                labelId="product-select"
+                                id="product-select"
+                                value={selectedDocumentType}
+                                label="Age"
+                                onChange={handleChangeSelectedProduct}
+                            >
+                                { 
+                                    documentTypeSelect.map(
+                                        (item) => {
+                                            return (
+                                                <MenuItem
+                                                value={item}
+                                                key={item}
+                                                >
+                                                {item} 
+                                                </MenuItem>
+                                            );
+                                        }
+                                    )
+                                }
+                            </Select>
+                        </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12} md={6} justity="center" alignItems="center">
+                        <FormControl style={customStyle}>
+                            <TextField
+                            required
+                            label="Numero de Documento"
+                            name="amount"
+                            onChange={handleChangeDocumentNumber}
+                            value={documentNumber}
+                            // helperText = "Valor no Valido"
+                            />
+                        </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12} md={6} justity="center" alignItems="center">
+                        <FormControl style={customStyle}>
+                            <TextField
+                            required
+                            label="Numero de Mobil"
+                            type="number"
+                            onChange={handleCellPhoneNumber}
+                            value={cellPhoneNumber}
+                            // helperText = "Valor no Valido"
+                            />
+                        </FormControl>
+                    </Grid>
+
+
+                    <Grid item xs={12} mt={10}>
+                        <Button
+                        variant="outlined"
+                        size="large"
+                        onClick={handleSubmitButton}
+                        >
+                            Registrar Cliente 
+                        </Button>
+                    </Grid>
+                </Grid>
+                    </CardContent>
+                </Card>
+            </form>
+        </Box>
     );
 }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import UpperBar from '../UpperBar/UpperBar';
 import SideBar from '../SideBar/SideBar';
 import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 
 function Base({children}) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -17,7 +18,7 @@ function Base({children}) {
             <div className="App" >
                 <UpperBar handleMenuIconClick={handleToggleSidebar}></UpperBar>
                 <SideBar isOpen={sidebarOpen} toggleDrawerOpen={handleToggleSidebar}></SideBar>
-                {children}
+                <Outlet />
             </div>
         // </IdentityProvider>
     );

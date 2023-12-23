@@ -15,7 +15,6 @@ function HomePage() {
     console.log("Signin page: ", identity);
 
     return (
-        <Base>
             <Box
             sx={{ flexGrow: 1 }}
             justifyContent="center"
@@ -90,7 +89,6 @@ function HomePage() {
                     {/* </Grid> */}
                 </Grid>
             </Box>
-        </Base>
     );
 }
 

@@ -25,15 +25,14 @@ const drawerPosition = 'left';
 
 export default function SideBar({isOpen, toggleDrawerOpen}) {
 
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
   const user = useSelector((state) => state.identity.user);
 
   // NOTE: Updates the local's SideBar state, based on the parent's state
   // change. This state, is also synched with the UpperBar sidebar button.
-  useEffect( () => {
-    console.log(`Should Trigger only once ${isOpen}`)
-    setDrawerOpen(isOpen);
-  }, [isOpen]);
+  // useEffect( () => {
+  //   console.log(`Should Trigger only once ${isOpen}`)
+  //   setDrawerOpen(isOpen);
+  // }, [isOpen]);
 
   const handleChangeDrawerOpen = (isOpen) => (event) => {
     // console.log(`ToggleDrawer called\n\topen: ${open}\n\state: ${state}`)
@@ -41,9 +40,9 @@ export default function SideBar({isOpen, toggleDrawerOpen}) {
       return;
     }
 
-    setDrawerOpen(isOpen);
+    // setDrawerOpen(isOpen);
     toggleDrawerOpen();
-    console.log(`ToggleDrawer called\n\topen: ${isOpen}\n\tstate: ${drawerOpen}`)
+    console.log(`ToggleDrawer called\n\topen: ${isOpen}\n\tstate: ${isOpen}`)
   };
 
 
@@ -242,7 +241,7 @@ export default function SideBar({isOpen, toggleDrawerOpen}) {
           {/* <Button onClick={toggleDrawer('left', true)}>{'left'}</Button> */}
           <Drawer
             anchor={'left'}
-            open={drawerOpen}
+            open={isOpen}
             // open={isOpen}
             onClose={handleChangeDrawerOpen(false)}
           >

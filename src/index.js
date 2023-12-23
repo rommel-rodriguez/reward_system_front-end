@@ -51,10 +51,10 @@ const router = createBrowserRouter([
   //   path: "/test",
   //   element: <SaleDetailTable></SaleDetailTable>,
   // },
-  {
-    path: "/test",
-    element: <SaleDetailShowPoly></SaleDetailShowPoly>,
-  },
+  // {
+  //   path: "/test",
+  //   element: <SaleDetailShowPoly></SaleDetailShowPoly>,
+  // },
   {
     path: "/register-sale",
     element: <PrivateRoute> <SalesProvider> <RegisterSalePage /> </SalesProvider> </PrivateRoute>,

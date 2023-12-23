@@ -9,7 +9,7 @@ function Base({children}) {
     console.info("Is sidebar open?: ", sidebarOpen);
 
     const handleToggleSidebar = () => {
-        setSidebarOpen(!sidebarOpen);
+        setSidebarOpen(true);
     };
 
     return (

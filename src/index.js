@@ -31,9 +31,15 @@ import { store } from './store';
 import { Provider } from 'react-redux';
 import Base from './components/common/Base/Base';
 
+import config from './config/config';
+
+const ROOT_PATH = config.rootPath;
+
+console.log(`Root path set to ${ROOT_PATH}`)
+
 const router = createBrowserRouter([
   {
-    path: "/reward_system_front-end",
+    path: ROOT_PATH,
     element: <Base />,
     children: [
       {

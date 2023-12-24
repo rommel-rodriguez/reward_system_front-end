@@ -57,7 +57,7 @@ export default function SideBar({isOpen, toggleDrawerOpen}) {
     >
       <List pt={5}>
         <ListItem key={Math.random} disablePadding alignItems='center'>
-            <Link to="/" className='w-full'>
+            <Link to="" className='w-full'>
               <ListItemButton
                 
               >

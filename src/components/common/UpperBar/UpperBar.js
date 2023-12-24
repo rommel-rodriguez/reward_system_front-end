@@ -40,7 +40,7 @@ export default function UpperBar({handleMenuIconClick}) {
   };
 
   const handleLogin = (event) => {
-    return(navigate("/signin"));
+    return(navigate("signin"));
   };
 
   const handleClose = () => {

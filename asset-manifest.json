@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/reward_system_front-end/static/css/main.62b4d933.css",
-    "main.js": "/reward_system_front-end/static/js/main.80cc6cd8.js",
+    "main.js": "/reward_system_front-end/static/js/main.a87f1e76.js",
     "static/js/787.97b42a30.chunk.js": "/reward_system_front-end/static/js/787.97b42a30.chunk.js",
     "static/media/profile.png": "/reward_system_front-end/static/media/profile.dda10d5b5bcba2fade6f.png",
     "static/media/roboto-latin-500-normal.woff2": "/reward_system_front-end/static/media/roboto-latin-500-normal.f25d774ecfe0996f8eb5.woff2",
@@ -62,11 +62,11 @@
     "static/media/roboto-greek-ext-700-normal.woff": "/reward_system_front-end/static/media/roboto-greek-ext-700-normal.249853776d22a271b2b5.woff",
     "index.html": "/reward_system_front-end/index.html",
     "main.62b4d933.css.map": "/reward_system_front-end/static/css/main.62b4d933.css.map",
-    "main.80cc6cd8.js.map": "/reward_system_front-end/static/js/main.80cc6cd8.js.map",
+    "main.a87f1e76.js.map": "/reward_system_front-end/static/js/main.a87f1e76.js.map",
     "787.97b42a30.chunk.js.map": "/reward_system_front-end/static/js/787.97b42a30.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.62b4d933.css",
-    "static/js/main.80cc6cd8.js"
+    "static/js/main.a87f1e76.js"
   ]
 }

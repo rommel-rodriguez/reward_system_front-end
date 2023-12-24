@@ -78,7 +78,7 @@ export default function SideBar({isOpen, toggleDrawerOpen}) {
           disablePadding
           alignItems='center'
           sx={{mt:10}}>
-            <Link to="/profile" >
+            <Link to="profile" >
               <ListItemButton
                 
               >
@@ -95,7 +95,7 @@ export default function SideBar({isOpen, toggleDrawerOpen}) {
           disablePadding
           alignItems='center'
           sx={{mt:3}}>
-            <Link to="/register-sale" >
+            <Link to="register-sale" >
               <ListItemButton
                 
               >
@@ -108,7 +108,7 @@ export default function SideBar({isOpen, toggleDrawerOpen}) {
         </ListItem>
 
         <ListItem key={Math.random} disablePadding alignItems='center'sx={{mt:3}}>
-            <Link to="/register-customer" fullWidht>
+            <Link to="register-customer" fullWidht>
               <ListItemButton
                 
               >
@@ -123,7 +123,7 @@ export default function SideBar({isOpen, toggleDrawerOpen}) {
         {
           (user && user.manager) &&
             <ListItem key={Math.random} disablePadding alignItems='center'sx={{mt:3}}>
-                <Link to="/track-employees" >
+                <Link to="track-employees" >
                   <ListItemButton
                     
                   >
@@ -147,7 +147,7 @@ export default function SideBar({isOpen, toggleDrawerOpen}) {
           disablePadding
           alignItems='center'
           >
-            <Link to="/crud-customers" >
+            <Link to="crud-customers" >
               <ListItemButton
                 
               >
@@ -164,7 +164,7 @@ export default function SideBar({isOpen, toggleDrawerOpen}) {
           disablePadding
           alignItems='center'
           >
-            <Link to="/crud-sales" >
+            <Link to="crud-sales" >
               <ListItemButton
                 
               >
@@ -181,7 +181,7 @@ export default function SideBar({isOpen, toggleDrawerOpen}) {
           disablePadding
           alignItems='center'
           >
-            <Link to="/crud-products" >
+            <Link to="crud-products" >
               <ListItemButton
                 
               >
@@ -198,7 +198,7 @@ export default function SideBar({isOpen, toggleDrawerOpen}) {
           disablePadding
           alignItems='center'
           >
-            <Link to="/crud-employees" >
+            <Link to="crud-employees" >
               <ListItemButton
                 
               >
@@ -215,7 +215,7 @@ export default function SideBar({isOpen, toggleDrawerOpen}) {
           disablePadding
           alignItems='center'
           >
-            <Link to="/crud-users" >
+            <Link to="crud-users" >
               <ListItemButton
                 
               >

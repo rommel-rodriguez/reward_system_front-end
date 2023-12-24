@@ -8,7 +8,7 @@ function PrivateRoute({children}) {
     console.log("Inside Private Route logic");
     if ( (!user) || Object.keys(user).length === 0 ) {
         console.log("Identity is NOT Set!!!", user);
-        return <Navigate to="/signin"/> ;
+        return <Navigate to="signin"/> ;
     }
 
     console.log("Identity is Set!!!", user);

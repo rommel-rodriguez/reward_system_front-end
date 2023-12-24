@@ -5,7 +5,7 @@ function useRootPathNavigate () {
 
     const navigate = useNavigate();
     return (path, options) => {
-        navigate(`${config.rootPath}/${path}`, options);
+        navigate(`${config.rootPath}${path}`, options);
     };
 
 }

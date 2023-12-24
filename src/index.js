@@ -33,7 +33,7 @@ import Base from './components/common/Base/Base';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/reward_system_front-end",
     element: <Base />,
     children: [
       {

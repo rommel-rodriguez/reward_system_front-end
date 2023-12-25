@@ -42,9 +42,9 @@ const createRouter = config.environ === 'production' ?
               createHashRouter:
               createBrowserRouter;
 
-const router = createRouter([
+const router = createHashRouter([
   {
-    path: ROOT_PATH,
+    path: '/',
     element: <Base />,
     children: [
       {

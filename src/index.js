@@ -34,17 +34,16 @@ import Base from './components/common/Base/Base';
 
 import config from './config/config';
 
-const ROOT_PATH = config.rootPath;
 
-console.log(`Root path set to ${ROOT_PATH}`)
+console.log(`Root path set to ${config.rootPath}`)
 
 const createRouter = config.environ === 'production' ?
               createHashRouter:
               createBrowserRouter;
 
-const router = createHashRouter([
+const router = createRouter([
   {
-    path: '/',
+    path: config.rootPath,
     element: <Base />,
     children: [
       {

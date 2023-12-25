@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {
   createBrowserRouter,
+  createHashRouter,
   RouterProvider,
 } from "react-router-dom";
 import './index.css';
@@ -37,7 +38,11 @@ const ROOT_PATH = config.rootPath;
 
 console.log(`Root path set to ${ROOT_PATH}`)
 
-const router = createBrowserRouter([
+const createRouter = config.environ === 'production' ?
+              createHashRouter:
+              createBrowserRouter;
+
+const router = createRouter([
   {
     path: ROOT_PATH,
     element: <Base />,

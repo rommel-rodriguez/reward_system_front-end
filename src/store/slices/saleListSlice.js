@@ -15,7 +15,8 @@ const saleListSlice = createSlice({
       try {
         state.saleItems.push(saleItem);
         storageService.persistInLocal(LOCAL_SALE_LIST, state);
-      } catch {
+      } catch (error) {
+        console.error(`Caught:\n${error}`);
         throw new Error(
           'Could not either no save sale item to state,' +
             'or could not persist the new item to local memory'
@@ -24,8 +25,11 @@ const saleListSlice = createSlice({
     },
     getItem(state, action) {},
     removeItem(state, action) {
-      const productId = action.payload;
-      state.saleItems = state.saleItems.filter((item) => item !== productId);
+      const product = action.payload;
+      console.log('[DEBUG] Removing detail with reducer!!!');
+      state.saleItems = state.saleItems.filter(
+        (item) => item.productId !== product.productId
+      );
 
       storageService.persistInLocal(LOCAL_SALE_LIST, state);
     },

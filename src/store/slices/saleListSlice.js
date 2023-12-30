@@ -14,7 +14,7 @@ const saleListSlice = createSlice({
       const saleItem = action.payload;
       try {
         state.saleItems.push(saleItem);
-        storageService.persistInLocal(saleItem);
+        storageService.persistInLocal(LOCAL_SALE_LIST, state);
       } catch {
         throw new Error(
           'Could not either no save sale item to state,' +
@@ -26,6 +26,8 @@ const saleListSlice = createSlice({
     removeItem(state, action) {
       const productId = action.payload;
       state.saleItems = state.saleItems.filter((item) => item !== productId);
+
+      storageService.persistInLocal(LOCAL_SALE_LIST, state);
     },
     updateItem(state, action) {
       const updatedItem = action.payload;
@@ -34,6 +36,8 @@ const saleListSlice = createSlice({
         if (item.productId === updatedItem.productId) return updatedItem;
         return item;
       });
+
+      storageService.persistInLocal(LOCAL_SALE_LIST, state);
     },
   },
 });

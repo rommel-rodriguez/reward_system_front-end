@@ -4,7 +4,7 @@ import {
   createBrowserRouter,
   createHashRouter,
   RouterProvider,
-} from "react-router-dom";
+} from 'react-router-dom';
 import './index.css';
 // import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -28,18 +28,16 @@ import SaleDetailShow from './components/SaleDetailList/SaleDetailShow';
 import SaleDetailTable from './components/SaleDetailList/SaleDetailTable';
 import SaleDetailShowPoly from './components/SaleDetailList/SaleDetailShowPoly';
 import { SalesProvider } from './context/sales';
-import { store } from './store'; 
+import { store } from './store';
 import { Provider } from 'react-redux';
 import Base from './components/common/Base/Base';
 
 import config from './config/config';
 
+console.log(`Root path set to ${config.rootPath}`);
 
-console.log(`Root path set to ${config.rootPath}`)
-
-const createRouter = config.environ === 'production' ?
-              createHashRouter:
-              createBrowserRouter;
+const createRouter =
+  config.environ === 'production' ? createHashRouter : createBrowserRouter;
 
 const router = createRouter([
   {
@@ -52,16 +50,16 @@ const router = createRouter([
         element: <HomePage />,
       },
       {
-        path: "home",
+        path: 'home',
         element: <HomePage />,
       },
       {
-        path: "signin",
+        path: 'signin',
         element: <SignInPage />,
       },
       {
-        path: "signup",
-        element: <SignupPage/>,
+        path: 'signup',
+        element: <SignupPage />,
       },
       // {
       //   path: "/test",
@@ -72,25 +70,47 @@ const router = createRouter([
       //   element: <SaleDetailShowPoly></SaleDetailShowPoly>,
       // },
       {
-        path: "register-sale",
-        element: <PrivateRoute> <SalesProvider> <RegisterSalePage /> </SalesProvider> </PrivateRoute>,
+        path: 'register-sale',
+        element: (
+          <PrivateRoute>
+            {' '}
+            <SalesProvider>
+              {' '}
+              <RegisterSalePage />{' '}
+            </SalesProvider>{' '}
+          </PrivateRoute>
+        ),
       },
       {
-        path: "track-employees",
-        element: <PrivateRoute> <TrackEmployeesPage/></PrivateRoute>,
+        path: 'track-employees',
+        element: (
+          <PrivateRoute>
+            {' '}
+            <TrackEmployeesPage />
+          </PrivateRoute>
+        ),
       },
       {
-        path: "profile",
-        element: <PrivateRoute> <ProfilePage /></PrivateRoute>,
+        path: 'profile',
+        element: (
+          <PrivateRoute>
+            {' '}
+            <ProfilePage />
+          </PrivateRoute>
+        ),
       },
       {
-        path: "register-customer",
-        element: <PrivateRoute><RegisterNewCustomer/></PrivateRoute> ,
+        path: 'register-customer',
+        element: (
+          <PrivateRoute>
+            <RegisterNewCustomer />
+          </PrivateRoute>
+        ),
       },
     ],
   },
   {
-    path: "/modal",
+    path: '/modal',
     element: <ModalPage></ModalPage>,
   },
 ]);
@@ -100,9 +120,7 @@ root.render(
   <React.StrictMode>
     {/* <App /> */}
     <Provider store={store}>
-      <IdentityProvider>
-        <RouterProvider router={router} />
-      </IdentityProvider>
+      <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>
 );

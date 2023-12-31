@@ -8,6 +8,7 @@ import { employeesApi } from './api/employeesApi';
 import { managersApi } from './api/managersApi';
 import { customersApi } from './api/customersApi';
 import saleListReducer from './slices/saleListSlice';
+import { resetApp } from './actions';
 
 const store = configureStore({
   reducer: {
@@ -34,6 +35,7 @@ window.store = store;
 export { store };
 
 export { addItem, removeItem, updateItem } from './slices/saleListSlice';
+export { resetApp } from './actions';
 
 export { useSignInMutation } from './api/authApi';
 export { useFetchEmployeesQuery } from './api/employeesApi';

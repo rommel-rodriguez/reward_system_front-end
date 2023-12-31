@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { useSelector } from 'react-redux';
 import {
   Autocomplete,
@@ -11,37 +11,20 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-// import { FormControl, FormLabel } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
 import InputLabel from '@mui/material/InputLabel';
 import Grid from '@mui/material/Unstable_Grid2';
-import Base from '../../common/Base/Base';
 
-import authService from '../../../services/authService';
 import salesService from '../../../services/salesService';
-import productsService from '../../../services/productsService';
-import customerService from '../../../services/customerService';
 import SalesContext from '../../../context/sales';
 import SaleDetailTable from '../../SaleDetailList/SaleDetailTable';
-import {
-  addItem,
-  removeItem,
-  updateItem,
-  useFetchCustomerOptionsQuery,
-} from '../../../store';
+import { addItem, useFetchCustomerOptionsQuery } from '../../../store';
 import { useDispatch } from 'react-redux';
 
 function RegisterSalePage() {
-  // const options = [{fullName:"option01", id: 1}, {fullName:"option02", id: 2}];
-
-  // Required for single transaction
   const dispatch = useDispatch();
   const [clientId, setClientId] = React.useState(0);
-  // const [selectedClient, setSelectedClient] = React.useState(options[0]);
   const [selectedClient, setSelectedClient] = React.useState(null);
-  // const [customerOptions, setOptions] = React.useState([]);
-  const [productId, setProductId] = React.useState(0);
   const [productName, setProductName] = useState('');
   const [amount, setAmount] = React.useState(0);
   const user = useSelector((state) => state.identity.user);
@@ -52,7 +35,6 @@ function RegisterSalePage() {
   } = useFetchCustomerOptionsQuery();
 
   console.log('[DEBUG] RegiterSalePage, customerOPtions:', customerOptions);
-  // const [productSelect, setProductSelect] = React.useState([]);
   const { productSelect } = useContext(SalesContext);
 
   const saleDetails = useSelector((state) => state.saleList.saleItems);
@@ -71,22 +53,8 @@ function RegisterSalePage() {
 
   console.log('[DEBUG] Details: ', saleDetails);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      // TODO: This can throw error if the back-end is not working, handle
-      // apropriatedly
-      // const idsAndNames = await productsService.getProductIdsAndNames();
-      // const customerOptions = await customerService.getCustomerOptions();
-      // console.log(customerOptions);
-      // setOptions(customerOptions);
-    };
-    //    return () => { };
-    fetchData();
-  }, []);
-
   const handleChangeClientId = (event) => {
     setClientId(event.target.value);
-    // console.log(`User name: ${event.target.value}`);
   };
 
   const handleChangeAmount = (event) => {
@@ -263,7 +231,6 @@ function RegisterSalePage() {
                     value={amount}
                     type='number'
                     error={amount <= -1}
-                    // helperText = "Valor no Valido"
                   />
                 </FormControl>
               </Grid>
@@ -275,7 +242,6 @@ function RegisterSalePage() {
                     required
                     label='Fecha'
                     name='amount'
-                    // onChange={handleChangeAmount}
                     value={date}
                     type='date'
                   />

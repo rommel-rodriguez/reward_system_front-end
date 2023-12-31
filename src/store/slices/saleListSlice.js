@@ -43,6 +43,9 @@ const saleListSlice = createSlice({
 
       storageService.persistInLocal(LOCAL_SALE_LIST, state);
     },
+    resetSale(state, action) {
+      state.saleItems = [];
+    },
   },
 });
 

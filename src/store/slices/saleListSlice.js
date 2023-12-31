@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import storageService from '../../services/storageService';
+import { resetApp } from '../actions';
 
 const LOCAL_SALE_LIST = 'saleList';
 
@@ -45,7 +46,14 @@ const saleListSlice = createSlice({
     },
     resetSale(state, action) {
       state.saleItems = [];
+      storageService.persistInLocal(LOCAL_SALE_LIST, state);
     },
+  },
+  extraReducers(builder) {
+    builder.addCase(resetApp, (state, action) => {
+      state.saleItems = [];
+      storageService.persistInLocal(LOCAL_SALE_LIST, state);
+    });
   },
 });
 
